@@ -1,0 +1,43 @@
+{
+  "name": "protractor-cucumber-mink",
+  "version": "0.0.1",
+  "description": "Step library of cucumber-mink but built for native protractor driver",
+  "main": "index.js",
+  "dependencies": {
+    "bluebird": "^3.5.5",
+    "chai": "^4.2.0",
+    "cucumber": "^5.1.0",
+    "protractor": "^5.4.2"
+  },
+  "peerDependencies": {
+    "cucumber": "5.x"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-plugin-es-beautifier": "^1.0.1",
+    "prettier": "^1.18.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matmar10/protractor-cucumber-mink.git"
+  },
+  "keywords": [
+    "cucumber",
+    "protractor",
+    "mink",
+    "step",
+    "library",
+    "gherkin",
+    "bdd",
+    "angular"
+  ],
+  "author": "Matthew J. Martin <matthew.mar10@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matmar10/protractor-cucumber-mink/issues"
+  },
+  "homepage": "https://github.com/matmar10/protractor-cucumber-mink#readme"
+}
