@@ -3,14 +3,13 @@
   "version": "0.0.1",
   "description": "Step library of cucumber-mink but built for native protractor driver",
   "main": "index.js",
-  "dependencies": {
-    "bluebird": "^3.5.5",
-    "chai": "^4.2.0",
+  "peerDependencies": {
     "cucumber": "^5.1.0",
     "protractor": "^5.4.2"
   },
-  "peerDependencies": {
-    "cucumber": "5.x"
+  "dependencies": {
+    "bluebird": "^3.5.5",
+    "chai": "^4.2.0"
   },
   "devDependencies": {
     "eslint": "^6.1.0",
