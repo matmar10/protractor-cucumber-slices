@@ -2,7 +2,7 @@
 
 const { browser, element, by } = require('protractor');
 
-const Errors = require('../utils/errors.js');
+const Errors = require('./../utils/errors.js');
 const url = require('url');
 
 // From https://github.com/sindresorhus/is-absolute-url
@@ -20,30 +20,32 @@ const setBaseURL = function (location) {
   if (!isAbsoluteUrl(finalLocation)) {
     throw new Error(Errors.NAVIGATION.BASE_URL);
   }
-  this.mink.config.baseUrl = finalLocation;
+  return browser.get(finalLocation);
 };
 
 const goRoot = function () {
-  if (!this.mink.config.baseUrl) {
-    throw new Error(Errors.NAVIGATION.ROOT);
-  }
-  return this.mink.page.goto(this.mink.config.baseUrl);
+  return browser.getProcessedConfig()
+    .then((config) => {
+      if (!config.baseUrl) {
+        throw new Error(Errors.NAVIGATION.ROOT);
+      }
+      return browser.get(config.baseUrl);
+    });
 };
 
 const goTo = function (location) {
-  let finalLocation = location;
-  if (!isAbsoluteUrl(location) && this.mink.config.baseUrl) {
-    finalLocation = url.resolve(this.mink.config.baseUrl, location);
+  if (isAbsoluteUrl(location)) {
+    return browser.get(location);
   }
-  return this.mink.page.goto(finalLocation);
+  return browser.setLocation(location);
 };
 
 const refresh = function () {
-  return this.mink.page.reload();
+  return browser.refresh();
 };
 
 const goBack = function () {
-  return this.mink.page.goBack();
+  return browser.navigate().back();
 };
 
 module.exports = [
