@@ -42,6 +42,12 @@ Step library of cucumber-mink but built for native protractor driver
     -   [isEqual](#isequal)
     -   [urlMatch](#urlmatch)
     -   [queryMatch](#querymatch)
+-   [Form](#form)
+    -   [fillField](#fillfield)
+    -   [fillFieldsHash](#fillfieldshash)
+    -   [selectFrom](#selectfrom)
+    -   [setChecked](#setchecked)
+    -   [setUnchecked](#setunchecked)
 
 ### Action
 
@@ -584,6 +590,108 @@ Assert current URL query string match against provided RegExp.
 
 ```javascript
 Then the url parameter should match ^\/post\/\d+
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+### Form
+
+#### fillField
+
+Send a sequence of key strokes to an element (clears value before).
+You can also use unicode characters like Left arrow or Back space.
+See the [protract sendKeys method documentation](http://www.protractortest.org/#/api?view=webdriver.WebElement.prototype.sendKeys)
+/^(?:|I )fill in "([^"]_)" with "([^"]_)"$/
+/^(?:|I )fill in "([^"]\*)" with:$/
+
+##### Parameters
+
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Css selector matching the target field element
+-   `value` **\[type]** The text content to send
+
+##### Examples
+
+```javascript
+Then I fill in "input[name='first_name']" with:
+"""
+My long multi-line text ...
+"""
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### fillFieldsHash
+
+Send a sequence of key strokes to an element (clears value before).
+You can also use unicode characters like Left arrow or Back space.
+See the [protract sendKeys method documentation](http://www.protractortest.org/#/api?view=webdriver.WebElement.prototype.sendKeys)
+/^(?:|I )fill in the following:$/
+
+##### Parameters
+
+-   `hashDataTable`  
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Css selector matching the target field element
+-   `value` **\[type]** The text content to send
+
+##### Examples
+
+```javascript
+When I fill in the following:
+| input[name='first_name']     | John          |
+| input[name='last_name']      | Doe           |
+| textarea[name='description'] | Some text ... |
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### selectFrom
+
+Select option that display text matching the argument.
+/^(?:|I )select "([^"]_)" from "([^"]_)"$/
+
+##### Parameters
+
+-   `option` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Text content of the option
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Css selector matching the target field element
+
+##### Examples
+
+```javascript
+Then I select "France" from "select.country"
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### setChecked
+
+Check the checkbox with provided selector.
+/^(?:|I )check "([^"]\*)"$/
+
+##### Parameters
+
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Css selector matching the target field element
+
+##### Examples
+
+```javascript
+Then I check "#checkbox-input"
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### setUnchecked
+
+Uncheck the checkbox with provided selector.
+/^(?:|I )uncheck "([^"]\*)"$/
+
+##### Parameters
+
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Css selector matching the target field element
+
+##### Examples
+
+```javascript
+Then I uncheck "#checkbox-input-next"
 ```
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
