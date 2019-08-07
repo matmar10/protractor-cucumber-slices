@@ -11,6 +11,7 @@ const Action = {
 
   /**
    * Click on an element based on given selector.
+   *
    * /^(?:|I )click on "([^"]*)"/
    * @memberof Action
    * @example When I click on "button.showModal"
@@ -23,7 +24,9 @@ const Action = {
 
   /**
    * Hover an element with cursor (activate CSS :hover property).
+   *
    * /^(?:|I )hover "([^"]*)" element/
+   *
    * @memberof Action
    * @example When I hover "nav.menu" element
    * @param  {string} selector Selector of target element
@@ -35,7 +38,9 @@ const Action = {
 
   /**
    * Submits a form found by given selector. The submit command may also be applied to any element that is a descendant of a <form> element.
+   *
    * /^(?:|I )submit "([^"]*)" form/
+   *
    * @memberof Action
    * @example When I submit "form#register" form
    * @param  {string} selector Selector of target element

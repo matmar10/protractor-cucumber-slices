@@ -54,6 +54,7 @@ Step library of cucumber-mink but built for native protractor driver
 #### click
 
 Click on an element based on given selector.
+
 /^(?:|I )click on "([^"]\*)"/
 
 ##### Parameters
@@ -71,6 +72,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 #### hover
 
 Hover an element with cursor (activate CSS :hover property).
+
 /^(?:|I )hover "([^"]\*)" element/
 
 ##### Parameters
@@ -88,6 +90,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 #### submit
 
 Submits a form found by given selector. The submit command may also be applied to any element that is a descendant of a <form> element.
+
 /^(?:|I )submit "([^"]\*)" form/
 
 ##### Parameters
