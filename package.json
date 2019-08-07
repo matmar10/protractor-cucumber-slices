@@ -12,6 +12,7 @@
     "chai": "^4.2.0"
   },
   "devDependencies": {
+    "documentation": "^12.1.1",
     "eslint": "^6.1.0",
     "eslint-plugin-es-beautifier": "^1.0.1",
     "prettier": "^1.18.2",
