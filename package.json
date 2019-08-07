@@ -14,10 +14,14 @@
   "devDependencies": {
     "eslint": "^6.1.0",
     "eslint-plugin-es-beautifier": "^1.0.1",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "release-it": "^12.3.5"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run test-codequality && echo 'No unit tests yet. Add some?'",
+    "test-codequality": "./node_modules/eslint/bin/eslint.js .",
+    "fix-codequality": "./node_modules/eslint/bin/eslint.js . --fix",
+    "release": "release-it"
   },
   "repository": {
     "type": "git",
@@ -38,5 +42,19 @@
   "bugs": {
     "url": "https://github.com/matmar10/protractor-cucumber-mink/issues"
   },
-  "homepage": "https://github.com/matmar10/protractor-cucumber-mink#readme"
+  "homepage": "https://github.com/matmar10/protractor-cucumber-mink#readme",
+  "release-it": {
+    "git": {
+      "commit": true,
+      "tag": true,
+      "push": true
+    },
+    "github": {
+      "release": true
+    },
+    "npm": {
+      "private": true,
+      "publish": true
+    }
+  }
 }
