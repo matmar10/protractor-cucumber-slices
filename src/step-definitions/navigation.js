@@ -1,9 +1,8 @@
 'use strict';
 
-const { browser, element, by } = require('protractor');
+const { browser } = require('protractor');
 
 const Errors = require('./../utils/errors.js');
-const url = require('url');
 
 // From https://github.com/sindresorhus/is-absolute-url
 const isAbsoluteUrl = location => /^(?:\w+:)\/\//.test(location);
