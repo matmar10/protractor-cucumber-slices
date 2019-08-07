@@ -9,22 +9,12 @@ Step library of cucumber-mink but built for native protractor driver
 #### Table of Contents
 
 -   [click](#click)
-    -   [Parameters](#parameters)
-    -   [Examples](#examples)
 -   [hover](#hover)
-    -   [Parameters](#parameters-1)
-    -   [Examples](#examples-1)
 -   [submit](#submit)
-    -   [Parameters](#parameters-2)
-    -   [Examples](#examples-2)
 -   [press](#press)
-    -   [Parameters](#parameters-3)
-    -   [Examples](#examples-3)
 -   [follow](#follow)
-    -   [Parameters](#parameters-4)
-    -   [Examples](#examples-4)
--   [index](#index)
 -   [errors](#errors)
+-   [index](#index)
 
 ### click
 
@@ -113,10 +103,10 @@ When I follow "a[href='/about']"
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action propogates
 
-### index
+### errors
 
 Interface
 
-### errors
+### index
 
 Interface

@@ -19,6 +19,7 @@
     "release-it": "^12.3.5"
   },
   "scripts": {
+    "doc": "./node_modules/.bin/documentation readme src/step-definitions/*.js --section=Steps --markdown-toc-max-depth=2",
     "test": "npm run test-codequality && echo 'No unit tests yet. Add some?'",
     "test-codequality": "./node_modules/eslint/bin/eslint.js .",
     "fix-codequality": "./node_modules/eslint/bin/eslint.js . --fix",
@@ -56,6 +57,13 @@
     "npm": {
       "private": true,
       "publish": true
+    },
+    "hooks": {
+      "before:init": ["npm run doc", "npm test"],
+      "after:my-plugin:bump": "./bin/my-script.sh",
+      "after:bump": "npm run build",
+      "after:git:release": "echo After git push, before github release",
+      "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
     }
   }
 }
