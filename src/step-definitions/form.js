@@ -30,17 +30,20 @@ const Form = {
    * Send a sequence of key strokes to an element (clears value before).
    * You can also use unicode characters like Left arrow or Back space.
    * See the [protract sendKeys method documentation](http://www.protractortest.org/#/api?view=webdriver.WebElement.prototype.sendKeys)
+   *
    * /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/
+   *
    * /^(?:|I )fill in "([^"]*)" with:$/
+   *
    * @example Then I fill in "input[name='first_name']" with:
   """
   My long multi-line text ...
   """
    * @param  {string} selector Css selector matching the target field element
    * @param  {string} value    The text content to send
-   * @return {Promise}         Resolves if assertion passes
+   * @return {Promise}         Resolves when the action completes
    */
-  fillField: function (selector, value) {
+  'fill field': function (selector, value) {
     return fieldElement(selector).sendKeys(value);
   },
 
@@ -48,16 +51,18 @@ const Form = {
    * Send a sequence of key strokes to an element (clears value before).
    * You can also use unicode characters like Left arrow or Back space.
    * See the [protract sendKeys method documentation](http://www.protractortest.org/#/api?view=webdriver.WebElement.prototype.sendKeys)
+   *
    * /^(?:|I )fill in the following:$/
+   *
    * @example When I fill in the following:
   | input[name='first_name']     | John          |
   | input[name='last_name']      | Doe           |
   | textarea[name='description'] | Some text ... |
    * @param  {string} selector Css selector matching the target field element
    * @param  {string} value    The text content to send
-   * @return {Promise}         Resolves if assertion passes
+   * @return {Promise}         Resolves when the action completes
    */
-  fillFieldsHash: function (hashDataTable) {
+  'fill multiple': function (hashDataTable) {
     /* istanbul ignore next */
     return Promise.each(hashDataTable.raw(), ([field,
       value]) => fieldElement(field).sendKeys(value));
@@ -65,13 +70,15 @@ const Form = {
 
   /**
    * Select option that display text matching the argument.
+   *
    * /^(?:|I )select "([^"]*)" from "([^"]*)"$/
+   *
    * @example Then I select "France" from "select.country"
    * @param  {string} option   Text content of the option
    * @param  {string} selector Css selector matching the target field element
-   * @return {Promise}         Resolves if assertion passes
+   * @return {Promise}         Resolves when the action completes
    */
-  selectFrom: function selectFrom(option, selector) {
+  'choose in select': function selectFrom(option, selector) {
     return fieldElement(selector)
       .then(selectField => selectField.element(by.cssContainingText('option', option))
         .click());
@@ -79,21 +86,25 @@ const Form = {
 
   /**
    * Check the checkbox with provided selector.
+   *
    * /^(?:|I )check "([^"]*)"$/
+   *
    * @example Then I check "#checkbox-input"
    * @param  {string} selector Css selector matching the target field element
-   * @return {Promise}         Resolves if assertion passes
+   * @return {Promise}         Resolves when the action completes
    */
-  setChecked: checkInput(true),
+  'check': checkInput(true),
 
   /**
    * Uncheck the checkbox with provided selector.
+   *
    * /^(?:|I )uncheck "([^"]*)"$/
+   *
    * @example Then I uncheck "#checkbox-input-next"
    * @param  {string} selector Css selector matching the target field element
-   * @return {Promise}         Resolves if assertion passes
+   * @return {Promise}         Resolves when the action completes
    */
-  setUnchecked: checkInput(false),
+  'uncheck': checkInput(false),
 
 
 };
@@ -101,26 +112,26 @@ const Form = {
 module.exports = [
   [
     /^(?:|I )fill in "([^"]*)" with "([^"]*)"/,
-    Form.fillField,
+    Form['fill field'],
   ],
   [
     /^(?:|I )fill in "([^"]*)" with:/,
-    Form.fillField,
+    Form['fill multiple'],
   ],
   [
     /^(?:|I )fill in the following:/,
-    Form.fillFieldsHash,
+    Form['fill multiple'],
   ],
   [
     /^(?:|I )select "([^"]*)" from "([^"]*)"/,
-    Form.selectFrom,
+    Form['choose in select'],
   ],
   [
     /^(?:|I )check "([^"]*)"/,
-    Form.setChecked,
+    Form['check'],
   ],
   [
     /^(?:|I )uncheck "([^"]*)"/,
-    Form.setUnchecked,
+    Form['uncheck'],
   ],
 ];
