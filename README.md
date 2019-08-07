@@ -8,74 +8,107 @@ Step library of cucumber-mink but built for native protractor driver
 
 #### Table of Contents
 
--   [click](#click)
--   [hover](#hover)
--   [submit](#submit)
--   [press](#press)
--   [follow](#follow)
--   [errors](#errors)
--   [index](#index)
+-   [Action](#action)
+    -   [click](#click)
+    -   [hover](#hover)
+    -   [submit](#submit)
+    -   [press](#press)
+    -   [follow](#follow)
+    -   [sendKey](#sendkey)
+-   [AssertDOM](#assertdom)
+    -   [seeText](#seetext)
+    -   [notSeeText](#notseetext)
+    -   [matchText](#matchtext)
+    -   [notMatchText](#notmatchtext)
+    -   [elementContainsText](#elementcontainstext)
+    -   [elementNotContainsText](#elementnotcontainstext)
+    -   [elementsCount](#elementscount)
+    -   [elementTextContainsText](#elementtextcontainstext)
+    -   [elementTextNotContainsText](#elementtextnotcontainstext)
+    -   [isVisible](#isvisible)
+    -   [isNotVisible](#isnotvisible)
+    -   [isExisting](#isexisting)
+    -   [isNotExisting](#isnotexisting)
+-   [AssertForm](#assertform)
+    -   [currentOption](#currentoption)
+    -   [fieldContains](#fieldcontains)
+    -   [fieldNotContains](#fieldnotcontains)
+    -   [isEnabled](#isenabled)
+    -   [isDisabled](#isdisabled)
+    -   [isChecked](#ischecked)
+    -   [isUnchecked](#isunchecked)
+-   [AssertURL](#asserturl)
+    -   [isRoot](#isroot)
+    -   [isEqual](#isequal)
+    -   [urlMatch](#urlmatch)
+    -   [queryMatch](#querymatch)
 
-### click
+### Action
+
+#### click
 
 Click on an element based on given selector.
+/^(?:|I )click on "([^"]\*)"/
 
-#### Parameters
+##### Parameters
 
 -   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
 
-#### Examples
+##### Examples
 
 ```javascript
 When I click on "button.showModal"
 ```
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action propogates
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action propagates
 
-### hover
+#### hover
 
 Hover an element with cursor (activate CSS :hover property).
+/^(?:|I )hover "([^"]\*)" element/
 
-#### Parameters
+##### Parameters
 
 -   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
 
-#### Examples
+##### Examples
 
 ```javascript
 When I hover "nav.menu" element
 ```
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action propogates
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action propagates
 
-### submit
+#### submit
 
 Submits a form found by given selector. The submit command may also be applied to any element that is a descendant of a <form> element.
+/^(?:|I )submit "([^"]\*)" form/
 
-#### Parameters
+##### Parameters
 
 -   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
 
-#### Examples
+##### Examples
 
 ```javascript
 When I submit "form#register" form
 ```
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action propogates
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action propagates
 
-### press
+#### press
 
 Press a button element with string argument interpreted as (in order):
   1\. CSS Selector
-  2\. Partial text of <button> and <input type="submit"> elements
-  3\. Partial text of <a> elements
+  2\. Partial text of button and <input type="submit" /> elements
+  3\. Partial text of link elements
+/^(?:|I )press "([^"]\*)"/
 
-#### Parameters
+##### Parameters
 
 -   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
 
-#### Examples
+##### Examples
 
 ```javascript
 When I press "button.register"
@@ -83,30 +116,474 @@ When I press "button.register"
          And I press "Submit"
 ```
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action propogates
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action propagates
 
-### follow
+#### follow
 
 Follow a link element with string argument interpreted as (in order):
   1\. CSS Selector
-  3\. Partial text of <a> elements
+  3\. Partial text of link elements
+/^(?:|I )follow "([^"]\*)"/
 
-#### Parameters
+##### Parameters
 
 -   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
 
-#### Examples
+##### Examples
 
 ```javascript
 When I follow "a[href='/about']"
 ```
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action propogates
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action propagates
 
-### errors
+#### sendKey
 
-Interface
+Send the key(s) to the matched element
+/^(?:|I )send key "([^"]_)" in "([^"]_)" element/
 
-### index
+##### Parameters
 
-Interface
+-   `key` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Key(s) to send
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
+
+##### Examples
+
+```javascript
+When I send key "Matthew" in "input[name='firstname']"
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action propagates
+
+### AssertDOM
+
+#### seeText
+
+Assert page sources (with tags) contains the provided string.
+/^(?:|I )should see "([^"]\*)"$/
+
+##### Parameters
+
+-   `expected` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The text content expected to be present
+
+##### Examples
+
+```javascript
+Then I should see "Home Page"
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### notSeeText
+
+Assert page sources (with tags) contains the provided string.
+/^(?:|I )should not see "([^"]\*)"$/
+
+##### Parameters
+
+-   `expected` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The text content expected to be present
+
+##### Examples
+
+```javascript
+Then I should not see "Detail Page"
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### matchText
+
+Assert page sources (with tags) match the provided RegExp.
+/^(?:|I ) should see text matching (.+)$/
+
+##### Parameters
+
+-   `regex` **[RegExp](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/RegExp)** Regular expression
+
+##### Examples
+
+```javascript
+Then I should see text matching Post-\d+
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### notMatchText
+
+Assert page sources (with tags) do not match the provided RegExp.
+/^(?:|I )should not see text matching (.+)$/
+
+##### Parameters
+
+-   `regex` **[RegExp](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/RegExp)** Regular expression
+
+##### Examples
+
+```javascript
+Then I should not see text matching .+@.+
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### elementContainsText
+
+Assert DOM-element with the provided CSS Selector contains the provided text.
+/^(?:|I )should see "([^"]_)" in the "([^"]_)" element$/
+
+##### Parameters
+
+-   `expected` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Regular expression
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
+
+##### Examples
+
+```javascript
+Then I should see "Home Page" in the "h1" element
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### elementNotContainsText
+
+Assert DOM-element(s) with the provided CSS Selector do not contains the provided text.
+/^(?:|I )should not see "([^"]_)" in the "([^"]_)" element$/
+
+##### Parameters
+
+-   `expected` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Regular expression
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
+
+##### Examples
+
+```javascript
+Then I should not see "Post Detail Page" in the "h1" element
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### elementsCount
+
+Assert page contains n number of number of DOM-elements with the provided CSS Selector.
+/^(?:|I )should see (\\d+) "([^"]\*)" elements?$/
+
+##### Parameters
+
+-   `expected` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The expected count
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
+
+##### Examples
+
+```javascript
+Then I should see 3 "section.post" elements
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### elementTextContainsText
+
+Assert page contains {n} number of DOM-elements with the provided CSS Selector.
+/^(?:|I )should see (\\d+) "([^"]\*)" elements?$/
+
+##### Parameters
+
+-   `expected` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The text content expected to be present
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
+
+##### Examples
+
+```javascript
+Then I should see 3 "section.post" elements
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### elementTextNotContainsText
+
+Assert DOM-element(s) with the provided CSS Selector does not contain the provided text.
+/^(?:|I )should see "([^"]_)" in the "([^"]_)" element$/
+
+##### Parameters
+
+-   `expected` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The text content expected to be present
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
+
+##### Examples
+
+```javascript
+Then I should see "Home Page" in the "h1" element
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### isVisible
+
+Assert if the selected DOM-element found by given selector is visible.
+/^I should see an? "([^"]\*)" element$/
+
+##### Parameters
+
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
+
+##### Examples
+
+```javascript
+Then I should see an "h2.content-subhead" element
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### isNotVisible
+
+Assert if the selected DOM-element found by given selector is not visible.
+/^I should not see an? "([^"]\*)" element$/
+
+##### Parameters
+
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
+
+##### Examples
+
+```javascript
+Then I should not see an "h2.content-subhead" element
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### isExisting
+
+Assert that at least one element exits matching given selector.
+/^the "([^"]\*)" element should exist$/
+
+##### Parameters
+
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
+
+##### Examples
+
+```javascript
+Then the "h2.content-subhead" element should exist
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### isNotExisting
+
+Assert that no element exists matching given selector.
+/^the "([^"]\*)" element should exist$/
+
+##### Parameters
+
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
+
+##### Examples
+
+```javascript
+Then the "h2.content-subhead" element should not exist
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+### AssertForm
+
+#### currentOption
+
+Assert the currently selected option of a select field contains provided text.
+/^the "([^"]_)" current option contain "([^"]_)"$/
+
+##### Parameters
+
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
+-   `expected` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Text content of the expected selected option
+
+##### Examples
+
+```javascript
+Then the "select[name='country']" current option contain "USA"
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### fieldContains
+
+Assert if the input’s value of given selector contains provided text.
+/^the "([^"]_)" field should contain "([^"]_)"$/
+
+##### Parameters
+
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
+-   `expected` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Text content of the expected value
+
+##### Examples
+
+```javascript
+Then the "textarea[name='description']" field should contain "My text"
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### fieldNotContains
+
+Assert if the input’s value of given selector do not contains provided text.
+/^the "([^"]_)" field should not contain "([^"]_)"$/
+
+##### Parameters
+
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
+-   `expected` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Text content of the value to check does not exist
+
+##### Examples
+
+```javascript
+Then the "textarea[name='description']" field should not contain "My first name"
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### isEnabled
+
+Assert that the element matching given selector is enabled
+/the "([^"]\*)" (?:field|element) should be enabled$/
+
+##### Parameters
+
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
+
+##### Examples
+
+```javascript
+Then the "input[type='submit']" element should be enabled
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### isDisabled
+
+Assert that the element matching given selector is disabled
+/the "([^"]\*)" (?:field|element) should be disabled/
+
+##### Parameters
+
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
+
+##### Examples
+
+```javascript
+Then the "input[type='submit']" element should be disabled
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### isChecked
+
+Assert that the element matching given selector is checked
+/the "([^"]_)" checkbox should be checked$/
+/the checkbox "([^"]_)" (?:is|should be) checked$/
+
+##### Parameters
+
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
+
+##### Examples
+
+```javascript
+Then the "input[name='agree']" checkbox should be checked
+```
+
+```javascript
+Then the checkbox "input[name='agree']" should be checked
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### isUnchecked
+
+Assert that the element matching given selector is unchecked
+/the "([^"]_)" checkbox should not be checked$/
+/the checkbox "([^"]_)" should (?:be unchecked|not be checked)$/
+/the checkbox "([^"]\*)" is (?:unchecked|not checked)$/
+
+##### Parameters
+
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Selector of target element
+
+##### Examples
+
+```javascript
+Then the "#checkbox-input" checkbox should not be checked
+```
+
+```javascript
+Then the checkbox "#checkbox-input" should not be checked
+```
+
+```javascript
+Then the checkbox "#checkbox-input" is unchecked
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+### AssertURL
+
+#### isRoot
+
+Assert current URL pathname equals ‘/’.
+/^(?:|I )should be on "([^"]\*)"/
+
+##### Examples
+
+```javascript
+Then I should be on the homepage
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### isEqual
+
+Assert current URL pathname equals the given string.
+/^(?:|I )should be on "([^"]\*)"$/
+
+##### Parameters
+
+-   `location`  
+
+##### Examples
+
+```javascript
+Then I should be on "/post/1"
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### urlMatch
+
+Assert current URL pathname match against provided RegExp.
+/the url should match (.+)/
+
+##### Parameters
+
+-   `regex`  
+
+##### Examples
+
+```javascript
+Then the url should match ^\/post\/\d+
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
+
+#### queryMatch
+
+Assert current URL query string match against provided RegExp.
+/^the url parameter should match (.+)$/
+
+##### Parameters
+
+-   `regex`  
+
+##### Examples
+
+```javascript
+Then the url parameter should match ^\/post\/\d+
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes

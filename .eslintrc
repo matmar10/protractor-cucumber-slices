@@ -48,7 +48,7 @@
     "max-len": [
       2,
       {
-        "code": 200,
+        "code": 400,
         "ignoreComments": true
       }
     ],
@@ -64,5 +64,6 @@
     "spaced-comment": ["error", "always", {
       "exceptions": ["-"]
     }],
+    "array-element-newline": ["error", "always"]
   }
 }

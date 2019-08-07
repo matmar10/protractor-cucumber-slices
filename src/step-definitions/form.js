@@ -13,7 +13,8 @@ const fillField = function (selector, value) {
 
 const fillFieldsHash = function (hashDataTable) {
   /* istanbul ignore next */
-  return Promise.each(hashDataTable.raw(), ([field, value]) => fieldElement(field).sendKeys(value));
+  return Promise.each(hashDataTable.raw(), ([field,
+    value]) => fieldElement(field).sendKeys(value));
 };
 
 const selectFrom = function (option, selector) {
@@ -37,10 +38,28 @@ const checkInput = function (targetState) {
 };
 
 module.exports = [
-  [/^(?:|I )fill in "([^"]*)" with "([^"]*)"/, fillField],
-  [/^(?:|I )fill in "([^"]*)" with:/, fillField],
-  [/^(?:|I )fill in the following:/, fillFieldsHash],
-  [/^(?:|I )select "([^"]*)" from "([^"]*)"/, selectFrom],
-  [/^(?:|I )check "([^"]*)"/, checkInput(true)],
-  [/^(?:|I )uncheck "([^"]*)"/, checkInput(false)],
+  [
+    /^(?:|I )fill in "([^"]*)" with "([^"]*)"/,
+    fillField,
+  ],
+  [
+    /^(?:|I )fill in "([^"]*)" with:/,
+    fillField,
+  ],
+  [
+    /^(?:|I )fill in the following:/,
+    fillFieldsHash,
+  ],
+  [
+    /^(?:|I )select "([^"]*)" from "([^"]*)"/,
+    selectFrom,
+  ],
+  [
+    /^(?:|I )check "([^"]*)"/,
+    checkInput(true),
+  ],
+  [
+    /^(?:|I )uncheck "([^"]*)"/,
+    checkInput(false),
+  ],
 ];

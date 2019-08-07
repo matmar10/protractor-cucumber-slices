@@ -1,8 +1,5 @@
 'use strict';
 
-/**
-  * Interface
-  */
 module.exports = {
   ACTION: {
     CLICK_LINK: 'Unable to find a link with selector or text matching',

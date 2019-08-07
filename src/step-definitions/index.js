@@ -8,10 +8,6 @@ const form = require('./form.js');
 const navigation = require('./navigation.js');
 const utility = require('./utility.js');
 
-/**
- * Interface
- */
-
 module.exports = [
   ...action,
   ...assertDOM,

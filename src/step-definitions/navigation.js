@@ -48,11 +48,32 @@ const goBack = function () {
 };
 
 module.exports = [
-  [/^(?:|I )browse "([^"]*)"/, setBaseURL],
-  [/^(?:|I )am on (?:|the )homepage/, goRoot],
-  [/^(?:|I )go to (?:|the )homepage/, goRoot],
-  [/^(?:|I )am on "([^"]*)"/, goTo],
-  [/^(?:|I )go to "([^"]*)"/, goTo],
-  [/^(?:|I )reload the page/, refresh],
-  [/^(?:|I )move backward one page/, goBack],
+  [
+    /^(?:|I )browse "([^"]*)"/,
+    setBaseURL,
+  ],
+  [
+    /^(?:|I )am on (?:|the )homepage/,
+    goRoot,
+  ],
+  [
+    /^(?:|I )go to (?:|the )homepage/,
+    goRoot,
+  ],
+  [
+    /^(?:|I )am on "([^"]*)"/,
+    goTo,
+  ],
+  [
+    /^(?:|I )go to "([^"]*)"/,
+    goTo,
+  ],
+  [
+    /^(?:|I )reload the page/,
+    refresh,
+  ],
+  [
+    /^(?:|I )move backward one page/,
+    goBack,
+  ],
 ];

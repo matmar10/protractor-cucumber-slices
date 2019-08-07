@@ -20,7 +20,16 @@ const screenshot = function () {
 };
 
 module.exports = [
-  [/^(?:|I )wait (\d+) seconds?/, wait],
-  [/the viewport is (\d+)px width and (\d+)px height/, viewport],
-  [/^(?:|I )take a screenshot/, screenshot],
+  [
+    /^(?:|I )wait (\d+) seconds?/,
+    wait,
+  ],
+  [
+    /the viewport is (\d+)px width and (\d+)px height/,
+    viewport,
+  ],
+  [
+    /^(?:|I )take a screenshot/,
+    screenshot,
+  ],
 ];
