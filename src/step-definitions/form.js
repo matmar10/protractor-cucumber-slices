@@ -37,7 +37,7 @@ const Form = {
   My long multi-line text ...
   """
    * @param  {string} selector Css selector matching the target field element
-   * @param  {[type]} value    The text content to send
+   * @param  {string} value    The text content to send
    * @return {Promise}         Resolves if assertion passes
    */
   fillField: function (selector, value) {
@@ -54,7 +54,7 @@ const Form = {
   | input[name='last_name']      | Doe           |
   | textarea[name='description'] | Some text ... |
    * @param  {string} selector Css selector matching the target field element
-   * @param  {[type]} value    The text content to send
+   * @param  {string} value    The text content to send
    * @return {Promise}         Resolves if assertion passes
    */
   fillFieldsHash: function (hashDataTable) {
