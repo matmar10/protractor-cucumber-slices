@@ -107,7 +107,7 @@ exports.config = {
 
 Click on an element based on given selector.
 
-/^(?:|I )click on "([^"]\*)"/
+/^(?:|I )click on (?:|the )"([^"]\*)"/
 
 ##### Parameters
 
@@ -119,13 +119,17 @@ Click on an element based on given selector.
 When I click on "button.showModal"
 ```
 
+```javascript
+When I click on the "input[type='submit']"
+```
+
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action completes
 
 #### hover
 
 Hover an element with cursor (activate CSS :hover property).
 
-/^(?:|I )hover "([^"]\*)" element/
+/^(?:|I )hover (?:|over ) (?:|the)"([^"]\*)" element/
 
 ##### Parameters
 
@@ -137,13 +141,17 @@ Hover an element with cursor (activate CSS :hover property).
 When I hover "nav.menu" element
 ```
 
+```javascript
+When I hover the "select:eq(1)" element
+```
+
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action completes
 
 #### submit
 
 Submits a form found by given selector. The submit command may also be applied to any element that is a descendant of a form element.
 
-/^(?:|I )submit "([^"]\*)" form/
+/^(?:|I )submit (?:|the )"([^"]\*)" form/
 
 ##### Parameters
 
@@ -153,6 +161,10 @@ Submits a form found by given selector. The submit command may also be applied t
 
 ```javascript
 When I submit "form#register" form
+```
+
+```javascript
+When I submit the "form.login" form
 ```
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action completes
@@ -206,6 +218,8 @@ Send the key(s) to the matched element
 
 /^(?:|I )send key "([^"]_)" in "([^"]_)" element/
 
+/^(?:|I )type "([^"]_)" in(?:|to) (?:|the )"([^"]_)" element/
+
 ##### Parameters
 
 -   `key` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Key(s) to send
@@ -214,7 +228,11 @@ Send the key(s) to the matched element
 ##### Examples
 
 ```javascript
-When I send key "Matthew" in "input[name='firstname']"
+When I send key "Matthew" in "input[name='firstname']" element
+```
+
+```javascript
+When I type "Matthew" into the "input[name='firstname']" element
 ```
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action completes
@@ -318,7 +336,7 @@ Assert DOM-element with the provided CSS Selector contains the provided text.
 
 /^(?:|I )should see "([^"]_)" in the "([^"]_)" element$/
 
-/^(?:|I )should see "([^"]_)" in the "([^"]_)" element text$/
+/^(?:|I )should see "([^"]_)" in the "([^"]_)" element(?:|'s) text$/
 
 ##### Parameters
 
@@ -335,6 +353,10 @@ Then I should see "Home Page" in the "h1" element
 Then I should see "Login" in the "h1" element text
 ```
 
+```javascript
+Then I should see "Login" in the "h1" element's text
+```
+
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
 
 #### element not contains
@@ -342,6 +364,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 Assert DOM-element(s) with the provided CSS Selector do not contains the provided text.
 
 /^(?:|I )should not see "([^"]_)" in the "([^"]_)" element$/
+
 /^(?:|I )should not see "([^"]_)" in the "([^"]_)" element text$/,
 
 ##### Parameters
