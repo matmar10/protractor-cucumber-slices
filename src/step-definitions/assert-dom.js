@@ -178,7 +178,7 @@ const AssertDOM = {
    * @param  {string} selector Selector of target element
    * @return {Promise}         Resolves if assertion passes
    */
-  isExisting: function (selector) {
+  'element exists': function (selector) {
     return browser.wait(EC.presenceOf(element(by.css(selector))), 100);
   },
 
@@ -193,7 +193,7 @@ const AssertDOM = {
    * @param  {string} selector Selector of target element
    * @return {Promise}         Resolves if assertion passes
    */
-  isNotExisting: function (selector) {
+  'element not exists': function (selector) {
     return browser.wait(EC.stalenessOf(element(by.css(selector))), 100);
   },
 };

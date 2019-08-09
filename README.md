@@ -25,8 +25,8 @@ Step library of cucumber-mink but built for native protractor driver
     -   [element not contains](#element-not-contains)
     -   [element visible](#element-visible)
     -   [element not visible](#element-not-visible)
-    -   [isExisting](#isexisting)
-    -   [isNotExisting](#isnotexisting)
+    -   [element exists](#element-exists)
+    -   [element not exists](#element-not-exists)
 -   [AssertForm](#assertform)
     -   [currentOption](#currentoption)
     -   [fieldContains](#fieldcontains)
@@ -370,7 +370,7 @@ Then the ".alert.alert-danger" element should not visible
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
 
-#### isExisting
+#### element exists
 
 Assert that at least one element exits matching given selector.
 
@@ -394,7 +394,7 @@ Then there should be a "span.warning" element
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
 
-#### isNotExisting
+#### element not exists
 
 Assert that no element exists matching given selector.
 
