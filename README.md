@@ -46,18 +46,12 @@ Step library of cucumber-mink but built for native protractor driver
     -   [choose in select](#choose-in-select)
     -   [check](#check)
     -   [uncheck](#uncheck)
--   [base url](#base-url)
-    -   [Parameters](#parameters)
-    -   [Examples](#examples)
--   [homepage](#homepage)
-    -   [Examples](#examples-1)
--   [browse](#browse)
-    -   [Parameters](#parameters-1)
-    -   [Examples](#examples-2)
--   [reload](#reload)
-    -   [Examples](#examples-3)
--   [back](#back)
-    -   [Examples](#examples-4)
+-   [Navigation](#navigation)
+    -   [base url](#base-url)
+    -   [homepage](#homepage)
+    -   [browse](#browse)
+    -   [reload](#reload)
+    -   [back](#back)
 -   [Utility](#utility)
     -   [screenshot](#screenshot)
     -   [viewport](#viewport)
@@ -744,17 +738,19 @@ Then I uncheck "#checkbox-input-next"
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when the action completes
 
-### base url
+### Navigation
+
+#### base url
 
 Set driver’s baseUrl. Useful to use short path in subsequent navigation (ex: “/login”)
 
 /^(?:|I )browse "([^"]\*)"/
 
-#### Parameters
+##### Parameters
 
 -   `location` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The base URL as a full, absolute URL
 
-#### Examples
+##### Examples
 
 ```javascript
 When I browse "http://127.0.0.1:3000/
@@ -762,7 +758,7 @@ When I browse "http://127.0.0.1:3000/
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when the action completes
 
-### homepage
+#### homepage
 
 Navigate to homepage, ie: baseUrl + ‘/’
 
@@ -770,7 +766,7 @@ Navigate to homepage, ie: baseUrl + ‘/’
 
 /^(?:|I )go to (?:|the )homepage/
 
-#### Examples
+##### Examples
 
 ```javascript
 When I am on the homepage
@@ -786,7 +782,7 @@ When I go to homepage
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when the action completes
 
-### browse
+#### browse
 
 Browse given URL or path. Protractor assumes it is an angular page
 
@@ -794,11 +790,11 @@ Browse given URL or path. Protractor assumes it is an angular page
 
 /^(?:|I )go to "([^"]\*)"/
 
-#### Parameters
+##### Parameters
 
 -   `location` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path to browse to, either absolute or relative
 
-#### Examples
+##### Examples
 
 ```javascript
 When I am on "/post/2"
@@ -810,13 +806,13 @@ When I go to "/articles/why-to-use-cucumber"
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when action completes
 
-### reload
+#### reload
 
 Reload the current page.
 
 /^(?:|I )reload the page/
 
-#### Examples
+##### Examples
 
 ```javascript
 When I reload the page
@@ -824,13 +820,13 @@ When I reload the page
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when action completes
 
-### back
+#### back
 
 Navigate backwards in the browser history, if possible.
 
 /^(?:|I )move backward one page/
 
-#### Examples
+##### Examples
 
 ```javascript
 When I move backward one page

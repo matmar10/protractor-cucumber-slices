@@ -14,6 +14,9 @@ function parseUrlWithEnv(location) {
     : location;
 }
 
+/**
+ * @module Navigation
+ */
 const Navigation = {
 
   /**
