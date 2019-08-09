@@ -4,8 +4,10 @@
   "description": "Step library of cucumber-mink but built for native protractor driver",
   "main": "index.js",
   "peerDependencies": {
+    "@angular/cli": "^6.0.0", 
     "cucumber": "^5.1.0",
-    "protractor": "^5.4.2"
+    "protractor": "^5.4.2",
+    "protractor-cucumber-framework": "^6.1.3"
   },
   "dependencies": {
     "bluebird": "^3.5.5",

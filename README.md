@@ -1,6 +1,50 @@
 # protractor-cucumber-mink
 
-Step library of cucumber-mink but built for native protractor driver
+Gherkin (cucumber) BDD step library built protractor
+intended for for testing [Angular](https://angular.io/) apps.
+
+Uses [protractor-cucumber-framework](https://www.npmjs.com/package/protractor-cucumber-framework) to wire protractor to cucumber.
+
+## Getting Started
+
+```javascript
+npm install --save-dev cucumber protractor-cucumber-framework
+```
+
+### protractor.conf.js
+
+```javascript
+exports.config = {
+
+  // change if you use a different base URL
+  // this will effect set the baseUrl used in Navigation step library
+  baseUrl: 'http://locahost:4200/',
+
+  capabilities: {
+    browserName:'chrome'
+  },
+
+  // this wires together protractor and cucumber
+  framework: 'custom',
+  frameworkPath: require.resolve('protractor-cucumber-framework'),
+
+  // require feature files
+  specs: [
+    './e2e/features/**/*.feature'
+  ],
+
+  cucumberOpts: {
+    require: [
+      // include this step library
+      path.resolve(process.cwd(), './node_modules/protractor-cucumber-mink'),
+      // point this to wherever your own steps live
+      path.resolve(process.cwd(), './e2e/**/*.steps.js'),
+    ],
+  },
+  // https://github.com/angular/protractor/issues/4378
+  directConnect: true,
+};
+```
 
 ## Steps
 
