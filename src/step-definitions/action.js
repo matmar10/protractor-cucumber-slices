@@ -12,10 +12,11 @@ const Action = {
   /**
    * Click on an element based on given selector.
    *
-   * /^(?:|I )click on "([^"]*)"/
+   * /^(?:|I )click on (?:|the )"([^"]*)"/
    *
    * @memberof Action
    * @example When I click on "button.showModal"
+   * @example When I click on the "input[type='submit']"
    * @param  {string} selector Selector of target element
    * @return {Promise}         Resolves after action completes
    */
@@ -26,10 +27,11 @@ const Action = {
   /**
    * Hover an element with cursor (activate CSS :hover property).
    *
-   * /^(?:|I )hover "([^"]*)" element/
+   * /^(?:|I )hover (?:|over ) (?:|the)"([^"]*)" element/
    *
    * @memberof Action
    * @example When I hover "nav.menu" element
+   * @example When I hover the "select:eq(1)" element
    * @param  {string} selector Selector of target element
    * @return {Promise}         Resolves after action completes
    */
@@ -40,10 +42,11 @@ const Action = {
   /**
    * Submits a form found by given selector. The submit command may also be applied to any element that is a descendant of a form element.
    *
-   * /^(?:|I )submit "([^"]*)" form/
+   * /^(?:|I )submit (?:|the )"([^"]*)" form/
    *
    * @memberof Action
    * @example When I submit "form#register" form
+   * @example When I submit the "form.login" form
    * @param  {string} selector Selector of target element
    * @return {Promise}         Resolves after action completes
    */
@@ -99,8 +102,11 @@ const Action = {
    *
    * /^(?:|I )send key "([^"]*)" in "([^"]*)" element/
    *
+   * /^(?:|I )type "([^"]*)" in(?:|to) (?:|the )"([^"]*)" element/
+   *
    * @memberof Action
-   * @example When I send key "Matthew" in "input[name='firstname']"
+   * @example When I send key "Matthew" in "input[name='firstname']" element
+   * @example When I type "Matthew" into the "input[name='firstname']" element
    * @param  {string} key      Key(s) to send
    * @param  {string} selector Selector of target element
    * @return {Promise}         Resolves after action completes
@@ -108,11 +114,12 @@ const Action = {
   sendKey: function (key, selector) {
     return element(by.css(selector)).sendKeys(key);
   },
+
 };
 
 module.exports = [
   [
-    /^(?:|I )click on "([^"]*)"/,
+    /^(?:|I )click on (?:|the )"([^"]*)"/,
     Action.click,
   ],
   [
@@ -124,15 +131,19 @@ module.exports = [
     Action.follow,
   ],
   [
-    /^(?:|I )hover "([^"]*)" element/,
+    /^(?:|I )hover (?:|over ) (?:|the)"([^"]*)" element/,
     Action.hover,
   ],
   [
-    /^(?:|I )submit "([^"]*)" form/,
+    /^(?:|I )submit (?:|the )"([^"]*)" form/,
     Action.submit,
   ],
   [
     /^(?:|I )send key "([^"]*)" in "([^"]*)" element/,
+    Action.sendKey,
+  ],
+  [
+    /^(?:|I )type "([^"]*)" in(?:|to) (?:|the )"([^"]*)" element/,
     Action.sendKey,
   ],
 ];

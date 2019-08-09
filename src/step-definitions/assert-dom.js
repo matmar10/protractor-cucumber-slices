@@ -101,10 +101,11 @@ const AssertDOM = {
    *
    * /^(?:|I )should see "([^"]*)" in the "([^"]*)" element$/
    *
-   * /^(?:|I )should see "([^"]*)" in the "([^"]*)" element text$/
+   * /^(?:|I )should see "([^"]*)" in the "([^"]*)" element(?:|'s) text$/
    *
    * @example Then I should see "Home Page" in the "h1" element
    * @example Then I should see "Login" in the "h1" element text
+   * @example Then I should see "Login" in the "h1" element's text
    * @param  {string} expected Regular expression
    * @param  {string} selector Selector of target element
    * @return {Promise}         Resolves if assertion passes
@@ -120,6 +121,7 @@ const AssertDOM = {
    * Assert DOM-element(s) with the provided CSS Selector do not contains the provided text.
    *
    * /^(?:|I )should not see "([^"]*)" in the "([^"]*)" element$/
+   *
    * /^(?:|I )should not see "([^"]*)" in the "([^"]*)" element text$/,
    *
    * @example Then I should not see "Post Detail Page" in the "h1" element
