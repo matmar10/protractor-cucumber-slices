@@ -28,13 +28,13 @@ Step library of cucumber-mink but built for native protractor driver
     -   [element exists](#element-exists)
     -   [element not exists](#element-not-exists)
 -   [AssertForm](#assertform)
-    -   [currentOption](#currentoption)
-    -   [fieldContains](#fieldcontains)
-    -   [fieldNotContains](#fieldnotcontains)
-    -   [isEnabled](#isenabled)
-    -   [isDisabled](#isdisabled)
-    -   [isChecked](#ischecked)
-    -   [isUnchecked](#isunchecked)
+    -   [select value](#select-value)
+    -   [input value](#input-value)
+    -   [input not value](#input-not-value)
+    -   [input enabled](#input-enabled)
+    -   [input disbled](#input-disbled)
+    -   [checkbox checked](#checkbox-checked)
+    -   [checkbox unchecked](#checkbox-unchecked)
 -   [AssertURL](#asserturl)
     -   [on homepage](#on-homepage)
     -   [url](#url)
@@ -419,7 +419,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### AssertForm
 
-#### currentOption
+#### select value
 
 Assert the currently selected option of a select field contains provided text.
 
@@ -438,7 +438,7 @@ Then the "select[name='country']" current option contain "USA"
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
 
-#### fieldContains
+#### input value
 
 Assert if the input’s value of given selector contains provided text.
 
@@ -457,7 +457,7 @@ Then the "textarea[name='description']" field should contain "My text"
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
 
-#### fieldNotContains
+#### input not value
 
 Assert if the input’s value of given selector do not contains provided text.
 
@@ -476,7 +476,7 @@ Then the "textarea[name='description']" field should not contain "My first name"
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
 
-#### isEnabled
+#### input enabled
 
 Assert that the element matching given selector is enabled
 
@@ -494,7 +494,7 @@ Then the "input[type='submit']" element should be enabled
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
 
-#### isDisabled
+#### input disbled
 
 Assert that the element matching given selector is disabled
 
@@ -512,7 +512,7 @@ Then the "input[type='submit']" element should be disabled
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
 
-#### isChecked
+#### checkbox checked
 
 Assert that the element matching given selector is checked
 
@@ -536,7 +536,7 @@ Then the checkbox "input[name='agree']" should be checked
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
 
-#### isUnchecked
+#### checkbox unchecked
 
 Assert that the element matching given selector is unchecked
 

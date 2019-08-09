@@ -38,7 +38,7 @@ const AssertForm = {
    * @param  {string} expected Text content of the expected selected option
    * @return {Promise}         Resolves if assertion passes
    */
-  currentOption: function (selector, expected) {
+  'select value': function (selector, expected) {
     const select = element.all(by.name(selector), by.binding(selector), by.css(selector));
     return select.then(listOfSelectInputs => Promise.each(listOfSelectInputs, (selectInput) => {
       const option = selectInput.element(`option[value]="${selectInput.value}"`);
@@ -56,7 +56,7 @@ const AssertForm = {
    * @param  {string} expected Text content of the expected value
    * @return {Promise}         Resolves if assertion passes
    */
-  fieldContains: function (selector, expected) {
+  'input value': function (selector, expected) {
     const field = element.all(by.name(selector), by.binding(selector), by.css(selector));
     return field.then(listOfFields => Promise.each(listOfFields, (fieldInput) => {
       expect(fieldInput.value).to.contain(expected);
@@ -73,7 +73,7 @@ const AssertForm = {
    * @param  {string} expected Text content of the value to check does not exist
    * @return {Promise}         Resolves if assertion passes
    */
-  fieldNotContains: function (selector, expected) {
+  'input not value': function (selector, expected) {
     const field = element.all(by.name(selector), by.binding(selector), by.css(selector));
     return field.then(listOfFields => Promise.each(listOfFields, (fieldInput) => {
       expect(fieldInput.value).to.not.contain(expected);
@@ -89,7 +89,7 @@ const AssertForm = {
    * @param  {string} selector Selector of target element
    * @return {Promise}         Resolves if assertion passes
    */
-  isEnabled: isDisabled(false),
+  'input enabled': isDisabled(false),
 
   /**
    * Assert that the element matching given selector is disabled
@@ -100,7 +100,7 @@ const AssertForm = {
    * @param  {string} selector Selector of target element
    * @return {Promise}         Resolves if assertion passes
    */
-  isDisabled: isDisabled(true),
+  'input disbled': isDisabled(true),
 
   /**
    * Assert that the element matching given selector is checked
@@ -114,7 +114,7 @@ const AssertForm = {
    * @param  {string} selector Selector of target element
    * @return {Promise}         Resolves if assertion passes
    */
-  isChecked: isChecked(true),
+  'checkbox checked': isChecked(true),
 
   /**
    * Assert that the element matching given selector is unchecked
@@ -131,38 +131,38 @@ const AssertForm = {
    * @param  {string} selector Selector of target element
    * @return {Promise}         Resolves if assertion passes
    */
-  isUnchecked: isChecked(false),
+  'checkbox unchecked': isChecked(false),
 
 };
 
 module.exports = [
   [
     /the "([^"]*)" current option contain "([^"]*)"/,
-    AssertForm.currentOption,
+    AssertForm['select value'],
   ],
   [
     /the "([^"]*)" field should contain "([^"]*)"/,
-    AssertForm.fieldContains,
+    AssertForm['input value'],
   ],
   [
     /the "([^"]*)" field should not contain "([^"]*)"/,
-    AssertForm.fieldNotContains,
+    AssertForm['input not value'],
   ],
   [
     /the "([^"]*)" (?:field|element) should be enabled$/,
-    AssertForm.isEnabled,
+    AssertForm['input enabled'],
   ],
   [
     /the "([^"]*)" (?:field|element) should be disabled$/,
-    AssertForm.isDisabled,
+    AssertForm['input disabled'],
   ],
   [
     /the "([^"]*)" checkbox should be checked$/,
-    AssertForm.isChecked,
+    AssertForm['checkbox checked'],
   ],
   [
     /the checkbox "([^"]*)" (?:is|should be) checked$/,
-    AssertForm.isChecked,
+    AssertForm['checkbox unchecked'],
   ],
   [
     /the "([^"]*)" checkbox should not be checked$/,
