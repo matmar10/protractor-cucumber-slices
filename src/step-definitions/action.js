@@ -2,7 +2,7 @@
 
 const { browser, element, by } = require('protractor');
 
-const Errors = require('../utils/errors.js');
+const Errors = require('./../utils/errors');
 
 /**
  * @module Action
@@ -65,7 +65,7 @@ const Action = {
   /**
    * Press a button element with string argument interpreted as (in order):
    *   1. CSS Selector
-   *   2. Partial text of button and <input type="submit" /> elements
+   *   2. Partial text of button and input (of type="submit") elements
    *   3. Partial text of link elements
    *
    * /^(?:|I )press "([^"]*)"/

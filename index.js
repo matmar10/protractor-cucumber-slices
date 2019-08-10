@@ -1,3 +1,5 @@
 'use strict';
 
-module.exports = require('./src/protractor-mink');
+const protractorMink = require('./src/protractor-mink');
+
+module.exports = protractorMink;

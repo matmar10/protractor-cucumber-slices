@@ -2,7 +2,7 @@
 
 const { browser } = require('protractor');
 
-const Errors = require('./../utils/errors.js');
+const Errors = require('./../utils/errors');
 
 // From https://github.com/sindresorhus/is-absolute-url
 const isAbsoluteUrl = location => /^(?:\w+:)\/\//.test(location);

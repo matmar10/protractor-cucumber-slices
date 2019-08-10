@@ -1,10 +1,22 @@
 'use strict';
 
-const cucumber = require('cucumber');
+const { by, defineStep } = require('cucumber');
 
 const definitions = require('./step-definitions/index');
+const locators = require('./utils/by');
+const elementFinders = require('./utils/element');
 
-definitions.forEach(([pattern,
-  fn]) => {
-  cucumber.defineStep(pattern, fn);
+const names = Object.keys(locators);
+names.forEach(name => by.addLocator(name, locators[name]));
+
+definitions.forEach((step) => {
+  const [pattern,
+    fn] = step;
+  defineStep(pattern, fn);
 });
+
+module.exports = {
+  steps: definitions,
+  by: locators,
+  element: elementFinders,
+};

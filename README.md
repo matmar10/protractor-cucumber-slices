@@ -76,7 +76,7 @@ exports.config = {
     -   [input value](#input-value)
     -   [input not value](#input-not-value)
     -   [input enabled](#input-enabled)
-    -   [input disbled](#input-disbled)
+    -   [input disabled](#input-disabled)
     -   [checkbox checked](#checkbox-checked)
     -   [checkbox unchecked](#checkbox-unchecked)
 -   [AssertURL](#asserturl)
@@ -96,6 +96,14 @@ exports.config = {
     -   [browse](#browse)
     -   [reload](#reload)
     -   [back](#back)
+-   [Navigation](#navigation-1)
+    -   [base url](#base-url-1)
+    -   [homepage](#homepage-1)
+    -   [browse](#browse-1)
+    -   [reload](#reload-1)
+    -   [back](#back-1)
+-   [element](#element)
+    -   [input](#input)
 -   [Utility](#utility)
     -   [screenshot](#screenshot)
     -   [viewport](#viewport)
@@ -173,7 +181,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 Press a button element with string argument interpreted as (in order):
   1\. CSS Selector
-  2\. Partial text of button and <input type="submit" /> elements
+  2\. Partial text of button and input (of type="submit") elements
   3\. Partial text of link elements
 
 /^(?:|I )press "([^"]\*)"/
@@ -555,7 +563,7 @@ Then the "input[type='submit']" element should be enabled
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves if assertion passes
 
-#### input disbled
+#### input disabled
 
 Assert that the element matching given selector is disabled
 
@@ -899,6 +907,132 @@ When I move backward one page
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when action completes
 
+### Navigation
+
+#### base url
+
+Set driver’s baseUrl. Useful to use short path in subsequent navigation (ex: “/login”)
+
+/^(?:|I )browse "([^"]\*)"/
+
+##### Parameters
+
+-   `location` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The base URL as a full, absolute URL
+
+##### Examples
+
+```javascript
+When I browse "http://127.0.0.1:3000/
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when the action completes
+
+#### homepage
+
+Navigate to homepage, ie: baseUrl + ‘/’
+
+/^(?:|I )am on (?:|the )homepage$/
+
+/^(?:|I )go to (?:|the )homepage/
+
+##### Examples
+
+```javascript
+When I am on the homepage
+```
+
+```javascript
+When I go to the homepage
+```
+
+```javascript
+When I go to homepage
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when the action completes
+
+#### browse
+
+Browse given URL or path. Protractor assumes it is an angular page
+
+/^(?:|I )am on "([^"]\*)"/
+
+/^(?:|I )go to "([^"]\*)"/
+
+##### Parameters
+
+-   `location` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path to browse to, either absolute or relative
+
+##### Examples
+
+```javascript
+When I am on "/post/2"
+```
+
+```javascript
+When I go to "/articles/why-to-use-cucumber"
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when action completes
+
+#### reload
+
+Reload the current page.
+
+/^(?:|I )reload the page/
+
+##### Examples
+
+```javascript
+When I reload the page
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when action completes
+
+#### back
+
+Navigate backwards in the browser history, if possible.
+
+/^(?:|I )move backward one page/
+
+##### Examples
+
+```javascript
+When I move backward one page
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when action completes
+
+### element
+
+-   **See: <https://www.protractortest.org/#/api?view=ElementFinder>**
+
+#### input
+
+Attempts to find a single input element using the following methods:
+1\. By CSS selector (by.css)
+2\. By name (by.name)
+3\. By angular model (by.selector)
+4\. By angular reflected name (by.reflectedName)
+4\. By input label text to get ID (by.inputLabelText)
+5\. By angular binding (by.binding)
+
+##### Parameters
+
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The CSS selector
+
+##### Examples
+
+```javascript
+const { element } = require('protractor-cucumber-mink');
+const { When } = require('cucumber');
+When('I click the {string} input', function (selector) {
+  return element.input(selector).click();
+});
+```
+
+Returns **ElementFinder** The ElementFinder
+
 ### Utility
 
 #### screenshot
@@ -956,3 +1090,87 @@ Then I wait 10 seconds
 ```
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when action completes
+
+## Utils
+
+<!-- Generated by documentation.js. Update this documentation by updating the source code. -->
+
+#### Table of Contents
+
+-   [by](#by)
+    -   [reflectedName](#reflectedname)
+    -   [inputByLabelText](#inputbylabeltext)
+-   [element](#element)
+    -   [input](#input)
+
+### by
+
+#### reflectedName
+
+Finds element by the angular reflected name
+
+##### Parameters
+
+-   `args` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Arguments passed to this Locator
+-   `opt_parentElement` **[Element](https://developer.mozilla.org/docs/Web/API/Element)** (optional) Parent element [default=document]
+
+##### Examples
+
+```javascript
+const { by, element } = require('protractor-cucumber-mink');
+const { When } = require('cucumber');
+When('I click the input with reflected name "{string}"', function (selector) {
+  return element(by.reflectedName(selector)).click();
+});
+```
+
+Returns **[NodeList](https://developer.mozilla.org/docs/Web/API/NodeList)** Array of matched DOM elements
+
+#### inputByLabelText
+
+Finds elements corresponding to their labels by the text itself
+
+##### Parameters
+
+-   `args` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Arguments passed to this Locator
+-   `opt_parentElement` **[Element](https://developer.mozilla.org/docs/Web/API/Element)** (optional) Parent element [default=document]
+
+##### Examples
+
+```javascript
+const { by } = require('protractor-cucumber-mink');
+const { When } = require('cucumber');
+When('I click the input labeled "{string}"', function (labelText) {
+  return element(by.inputByLabelText(labelText)).click();
+});
+```
+
+Returns **[NodeList](https://developer.mozilla.org/docs/Web/API/NodeList)** Array of matched DOM elements
+
+### element
+
+#### input
+
+Attempts to find a single input element using the following methods:
+1\. By CSS selector (by.css)
+2\. By name (by.name)
+3\. By angular model (by.selector)
+4\. By angular reflected name (by.reflectedName)
+4\. By input label text to get ID (by.inputLabelText)
+5\. By angular binding (by.binding)
+
+##### Parameters
+
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The CSS selector
+
+##### Examples
+
+```javascript
+const { element } = require('protractor-cucumber-mink');
+const { When } = require('cucumber');
+When('I click the {string} input', function (selector) {
+  return element.input(selector).click();
+});
+```
+
+Returns **ElementFinder** The ElementFinder

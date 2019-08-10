@@ -1,15 +1,13 @@
 'use strict';
 
 const Promise = require('bluebird');
-const { element, by } = require('protractor');
+const { by } = require('protractor');
 
-function fieldElement(selector) {
-  return element.all(by.name(selector), by.model(selector), by.css(selector)).first();
-}
+const { inputElement } = require('./../utils/element-finders');
 
 function checkInput(targetState) {
   return function (selector) {
-    const field = fieldElement(selector);
+    const field = inputElement(selector);
     return field
       .getAttribute()
       .then((isChecked) => {
@@ -44,7 +42,7 @@ const Form = {
    * @return {Promise}         Resolves when the action completes
    */
   'fill field': function (selector, value) {
-    return fieldElement(selector).sendKeys(value);
+    return inputElement(selector).sendKeys(value);
   },
 
   /**
@@ -64,7 +62,7 @@ const Form = {
   'fill multiple': function (hashDataTable) {
     /* istanbul ignore next */
     return Promise.each(hashDataTable.raw(), ([field,
-      value]) => fieldElement(field).sendKeys(value));
+      value]) => inputElement(field).sendKeys(value));
   },
 
   /**
@@ -78,7 +76,7 @@ const Form = {
    * @return {Promise}         Resolves when the action completes
    */
   'choose in select': function selectFrom(option, selector) {
-    return fieldElement(selector)
+    return inputElement(selector)
       .then(selectField => selectField.element(by.cssContainingText('option', option))
         .click());
   },
