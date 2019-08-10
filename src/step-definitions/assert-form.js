@@ -100,7 +100,7 @@ const AssertForm = {
    * @param  {string} selector Selector of target element
    * @return {Promise}         Resolves if assertion passes
    */
-  'input disbled': isDisabled(true),
+  'input disabled': isDisabled(true),
 
   /**
    * Assert that the element matching given selector is checked
@@ -162,18 +162,18 @@ module.exports = [
   ],
   [
     /the checkbox "([^"]*)" (?:is|should be) checked$/,
-    AssertForm['checkbox unchecked'],
+    AssertForm['checkbox checked'],
   ],
   [
     /the "([^"]*)" checkbox should not be checked$/,
-    AssertForm.isUnchecked,
+    AssertForm['checkbox unchecked'],
   ],
   [
     /the checkbox "([^"]*)" should (?:be unchecked|not be checked)$/,
-    AssertForm.isUnchecked,
+    AssertForm['checkbox unchecked'],,
   ],
   [
     /the checkbox "([^"]*)" is (?:unchecked|not checked)$/,
-    AssertForm.isUnchecked,
+    AssertForm['checkbox unchecked'],
   ],
 ];
