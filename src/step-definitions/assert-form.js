@@ -172,7 +172,7 @@ module.exports = [
   ],
   [
     /the checkbox "([^"]*)" should (?:be unchecked|not be checked)$/,
-    AssertForm['checkbox unchecked'],,
+    AssertForm['checkbox unchecked'],
   ],
   [
     /the checkbox "([^"]*)" is (?:unchecked|not checked)$/,
