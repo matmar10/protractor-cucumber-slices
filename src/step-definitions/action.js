@@ -2,6 +2,7 @@
 
 const { browser, element, by } = require('protractor');
 
+const { any } = require('./../utils/element');
 const Errors = require('./../utils/errors');
 
 /**
@@ -51,7 +52,7 @@ const Action = {
    * @return {Promise}         Resolves after action completes
    */
   submit: function (selector) {
-    const form = element.all(by.name(selector), by.css(selector)).first();
+    const form = any(by.name(selector), by.css(selector));
     return form
       .getTagName()
       .then((tagName) => {
@@ -72,19 +73,19 @@ const Action = {
    *
    * @memberof Action
    * @example When I press "button.register"
-   *          And I press "Register"
-   *          And I press "Submit"
+   * And I press "Register"
+   * And I press "Submit"
    * @param  {string} selector Selector of target element
    * @return {Promise}         Resolves after action completes
    */
   press: function (selector) {
-    return element.all(by.css(selector), by.partialButtonText(selector), by.partialLinkText(selector)).first().click();
+    return any(by.partialButtonText(selector), by.partialLinkText(selector)).click();
   },
 
   /**
    * Follow a link element with string argument interpreted as (in order):
-   *   1. CSS Selector
-   *   3. Partial text of link elements
+   * 1. CSS Selector
+   * 3. Partial text of link elements
    *
    * /^(?:|I )follow "([^"]*)"/
    *
@@ -94,7 +95,7 @@ const Action = {
    * @return {Promise}         Resolves after action completes
    */
   follow: function (selector) {
-    return element.all(by.css(selector), by.partialLinkText(selector)).first().click();
+    return any(by.css(selector), by.partialLinkText(selector)).click();
   },
 
   /**

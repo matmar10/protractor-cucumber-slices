@@ -21,9 +21,9 @@
     "release-it": "^12.3.5"
   },
   "scripts": {
-    "doc:all": "npm run doc:steps && npm run doc:utils",
-    "doc:steps": "./node_modules/.bin/documentation readme src/step-definitions/*.js --section=Steps --markdown-toc-max-depth=3",
-    "doc:utils": "./node_modules/.bin/documentation readme src/utils/*.js --section=Utils --markdown-toc-max-depth=3",
+    "docs:all": "npm run docs:steps && npm run docs:utils",
+    "docs:steps": "./node_modules/.bin/documentation readme src/step-definitions/*.js --section=Steps --markdown-toc-max-depth=3",
+    "docs:utils": "./node_modules/.bin/documentation readme src/utils/*.js --section=Utils --markdown-toc-max-depth=3",
     "test": "npm run codequality:test && echo 'No unit tests yet. Add some?'",
     "codequality:test": "./node_modules/eslint/bin/eslint.js .",
     "codequality:fix": "./node_modules/eslint/bin/eslint.js . --fix",
@@ -64,7 +64,7 @@
     },
     "hooks": {
       "before:init": "npm test",
-      "after:bump": "npm run doc:all"
+      "after:bump": "npm run docs:all"
     }
   }
 }

@@ -63,7 +63,7 @@ module.exports = [
     Utility['viewport'],
   ],
   [
-    /^(?:|I )wait (\d+) seconds?/,
+    /^(?:|I )wait (?:|for )(\d+) seconds?/,
     Utility['wait'],
   ],
 ];

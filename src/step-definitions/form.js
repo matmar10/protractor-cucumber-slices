@@ -3,11 +3,11 @@
 const Promise = require('bluebird');
 const { by } = require('protractor');
 
-const { inputElement } = require('./../utils/element');
+const { input } = require('./../utils/element');
 
 function checkInput(targetState) {
   return function (selector) {
-    const field = inputElement(selector);
+    const field = input(selector);
     return field
       .getAttribute()
       .then((isChecked) => {
@@ -42,7 +42,7 @@ const Form = {
    * @return {Promise}         Resolves when the action completes
    */
   'fill field': function (selector, value) {
-    return inputElement(selector).sendKeys(value);
+    return input(selector).sendKeys(value);
   },
 
   /**
@@ -53,16 +53,16 @@ const Form = {
    * /^(?:|I )fill in the following:$/
    *
    * @example When I fill in the following:
-  | input[name='first_name']     | John          |
-  | input[name='last_name']      | Doe           |
-  | textarea[name='description'] | Some text ... |
+| input[name='first_name']     | John          |
+| input[name='last_name']      | Doe           |
+| textarea[name='description'] | Some text ... |
    * @param  {object} hashDataTable List of key:value pairs of data to fieldElement
    * @return {Promise}              Resolves when the action completes
    */
   'fill multiple': function (hashDataTable) {
     /* istanbul ignore next */
     return Promise.each(hashDataTable.raw(), ([field,
-      value]) => inputElement(field).sendKeys(value));
+      value]) => input(field).sendKeys(value));
   },
 
   /**
@@ -76,7 +76,7 @@ const Form = {
    * @return {Promise}         Resolves when the action completes
    */
   'choose in select': function selectFrom(option, selector) {
-    return inputElement(selector)
+    return input(selector)
       .then(selectField => selectField.element(by.cssContainingText('option', option))
         .click());
   },

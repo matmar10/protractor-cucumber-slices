@@ -20,7 +20,7 @@ const AssertURL = {
    * @return {Promise}         Resolves if assertion passes
    */
   'on homepage': function () {
-    browser.wait(EC.urlIs('/'), 200);
+    return EC.urlIs('/')().then(res => expect(res).to.be(true));
   },
 
   /**
@@ -32,7 +32,7 @@ const AssertURL = {
    * @return {Promise}         Resolves if assertion passes
    */
   'url': function (location) {
-    browser.wait(EC.urlIs(location), 200);
+    return EC.urlIs(location)().then(res => expect(res).to.be(true));
   },
 
   /**

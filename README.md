@@ -59,6 +59,9 @@ exports.config = {
     -   [press](#press)
     -   [follow](#follow)
     -   [sendKey](#sendkey)
+-   [element](#element)
+    -   [any](#any)
+    -   [input](#input)
 -   [AssertDOM](#assertdom)
     -   [html contains](#html-contains)
     -   [html not contains](#html-not-contains)
@@ -90,8 +93,6 @@ exports.config = {
     -   [choose in select](#choose-in-select)
     -   [check](#check)
     -   [uncheck](#uncheck)
--   [element](#element)
-    -   [input](#input)
 -   [Navigation](#navigation)
     -   [base url](#base-url)
     -   [homepage](#homepage)
@@ -188,8 +189,8 @@ Press a button element with string argument interpreted as (in order):
 
 ```javascript
 When I press "button.register"
-         And I press "Register"
-         And I press "Submit"
+And I press "Register"
+And I press "Submit"
 ```
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action completes
@@ -197,8 +198,8 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 #### follow
 
 Follow a link element with string argument interpreted as (in order):
-  1. CSS Selector
-  3. Partial text of link elements
+1. CSS Selector
+3. Partial text of link elements
 
 /^(?:|I )follow "([^"]\*)"/
 
@@ -238,6 +239,56 @@ When I type "Matthew" into the "input[name='firstname']" element
 ```
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves after action completes
+
+### element
+
+#### any
+
+Attempts to find a single element by trying each of the provided
+Locators in the order provided.
+
+##### Parameters
+
+-   `finders` **...webdriver.Locator** List of Locators to check
+
+##### Examples
+
+```javascript
+const { by } = require('protractor');
+const { element } = require('protractor-cucumber-mink');
+const { When } = require('cucumber');
+When('I click the {string} input', function (selector) {
+  return element.any(by.css('.alert'), by.name('alert'), by.binding('messages.alert')).click();
+});
+```
+
+Returns **ElementFinder** The ElementFinder for the first matched element
+
+#### input
+
+Attempts to find a single input element using the following methods:
+1. By CSS selector (by.css)
+2. By name (by.name)
+3. By angular model (by.selector)
+4. By angular reflected name (by.reflectedName)
+4. By input label text to get ID (by.inputLabelText)
+5. By angular binding (by.binding)
+
+##### Parameters
+
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Query to look up using each of the available methods
+
+##### Examples
+
+```javascript
+const { element } = require('protractor-cucumber-mink');
+const { When } = require('cucumber');
+When('I click the {string} input', function (selector) {
+  return element.input(selector).click();
+});
+```
+
+Returns **ElementFinder** The ElementFinder
 
 ### AssertDOM
 
@@ -805,34 +856,6 @@ Then I uncheck "#checkbox-input-next"
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when the action completes
 
-### element
-
-#### input
-
-Attempts to find a single input element using the following methods:
-1. By CSS selector (by.css)
-2. By name (by.name)
-3. By angular model (by.selector)
-4. By angular reflected name (by.reflectedName)
-4. By input label text to get ID (by.inputLabelText)
-5. By angular binding (by.binding)
-
-##### Parameters
-
--   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The CSS selector
-
-##### Examples
-
-```javascript
-const { element } = require('protractor-cucumber-mink');
-const { When } = require('cucumber');
-When('I click the {string} input', function (selector) {
-  return element.input(selector).click();
-});
-```
-
-Returns **ElementFinder** The ElementFinder
-
 ### Navigation
 
 #### base url
@@ -995,8 +1018,9 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 -   [by](#by)
     -   [reflectedName](#reflectedname)
-    -   [inputByLabelText](#inputbylabeltext)
+    -   [inputLabelText](#inputlabeltext)
 -   [element](#element)
+    -   [any](#any)
     -   [input](#input)
 
 ### by
@@ -1008,7 +1032,7 @@ Finds element by the angular reflected name
 ##### Parameters
 
 -   `args` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Arguments passed to this Locator
--   `opt_parentElement` **[Element](https://developer.mozilla.org/docs/Web/API/Element)** (optional) Parent element [default=document]
+-   `opt_parentElement` **[Element](https://developer.mozilla.org/docs/Web/API/Element)** Parent element (optional, default `document`)
 
 ##### Examples
 
@@ -1022,14 +1046,14 @@ When('I click the input with reflected name "{string}"', function (selector) {
 
 Returns **[NodeList](https://developer.mozilla.org/docs/Web/API/NodeList)** Array of matched DOM elements
 
-#### inputByLabelText
+#### inputLabelText
 
 Finds elements corresponding to their labels by the text itself
 
 ##### Parameters
 
 -   `args` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Arguments passed to this Locator
--   `opt_parentElement` **[Element](https://developer.mozilla.org/docs/Web/API/Element)** (optional) Parent element [default=document]
+-   `opt_parentElement` **[Element](https://developer.mozilla.org/docs/Web/API/Element)** Parent element (optional, default `document`)
 
 ##### Examples
 
@@ -1037,13 +1061,35 @@ Finds elements corresponding to their labels by the text itself
 const { by } = require('protractor-cucumber-mink');
 const { When } = require('cucumber');
 When('I click the input labeled "{string}"', function (labelText) {
-  return element(by.inputByLabelText(labelText)).click();
+  return element(by.inputLabelText(labelText)).click();
 });
 ```
 
 Returns **[NodeList](https://developer.mozilla.org/docs/Web/API/NodeList)** Array of matched DOM elements
 
 ### element
+
+#### any
+
+Attempts to find a single element by trying each of the provided
+Locators in the order provided.
+
+##### Parameters
+
+-   `finders` **...webdriver.Locator** List of Locators to check
+
+##### Examples
+
+```javascript
+const { by } = require('protractor');
+const { element } = require('protractor-cucumber-mink');
+const { When } = require('cucumber');
+When('I click the {string} input', function (selector) {
+  return element.any(by.css('.alert'), by.name('alert'), by.binding('messages.alert')).click();
+});
+```
+
+Returns **ElementFinder** The ElementFinder for the first matched element
 
 #### input
 
@@ -1057,7 +1103,7 @@ Attempts to find a single input element using the following methods:
 
 ##### Parameters
 
--   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The CSS selector
+-   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Query to look up using each of the available methods
 
 ##### Examples
 

@@ -1,11 +1,38 @@
 'use strict';
 
+const Promise = require('bluebird');
 const { element, by } = require('protractor');
+
+const errors = require('./errors');
 
 /**
  * @module element
  */
 module.exports = {
+
+  /**
+   * Attempts to find a single element by trying each of the provided
+   * Locators in the order provided.
+   * @example const { by } = require('protractor');
+   * const { element } = require('protractor-cucumber-mink');
+   * const { When } = require('cucumber');
+   * When('I click the {string} input', function (selector) {
+   *   return element.any(by.css('.alert'), by.name('alert'), by.binding('messages.alert')).click();
+   * });
+   * @param  {...webdriver.Locator} finders  List of Locators to check
+   * @return {ElementFinder}                 The ElementFinder for the first matched element
+   */
+  any: function any(...finders) {
+    return Promise.each(finders, finder => element(finder))
+      .then((results) => {
+        // filter out null/empty results
+        const filtered = results.map(result => result);
+        if (!filtered.length) {
+          throw new Error(errors.LOCATOR.NOT_FOUND_FOR_LIST);
+        }
+        return filtered[0];
+      });
+  },
 
   /**
    * Attempts to find a single input element using the following methods:
@@ -20,10 +47,10 @@ module.exports = {
    * When('I click the {string} input', function (selector) {
    *   return element.input(selector).click();
    * });
-   * @param  {string} selector The CSS selector
+   * @param  {string} selector Query to look up using each of the available methods
    * @return {ElementFinder}   The ElementFinder
    */
   input: function (selector) {
-    return element.all(by.css(selector), by.name(selector), by.model(selector), by.inputLabelText(selector), by.binding(selector)).first();
+    return module.exports.any(by.css(selector), by.name(selector), by.model(selector), by.inputLabelText(selector), by.binding(selector));
   },
 };

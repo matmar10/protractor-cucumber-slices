@@ -10,4 +10,7 @@ module.exports = {
     BASE_URL: 'Base url should be a valid absolute url.',
     ROOT: 'Please provide "config.baseUrl" or set BASE_URL in your env to use root function.',
   },
+  LOCATOR: {
+    NOT_FOUND_FOR_LIST: 'No element was found for the list of finders provided.'
+  }
 };

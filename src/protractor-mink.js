@@ -1,6 +1,7 @@
 'use strict';
 
-const { by, defineStep } = require('cucumber');
+const { defineStep } = require('cucumber');
+const { by } = require('protractor');
 
 const definitions = require('./step-definitions/index');
 const locators = require('./utils/by');

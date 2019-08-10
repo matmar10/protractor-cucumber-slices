@@ -14,9 +14,9 @@ module.exports = {
    * When('I click the input with reflected name "{string}"', function (selector) {
    *   return element(by.reflectedName(selector)).click();
    * });
-   * @param  {Array} args                   Arguments passed to this Locator
-   * @param  {Element} opt_parentElement    (optional) Parent element [default=document]
-   * @return {NodeList}                     Array of matched DOM elements
+   * @param  {Array} args                            Arguments passed to this Locator
+   * @param  {Element} [opt_parentElement=document]  Parent element
+   * @return {NodeList}                              Array of matched DOM elements
    */
   reflectedName: function (args, opt_parentElement) {
     const [reflectedName] = args;
@@ -29,13 +29,13 @@ module.exports = {
    * @example const { by } = require('protractor-cucumber-mink');
    * const { When } = require('cucumber');
    * When('I click the input labeled "{string}"', function (labelText) {
-   *   return element(by.inputByLabelText(labelText)).click();
+   *   return element(by.inputLabelText(labelText)).click();
    * });
-   * @param  {Array} args                   Arguments passed to this Locator
-   * @param  {Element} opt_parentElement    (optional) Parent element [default=document]
-   * @return {NodeList}                     Array of matched DOM elements
+   * @param  {Array} args                            Arguments passed to this Locator
+   * @param  {Element} [opt_parentElement=document]  Parent element
+   * @return {NodeList}                              Array of matched DOM elements
    */
-  inputByLabelText: function (args, opt_parentElement) {
+  inputLabelText: function (args, opt_parentElement) {
     const [buttonText] = args;
     // This function will be serialized as a string and will execute in the
     // browser. The first argument is the text for the button. The second
