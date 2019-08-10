@@ -90,20 +90,14 @@ exports.config = {
     -   [choose in select](#choose-in-select)
     -   [check](#check)
     -   [uncheck](#uncheck)
+-   [element](#element)
+    -   [input](#input)
 -   [Navigation](#navigation)
     -   [base url](#base-url)
     -   [homepage](#homepage)
     -   [browse](#browse)
     -   [reload](#reload)
     -   [back](#back)
--   [Navigation](#navigation-1)
-    -   [base url](#base-url-1)
-    -   [homepage](#homepage-1)
-    -   [browse](#browse-1)
-    -   [reload](#reload-1)
-    -   [back](#back-1)
--   [element](#element)
-    -   [input](#input)
 -   [Utility](#utility)
     -   [screenshot](#screenshot)
     -   [viewport](#viewport)
@@ -180,9 +174,9 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 #### press
 
 Press a button element with string argument interpreted as (in order):
-  1\. CSS Selector
-  2\. Partial text of button and input (of type="submit") elements
-  3\. Partial text of link elements
+  1. CSS Selector
+  2. Partial text of button and input (of type="submit") elements
+  3. Partial text of link elements
 
 /^(?:|I )press "([^"]\*)"/
 
@@ -203,8 +197,8 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 #### follow
 
 Follow a link element with string argument interpreted as (in order):
-  1\. CSS Selector
-  3\. Partial text of link elements
+  1. CSS Selector
+  3. Partial text of link elements
 
 /^(?:|I )follow "([^"]\*)"/
 
@@ -811,211 +805,17 @@ Then I uncheck "#checkbox-input-next"
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when the action completes
 
-### Navigation
-
-#### base url
-
-Set driver’s baseUrl. Useful to use short path in subsequent navigation (ex: “/login”)
-
-/^(?:|I )browse "([^"]\*)"/
-
-##### Parameters
-
--   `location` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The base URL as a full, absolute URL
-
-##### Examples
-
-```javascript
-When I browse "http://127.0.0.1:3000/
-```
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when the action completes
-
-#### homepage
-
-Navigate to homepage, ie: baseUrl + ‘/’
-
-/^(?:|I )am on (?:|the )homepage$/
-
-/^(?:|I )go to (?:|the )homepage/
-
-##### Examples
-
-```javascript
-When I am on the homepage
-```
-
-```javascript
-When I go to the homepage
-```
-
-```javascript
-When I go to homepage
-```
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when the action completes
-
-#### browse
-
-Browse given URL or path. Protractor assumes it is an angular page
-
-/^(?:|I )am on "([^"]\*)"/
-
-/^(?:|I )go to "([^"]\*)"/
-
-##### Parameters
-
--   `location` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path to browse to, either absolute or relative
-
-##### Examples
-
-```javascript
-When I am on "/post/2"
-```
-
-```javascript
-When I go to "/articles/why-to-use-cucumber"
-```
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when action completes
-
-#### reload
-
-Reload the current page.
-
-/^(?:|I )reload the page/
-
-##### Examples
-
-```javascript
-When I reload the page
-```
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when action completes
-
-#### back
-
-Navigate backwards in the browser history, if possible.
-
-/^(?:|I )move backward one page/
-
-##### Examples
-
-```javascript
-When I move backward one page
-```
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when action completes
-
-### Navigation
-
-#### base url
-
-Set driver’s baseUrl. Useful to use short path in subsequent navigation (ex: “/login”)
-
-/^(?:|I )browse "([^"]\*)"/
-
-##### Parameters
-
--   `location` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The base URL as a full, absolute URL
-
-##### Examples
-
-```javascript
-When I browse "http://127.0.0.1:3000/
-```
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when the action completes
-
-#### homepage
-
-Navigate to homepage, ie: baseUrl + ‘/’
-
-/^(?:|I )am on (?:|the )homepage$/
-
-/^(?:|I )go to (?:|the )homepage/
-
-##### Examples
-
-```javascript
-When I am on the homepage
-```
-
-```javascript
-When I go to the homepage
-```
-
-```javascript
-When I go to homepage
-```
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when the action completes
-
-#### browse
-
-Browse given URL or path. Protractor assumes it is an angular page
-
-/^(?:|I )am on "([^"]\*)"/
-
-/^(?:|I )go to "([^"]\*)"/
-
-##### Parameters
-
--   `location` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path to browse to, either absolute or relative
-
-##### Examples
-
-```javascript
-When I am on "/post/2"
-```
-
-```javascript
-When I go to "/articles/why-to-use-cucumber"
-```
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when action completes
-
-#### reload
-
-Reload the current page.
-
-/^(?:|I )reload the page/
-
-##### Examples
-
-```javascript
-When I reload the page
-```
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when action completes
-
-#### back
-
-Navigate backwards in the browser history, if possible.
-
-/^(?:|I )move backward one page/
-
-##### Examples
-
-```javascript
-When I move backward one page
-```
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when action completes
-
 ### element
-
--   **See: <https://www.protractortest.org/#/api?view=ElementFinder>**
 
 #### input
 
 Attempts to find a single input element using the following methods:
-1\. By CSS selector (by.css)
-2\. By name (by.name)
-3\. By angular model (by.selector)
-4\. By angular reflected name (by.reflectedName)
-4\. By input label text to get ID (by.inputLabelText)
-5\. By angular binding (by.binding)
+1. By CSS selector (by.css)
+2. By name (by.name)
+3. By angular model (by.selector)
+4. By angular reflected name (by.reflectedName)
+4. By input label text to get ID (by.inputLabelText)
+5. By angular binding (by.binding)
 
 ##### Parameters
 
@@ -1032,6 +832,102 @@ When('I click the {string} input', function (selector) {
 ```
 
 Returns **ElementFinder** The ElementFinder
+
+### Navigation
+
+#### base url
+
+Set driver’s baseUrl. Useful to use short path in subsequent navigation (ex: “/login”)
+
+/^(?:|I )browse "([^"]\*)"/
+
+##### Parameters
+
+-   `location` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The base URL as a full, absolute URL
+
+##### Examples
+
+```javascript
+When I browse "http://127.0.0.1:3000/
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when the action completes
+
+#### homepage
+
+Navigate to homepage, ie: baseUrl + ‘/’
+
+/^(?:|I )am on (?:|the )homepage$/
+
+/^(?:|I )go to (?:|the )homepage/
+
+##### Examples
+
+```javascript
+When I am on the homepage
+```
+
+```javascript
+When I go to the homepage
+```
+
+```javascript
+When I go to homepage
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when the action completes
+
+#### browse
+
+Browse given URL or path. Protractor assumes it is an angular page
+
+/^(?:|I )am on "([^"]\*)"/
+
+/^(?:|I )go to "([^"]\*)"/
+
+##### Parameters
+
+-   `location` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path to browse to, either absolute or relative
+
+##### Examples
+
+```javascript
+When I am on "/post/2"
+```
+
+```javascript
+When I go to "/articles/why-to-use-cucumber"
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when action completes
+
+#### reload
+
+Reload the current page.
+
+/^(?:|I )reload the page/
+
+##### Examples
+
+```javascript
+When I reload the page
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when action completes
+
+#### back
+
+Navigate backwards in the browser history, if possible.
+
+/^(?:|I )move backward one page/
+
+##### Examples
+
+```javascript
+When I move backward one page
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Resolves when action completes
 
 ### Utility
 

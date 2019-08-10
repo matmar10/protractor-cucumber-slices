@@ -1,9 +1,9 @@
 'use strict';
 
 const { expect } = require('chai');
+const { browser, ExpectedConditions } = require('protractor');
 const url = require('url');
 
-const { browser, ExpectedConditions } = require('protractor');
 const EC = ExpectedConditions;
 
 /**

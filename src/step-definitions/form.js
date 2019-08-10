@@ -3,7 +3,7 @@
 const Promise = require('bluebird');
 const { by } = require('protractor');
 
-const { inputElement } = require('./../utils/element-finders');
+const { inputElement } = require('./../utils/element');
 
 function checkInput(targetState) {
   return function (selector) {
