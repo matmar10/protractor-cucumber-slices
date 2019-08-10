@@ -58,9 +58,8 @@ const Form = {
   | input[name='first_name']     | John          |
   | input[name='last_name']      | Doe           |
   | textarea[name='description'] | Some text ... |
-   * @param  {string} selector Css selector matching the target field element
-   * @param  {string} value    The text content to send
-   * @return {Promise}         Resolves when the action completes
+   * @param  {object} hashDataTable List of key:value pairs of data to fieldElement
+   * @return {Promise}              Resolves when the action completes
    */
   'fill multiple': function (hashDataTable) {
     /* istanbul ignore next */

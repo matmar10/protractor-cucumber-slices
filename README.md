@@ -735,9 +735,7 @@ See the [protract sendKeys method documentation](http://www.protractortest.org/#
 
 ##### Parameters
 
--   `hashDataTable`  
--   `selector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Css selector matching the target field element
--   `value` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The text content to send
+-   `hashDataTable` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** List of key:value pairs of data to fieldElement
 
 ##### Examples
 
