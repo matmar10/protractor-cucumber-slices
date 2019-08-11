@@ -64,7 +64,7 @@ const Form = {
       value]) {
       return input(selector).then(field => field.sendKeys(value));
     }
-    return Promise.each(hashDataTable.rows(), fillRow);
+    return Promise.each(hashDataTable.raw(), fillRow);
   },
 
   /**
