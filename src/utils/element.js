@@ -24,23 +24,15 @@ module.exports = {
    */
   any: function any(...finders) {
     const filtered = [];
-    console.log(`Trying ${finders.length} finders...`);
-    let i = 0;
     return Promise.each(finders, (finder) => {
-      console.log('Trying finder #:', i++);
       const el = element(finder);
       return el.isPresent()
         .then((isPresent) => {
           if (isPresent) {
-            console.log('Finder present:', String(finder));
             filtered.push(el);
           }
-          console.log('Finder NOT present:', String(finder));
           return null;
-        }, (err) => {
-          console.log('Was error::::', err);
-          return null;
-        });
+        }, () => null);
     })
       .then(() => {
         if (!filtered.length) {

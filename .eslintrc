@@ -12,6 +12,7 @@
   },
   "globals": {},
   "rules": {
+    "no-console": 2,
     "strict": [
       2,
       "global"

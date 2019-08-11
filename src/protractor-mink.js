@@ -9,7 +9,6 @@ const elementFinders = require('./utils/element');
 
 const names = Object.keys(locators);
 names.forEach((name) => {
-  console.log('Adding locators: ', name, locators[name]);
   by.addLocator(name, locators[name]);
 });
 
