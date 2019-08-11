@@ -1,6 +1,6 @@
 {
   "name": "protractor-cucumber-mink",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Step library of cucumber-mink but built for native protractor driver",
   "main": "index.js",
   "peerDependencies": {
