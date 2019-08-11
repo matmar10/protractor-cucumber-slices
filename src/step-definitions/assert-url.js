@@ -1,10 +1,11 @@
 'use strict';
 
+const Promise = require('bluebird');
 const { expect } = require('chai');
 const { ExpectedConditions } = require('protractor');
 const url = require('url');
 
-const { isAbsoluteUrl, getCurrentUrl } = require('./../utils/url');
+const { baseUrl, getCurrentUrl, isAbsoluteUrl } = require('./../utils/url');
 
 const EC = ExpectedConditions;
 
@@ -22,7 +23,11 @@ const AssertURL = {
    * @return {Promise}         Resolves if assertion passes
    */
   'on homepage': function () {
-    return EC.urlIs('/')().then(res => expect(res).to.equal(true));
+    return Promise.all([
+      getCurrentUrl(false),
+      baseUrl(),
+    ])
+      .then(([currentUrl, currentBaseUrl]) => expect(currentUrl).to.equal(currentBaseUrl));
   },
 
   /**
