@@ -8,7 +8,10 @@ const locators = require('./utils/by');
 const elementFinders = require('./utils/element');
 
 const names = Object.keys(locators);
-names.forEach(name => by.addLocator(name, locators[name]));
+names.forEach((name) => {
+  console.log('Adding locators: ', name, locators[name]);
+  by.addLocator(name, locators[name]);
+});
 
 definitions.forEach((step) => {
   const [pattern,

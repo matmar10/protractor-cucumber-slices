@@ -1,8 +1,7 @@
 'use strict';
 
-const Promise = require('bluebird');
 const { expect } = require('chai');
-const { browser, element, by, ExpectedConditions } = require('protractor');
+const { element, by, ExpectedConditions } = require('protractor');
 
 const { input } = require('./../utils/element');
 const EC = ExpectedConditions;
@@ -41,11 +40,11 @@ const AssertForm = {
    * @return {Promise}         Resolves if assertion passes
    */
   'select value': function (selector, expected) {
-    const select = input(selector);
-    return select.then(listOfSelectInputs => Promise.each(listOfSelectInputs, (selectInput) => {
-      const option = selectInput.element(`option[value]="${selectInput.value}"`);
-      browser.wait(EC.textToBePresentInElement(option, expected), 200);
-    }));
+    return input(selector)
+      .then((selectInput) => {
+        const option = selectInput.element(`option[value]="${selectInput.value}"`);
+        return EC.textToBePresentInElement(option, expected)();
+      });
   },
 
   /**
@@ -59,10 +58,10 @@ const AssertForm = {
    * @return {Promise}         Resolves if assertion passes
    */
   'input value': function (selector, expected) {
-    const field = input(selector);
-    return field.then(listOfFields => Promise.each(listOfFields, (fieldInput) => {
-      expect(fieldInput.value).to.contain(expected);
-    }));
+    return input(selector)
+      .then((fieldInput) => {
+        expect(fieldInput.value).to.contain(expected);
+      });
   },
 
   /**
@@ -76,10 +75,10 @@ const AssertForm = {
    * @return {Promise}         Resolves if assertion passes
    */
   'input not value': function (selector, expected) {
-    const field = input(by.name(selector));
-    return field.then(listOfFields => Promise.each(listOfFields, (fieldInput) => {
-      expect(fieldInput.value).to.not.contain(expected);
-    }));
+    return input(selector)
+      .then((fieldInput) => {
+        expect(fieldInput.value).to.not.contain(expected);
+      });
   },
 
   /**

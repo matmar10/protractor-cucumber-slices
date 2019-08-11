@@ -52,15 +52,15 @@ const Action = {
    * @return {Promise}         Resolves after action completes
    */
   submit: function (selector) {
-    const form = any(by.name(selector), by.css(selector));
-    return form
-      .getTagName()
-      .then((tagName) => {
-        if ('form' !== tagName) {
-          throw new Error(Errors.ACTION.SUBMIT_FORM);
-        }
-        return form.submit();
-      });
+    return any(by.name(selector), by.css(selector))
+      .then(form => form
+        .getTagName()
+        .then((tagName) => {
+          if ('form' !== tagName) {
+            throw new Error(Errors.ACTION.SUBMIT_FORM);
+          }
+          return form.submit();
+        }));
   },
 
   /**
@@ -79,7 +79,8 @@ const Action = {
    * @return {Promise}         Resolves after action completes
    */
   press: function (selector) {
-    return any(by.partialButtonText(selector), by.partialLinkText(selector)).click();
+    return any(by.partialButtonText(selector), by.partialLinkText(selector))
+      .then(button => button.click());
   },
 
   /**
@@ -95,7 +96,8 @@ const Action = {
    * @return {Promise}         Resolves after action completes
    */
   follow: function (selector) {
-    return any(by.css(selector), by.partialLinkText(selector)).click();
+    return any(by.partialButtonText(selector), by.partialLinkText(selector))
+      .then(link => link.click());
   },
 
   /**
@@ -113,7 +115,8 @@ const Action = {
    * @return {Promise}         Resolves after action completes
    */
   sendKey: function (key, selector) {
-    return element(by.css(selector)).sendKeys(key);
+    return element(by.css(selector))
+      .then(input => input.sendKeys(key));
   },
 
 };

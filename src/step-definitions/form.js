@@ -42,7 +42,7 @@ const Form = {
    * @return {Promise}         Resolves when the action completes
    */
   'fill field': function (selector, value) {
-    return input(selector).sendKeys(value);
+    return input(selector).then(field => field.sendKeys(value));
   },
 
   /**
@@ -53,16 +53,18 @@ const Form = {
    * /^(?:|I )fill in the following:$/
    *
    * @example When I fill in the following:
-| input[name='first_name']     | John          |
-| input[name='last_name']      | Doe           |
-| textarea[name='description'] | Some text ... |
+| "First name"                    | John |
+| "Last name"                     | Doe           |
+| "textarea[name='description']"  | Some text ... |
    * @param  {object} hashDataTable List of key:value pairs of data to fieldElement
    * @return {Promise}              Resolves when the action completes
    */
   'fill multiple': function (hashDataTable) {
-    /* istanbul ignore next */
-    return Promise.each(hashDataTable.raw(), ([field,
-      value]) => input(field).sendKeys(value));
+    function fillRow([selector,
+      value]) {
+      return input(selector).then(field => field.sendKeys(value));
+    }
+    return Promise.each(hashDataTable.rows(), fillRow);
   },
 
   /**
@@ -113,7 +115,7 @@ module.exports = [
   ],
   [
     /^(?:|I )fill in "([^"]*)" with:/,
-    Form['fill multiple'],
+    Form['fill field'],
   ],
   [
     /^(?:|I )fill in the following:/,

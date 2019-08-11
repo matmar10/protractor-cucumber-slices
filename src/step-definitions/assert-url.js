@@ -1,8 +1,10 @@
 'use strict';
 
 const { expect } = require('chai');
-const { browser, ExpectedConditions } = require('protractor');
+const { ExpectedConditions } = require('protractor');
 const url = require('url');
+
+const { isAbsoluteUrl, getCurrentUrl } = require('./../utils/url');
 
 const EC = ExpectedConditions;
 
@@ -20,7 +22,7 @@ const AssertURL = {
    * @return {Promise}         Resolves if assertion passes
    */
   'on homepage': function () {
-    return EC.urlIs('/')().then(res => expect(res).to.be(true));
+    return EC.urlIs('/')().then(res => expect(res).to.equal(true));
   },
 
   /**
@@ -32,7 +34,9 @@ const AssertURL = {
    * @return {Promise}         Resolves if assertion passes
    */
   'url': function (location) {
-    return EC.urlIs(location)().then(res => expect(res).to.be(true));
+    location = (0 === location.indexOf('/')) ? location.substring(1) : location;
+    return getCurrentUrl(!isAbsoluteUrl(location))
+      .then(currentUrl => expect(currentUrl).to.equal(location));
   },
 
   /**
@@ -44,9 +48,9 @@ const AssertURL = {
    * @return {Promise}         Resolves if assertion passes
    */
   'url match': function (regex) {
-    return browser.getLocationAbsUrl()
-      .then((url) => {
-        expect(url).match(new RegExp(regex));
+    return getCurrentUrl(true)
+      .then((currentUrl) => {
+        expect(currentUrl).match(new RegExp(regex));
       });
   },
 
@@ -59,9 +63,9 @@ const AssertURL = {
    * @return {Promise}         Resolves if assertion passes
    */
   'url query match': function (regex) {
-    return browser.getLocationAbsUrl()
-      .then((pageUrl) => {
-        const parsed = url.parse(pageUrl);
+    return getCurrentUrl(true)
+      .then((currentUrl) => {
+        const parsed = url.parse(currentUrl);
         expect(parsed.query).match(new RegExp(regex));
       });
   },

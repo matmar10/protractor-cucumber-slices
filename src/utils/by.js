@@ -19,8 +19,9 @@ module.exports = {
    * @return {NodeList}                              Array of matched DOM elements
    */
   reflectedName: function (args, opt_parentElement) {
-    const [reflectedName] = args;
-    const using = opt_parentElement || document;
+    /* eslint no-var: 0 */
+    var [reflectedName] = args;
+    var using = opt_parentElement || document;
     return using.querySelectorAll(`[ng-reflect-name="${reflectedName}"]`);
   },
 
@@ -36,24 +37,30 @@ module.exports = {
    * @return {NodeList}                              Array of matched DOM elements
    */
   inputLabelText: function (args, opt_parentElement) {
-    const [buttonText] = args;
+    /* eslint no-var: 0 */
+    var [buttonText] = args;
     // This function will be serialized as a string and will execute in the
     // browser. The first argument is the text for the button. The second
     // argument is the parent element, if any.
-    const using = opt_parentElement || document;
-    const labels = using.querySelectorAll('label');
-    const matches = labels.filter((label) => {
-      const elementText = label.textContent || label.innerText || '';
-      return -1 !== elementText.indexOf(buttonText);
-    });
+    var using = opt_parentElement || document;
+    var labels = using.getElementsByTagName('label');
+    var matches = [];
+    for (var i = 0; i < labels.length; i++) {
+      var labelElement = labels[i];
+      var elementText = labelElement.textContent || labelElement.innerText || '';
+      if (-1 === elementText.indexOf(buttonText)) {
+        continue;
+      }
+      matches.push(labelElement);
+    }
 
-    const inputs = [];
+    var inputs = [];
     matches.forEach((label) => {
-      const forId = label.getAttribute('for');
+      var forId = label.getAttribute('for');
       if (!forId) {
         return;
       }
-      const input = document.getElementById(forId);
+      var input = document.getElementById(forId);
       if (!input) {
         return;
       }

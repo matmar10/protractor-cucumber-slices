@@ -3,16 +3,7 @@
 const { browser } = require('protractor');
 
 const Errors = require('./../utils/errors');
-
-// From https://github.com/sindresorhus/is-absolute-url
-const isAbsoluteUrl = location => /^(?:\w+:)\/\//.test(location);
-
-function parseUrlWithEnv(location) {
-  const matches = /^\${([^"]*)}/.exec(location);
-  return (matches)
-    ? process.env[matches[1]] + location.replace(matches[0], '')
-    : location;
-}
+const { baseUrl, isAbsoluteUrl, parseUrlWithEnv } = require('./../utils/url');
 
 /**
  * @module Navigation
@@ -33,7 +24,8 @@ const Navigation = {
     if (!isAbsoluteUrl(finalLocation)) {
       throw new Error(Errors.NAVIGATION.BASE_URL);
     }
-    return browser.get(finalLocation);
+    return baseUrl(finalLocation)
+      .then(newBaseUrl => browser.get(newBaseUrl));
   },
 
   /**
@@ -49,13 +41,8 @@ const Navigation = {
    * @return {Promise} Resolves when the action completes
    */
   'homepage': function () {
-    return browser.getProcessedConfig()
-      .then((config) => {
-        if (!config.baseUrl) {
-          throw new Error(Errors.NAVIGATION.ROOT);
-        }
-        return browser.get(config.baseUrl);
-      });
+    return baseUrl()
+      .then(url => browser.get(url));
   },
 
   /**
@@ -72,7 +59,7 @@ const Navigation = {
    */
   'browse': function (location) {
     if (isAbsoluteUrl(location)) {
-      return browser.get(location);
+      return baseUrl(location).then(() => browser.get(location));
     }
     return browser.setLocation(location);
   },

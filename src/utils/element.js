@@ -20,13 +20,29 @@ module.exports = {
    *   return element.any(by.css('.alert'), by.name('alert'), by.binding('messages.alert')).click();
    * });
    * @param  {...webdriver.Locator} finders  List of Locators to check
-   * @return {ElementFinder}                 The ElementFinder for the first matched element
+   * @return {Promise<ElementFinder>}        The ElementFinder for the first matched element
    */
   any: function any(...finders) {
-    return Promise.each(finders, finder => element(finder))
-      .then((results) => {
-        // filter out null/empty results
-        const filtered = results.map(result => result);
+    const filtered = [];
+    console.log(`Trying ${finders.length} finders...`);
+    let i = 0;
+    return Promise.each(finders, (finder) => {
+      console.log('Trying finder #:', i++);
+      const el = element(finder);
+      return el.isPresent()
+        .then((isPresent) => {
+          if (isPresent) {
+            console.log('Finder present:', String(finder));
+            filtered.push(el);
+          }
+          console.log('Finder NOT present:', String(finder));
+          return null;
+        }, (err) => {
+          console.log('Was error::::', err);
+          return null;
+        });
+    })
+      .then(() => {
         if (!filtered.length) {
           throw new Error(errors.LOCATOR.NOT_FOUND_FOR_LIST);
         }
@@ -45,12 +61,15 @@ module.exports = {
    * @example const { element } = require('protractor-cucumber-mink');
    * const { When } = require('cucumber');
    * When('I click the {string} input', function (selector) {
-   *   return element.input(selector).click();
+   *   return element.input(selector)
+   *    .then(function(input) {
+   *      return input.click();
+   *    });
    * });
-   * @param  {string} selector Query to look up using each of the available methods
-   * @return {ElementFinder}   The ElementFinder
+   * @param  {string} selector          Query to look up using each of the available methods
+   * @return {Promise<ElementFinder>}   The ElementFinder
    */
   input: function (selector) {
-    return module.exports.any(by.css(selector), by.name(selector), by.model(selector), by.inputLabelText(selector), by.binding(selector));
+    return module.exports.any(by.css(selector), by.name(selector), by.model(selector), by.binding(selector), by.inputLabelText(selector), by.reflectedName(selector));
   },
 };
