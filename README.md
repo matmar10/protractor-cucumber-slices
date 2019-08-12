@@ -1,11 +1,32 @@
-# protractor-cucumber-mink
+# Protractor Cucumber Slices
 
-A gherkin (cucumber) BDD step library built using protractor
-intended for for testing [Angular](https://angular.io/) apps.
+**Why?** Because testing is good, but writing your own step library is a dilly of a pickle.
+Enjoy pre-sliced cucumber testing for protractor, ready to consume with no lengthy pickling.
 
-Uses [protractor-cucumber-slices](https://www.npmjs.com/package/protractor-cucumber-slices) to wire protractor to cucumber.
+**Where?** A gherkin (cucumber) BDD step library for testing [Angular](https://angular.io/) (ngx) apps.
+See the [Steps](#steps) library to see what's included.
 
-Why? Because testing is good, but writing your own step library is a dilly of a pickle.
+**How?** It uses [protractor-cucumber-framework](https://www.npmjs.com/package/protractor-cucumber-framework)
+to wire protractor to cucumber. Other than that, it's just plain protractor.
+
+**When?** Now! See [Getting Started](#getting-started)
+
+## Simple Example
+
+```
+Feature: Login page
+
+  Scenario: Login with valid credentials
+    When I go to the homepage
+    And I fill in the following:
+      | Email    | person@company.com |
+      | Password | notverysecurepw    |
+    And I press "Login"
+    Then I should see "Login successful."
+    And I should be on the dashboard
+    And I should see an "article" element
+    And I should see "Welcome!" in the "h1" element
+```
 
 ## Getting Started
 
