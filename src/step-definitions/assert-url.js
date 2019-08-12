@@ -2,12 +2,9 @@
 
 const Promise = require('bluebird');
 const { expect } = require('chai');
-const { ExpectedConditions } = require('protractor');
 const url = require('url');
 
 const { baseUrl, getCurrentUrl, isAbsoluteUrl } = require('./../utils/url');
-
-const EC = ExpectedConditions;
 
 /**
  * @module AssertURL
@@ -27,7 +24,8 @@ const AssertURL = {
       getCurrentUrl(false),
       baseUrl(),
     ])
-      .then(([currentUrl, currentBaseUrl]) => expect(currentUrl).to.equal(currentBaseUrl));
+      .then(([currentUrl,
+        currentBaseUrl]) => expect(currentUrl).to.equal(currentBaseUrl));
   },
 
   /**
