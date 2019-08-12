@@ -18,7 +18,6 @@ function parseWithEnv(location) {
 }
 
 function base(newBaseUrl) {
-
   function setAndGetBaseUrl(newBaseUrlToSet) {
     if (newBaseUrlToSet) {
       newBaseUrlToSet = parseWithEnv(newBaseUrlToSet);

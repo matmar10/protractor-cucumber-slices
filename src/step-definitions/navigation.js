@@ -3,7 +3,7 @@
 const { browser } = require('protractor');
 
 const Errors = require('./../utils/errors');
-const { baseUrl, isAbsolute, parseWithEnv } = require('./../utils/url');
+const { baseUrl, isAbsolute } = require('./../utils/url');
 
 /**
  * @module Navigation
