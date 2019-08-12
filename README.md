@@ -3,14 +3,14 @@
 A gherkin (cucumber) BDD step library built using protractor
 intended for for testing [Angular](https://angular.io/) apps.
 
-Uses [protractor-cucumber-framework](https://www.npmjs.com/package/protractor-cucumber-framework) to wire protractor to cucumber.
+Uses [protractor-cucumber-slices](https://www.npmjs.com/package/protractor-cucumber-slices) to wire protractor to cucumber.
 
 Why? Because testing is good, but writing your own step library is a dilly of a pickle.
 
 ## Getting Started
 
 ```javascript
-npm install --save-dev cucumber protractor-cucumber-framework
+npm install --save-dev cucumber protractor-cucumber-slices
 ```
 
 ### protractor.conf.js
@@ -29,7 +29,7 @@ exports.config = {
 
   // this wires together protractor and cucumber
   framework: 'custom',
-  frameworkPath: require.resolve('protractor-cucumber-framework'),
+  frameworkPath: require.resolve('protractor-cucumber-slices'),
 
   // require feature files
   specs: [
