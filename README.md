@@ -18,7 +18,8 @@ exports.config = {
 
   // change if you use a different base URL
   // this will effect set the baseUrl used in Navigation step library
-  baseUrl: 'http://locahost:4200/',
+  // NOTE: the BASE_URL env variable is updated by the 'base url' action
+  baseUrl: process.env.BASE_URL || 'http://locahost:4200/',
 
   capabilities: {
     browserName:'chrome'

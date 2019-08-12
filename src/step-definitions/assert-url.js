@@ -4,7 +4,7 @@ const Promise = require('bluebird');
 const { expect } = require('chai');
 const url = require('url');
 
-const { baseUrl, getCurrentUrl, isAbsoluteUrl } = require('./../utils/url');
+const { baseUrl, getCurrent, isAbsolute } = require('./../utils/url');
 
 /**
  * @module AssertURL
@@ -21,7 +21,7 @@ const AssertURL = {
    */
   'on homepage': function () {
     return Promise.all([
-      getCurrentUrl(false),
+      getCurrent(false),
       baseUrl(),
     ])
       .then(([currentUrl,
@@ -38,7 +38,7 @@ const AssertURL = {
    */
   'url': function (location) {
     location = (0 === location.indexOf('/')) ? location.substring(1) : location;
-    return getCurrentUrl(!isAbsoluteUrl(location))
+    return getCurrent(!isAbsolute(location))
       .then(currentUrl => expect(currentUrl).to.equal(location));
   },
 
@@ -51,7 +51,7 @@ const AssertURL = {
    * @return {Promise}         Resolves if assertion passes
    */
   'url match': function (regex) {
-    return getCurrentUrl(true)
+    return getCurrent(true)
       .then((currentUrl) => {
         expect(currentUrl).match(new RegExp(regex));
       });
@@ -66,7 +66,7 @@ const AssertURL = {
    * @return {Promise}         Resolves if assertion passes
    */
   'url query match': function (regex) {
-    return getCurrentUrl(true)
+    return getCurrent(true)
       .then((currentUrl) => {
         const parsed = url.parse(currentUrl);
         expect(parsed.query).match(new RegExp(regex));
