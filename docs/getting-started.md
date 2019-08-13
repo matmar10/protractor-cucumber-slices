@@ -3,7 +3,7 @@
 
 ## Install
 
-```javascript
+```Bash
 npm install --save-dev cucumber protractor-cucumber-slices
 ```
 
