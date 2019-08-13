@@ -1,0 +1,7 @@
+
+# source file for logo is not needed
+*.sketch
+
+# also no need to send rendered image; it's only used by github
+*.png
+
