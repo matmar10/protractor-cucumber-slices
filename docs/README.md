@@ -1,6 +1,6 @@
 # Protractor Cucumber Slices
 
-<img src="assets/angular-and-cucumber.svg" />
+<img src="assets/angular-and-cucumber-with-bg.svg" />
 
 ## Why use it?
 

@@ -12,8 +12,11 @@ function formatCucumberExamples() {
   return gulp.src('./docs/steps.md')
     .pipe(replace(/```javascript/gi, '```gherkhin', opts))
     // https://cucumber.io/docs/gherkin/reference/
-    .pipe(replace(/```gherkhin\n(Given |When |Then |And |But )/g, function (matched, keyword) {
-      return `\`\`\`gherkhin\nScenario: Sample scenario\n  ${keyword}`;
+    .pipe(replace(/```gherkhin\n(Given .*|When .*)/g, function (matched, keyword) {
+      return `\`\`\`gherkhin\nFeature: Example feature\n  Scenario: Sample scenario\n    ${keyword}\n    Then the "h1" element should be visible`;
+    }, opts))
+    .pipe(replace(/```gherkhin\n(Then )/g, function (matched, keyword) {
+      return `\`\`\`gherkhin\nFeature: Example feature\n  Scenario: Sample scenario\n    When I press "Next"\n    ${keyword}`;
     }, opts))
     .pipe(gulp.dest('./docs/'));
 }

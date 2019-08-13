@@ -32,7 +32,9 @@ const AssertForm = {
   /**
    * Assert the currently selected option of a select field contains provided text.
    *
-   * /^the "([^"]*)" current option contain "([^"]*)"$/
+   * #### Patterns
+   *
+   * - /^the "([^"]*)" current option contain "([^"]*)"$/
    *
    * @example Then the "select[name='country']" current option contain "USA"
    * @param  {string} selector Selector of target element
@@ -50,7 +52,9 @@ const AssertForm = {
   /**
    * Assert if the input’s value of given selector contains provided text.
    *
-   * /^the "([^"]*)" field should contain "([^"]*)"$/
+   * #### Patterns
+   *
+   * - /^the "([^"]*)" field should contain "([^"]*)"$/
    *
    * @example Then the "textarea[name='description']" field should contain "My text"
    * @param  {string} selector Selector of target element
@@ -67,7 +71,9 @@ const AssertForm = {
   /**
    * Assert if the input’s value of given selector do not contains provided text.
    *
-   * /^the "([^"]*)" field should not contain "([^"]*)"$/
+   * #### Patterns
+   *
+   * - /^the "([^"]*)" field should not contain "([^"]*)"$/
    *
    * @example Then the "textarea[name='description']" field should not contain "My first name"
    * @param  {string} selector Selector of target element
@@ -84,7 +90,9 @@ const AssertForm = {
   /**
    * Assert that the element matching given selector is enabled
    *
-   * /the "([^"]*)" (?:field|element) should be enabled$/
+   * #### Patterns
+   *
+   * - /the "([^"]*)" (?:field|element) should be enabled$/
    *
    * @example Then the "input[type='submit']" element should be enabled
    * @param  {string} selector Selector of target element
@@ -95,7 +103,9 @@ const AssertForm = {
   /**
    * Assert that the element matching given selector is disabled
    *
-   * /the "([^"]*)" (?:field|element) should be disabled/
+   * #### Patterns
+   *
+   * - /the "([^"]*)" (?:field|element) should be disabled/
    *
    * @example Then the "input[type='submit']" element should be disabled
    * @param  {string} selector Selector of target element
@@ -106,7 +116,9 @@ const AssertForm = {
   /**
    * Assert that the element matching given selector is checked
    *
-   * /the "([^"]*)" checkbox should be checked$/
+   * #### Patterns
+   *
+   * - /the "([^"]*)" checkbox should be checked$/
    *
    * /the checkbox "([^"]*)" (?:is|should be) checked$/
    *
@@ -120,11 +132,11 @@ const AssertForm = {
   /**
    * Assert that the element matching given selector is unchecked
    *
-   * /the "([^"]*)" checkbox should not be checked$/
+   * #### Patterns
    *
-   * /the checkbox "([^"]*)" should (?:be unchecked|not be checked)$/
-   *
-   * /the checkbox "([^"]*)" is (?:unchecked|not checked)$/
+   * - /the "([^"]*)" checkbox should not be checked$/
+   * - /the checkbox "([^"]*)" should (?:be unchecked|not be checked)$/
+   * - /the checkbox "([^"]*)" is (?:unchecked|not checked)$/
    *
    * @example Then the "#checkbox-input" checkbox should not be checked
    * @example Then the checkbox "#checkbox-input" should not be checked

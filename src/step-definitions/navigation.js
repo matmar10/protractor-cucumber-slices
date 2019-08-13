@@ -13,7 +13,9 @@ const Navigation = {
   /**
    * Set driver’s baseUrl. Useful to use short path in subsequent navigation (ex: “/login”)
    *
-   * /^(?:|I )browse (?:|to )"([^"]*)"/
+   * #### Patterns
+   *
+   * - /^(?:|I )browse (?:|to )"([^"]*)"/
    *
    * @example When I browse "http://127.0.0.1:3000/
    * @param  {string} location The base URL as a full, absolute URL
@@ -32,9 +34,10 @@ const Navigation = {
   /**
    * Navigate to homepage, ie: baseUrl + ‘/’
    *
-   * /^(?:|I )am on (?:|the )homepage$/
+   * #### Patterns
    *
-   * /^(?:|I )go to (?:|the )homepage/
+   * - /^(?:|I )am on (?:|the )homepage$/
+   * - /^(?:|I )go to (?:|the )homepage/
    *
    * @example When I am on the homepage
    * @example When I go to the homepage
@@ -49,9 +52,10 @@ const Navigation = {
   /**
    * Browse given URL or path. Protractor assumes it is an angular page
    *
-   * /^(?:|I )am on "([^"]*)"/
+   * #### Patterns
    *
-   * /^(?:|I )go to "([^"]*)"/
+   * - /^(?:|I )am on "([^"]*)"/
+   * - /^(?:|I )go to "([^"]*)"/
    *
    * @example When I am on "/post/2"
    * @example When I go to "/articles/why-to-use-cucumber"
@@ -68,7 +72,9 @@ const Navigation = {
   /**
    * Reload the current page.
    *
-   * /^(?:|I )reload the page/
+   * #### Patterns
+   *
+   * - /^(?:|I )reload the page/
    *
    * @example When I reload the page
    * @return {Promise} Resolves when action completes
@@ -80,7 +86,9 @@ const Navigation = {
   /**
    * Navigate backwards in the browser history, if possible.
    *
-   * /^(?:|I )move backward one page/
+   * #### Patterns
+   *
+   * - /^(?:|I )move backward one page/
    *
    * @example When I move backward one page
    * @return {Promise} Resolves when action completes

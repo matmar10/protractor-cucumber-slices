@@ -1,2 +1,1 @@
-<h1>Protractor Cucumber Slices</h1>
-<img src="assets/protractor-cucumber-slices-logo.svg" />
+<img src="assets/mashup-logo.svg" style="width: 630px" />

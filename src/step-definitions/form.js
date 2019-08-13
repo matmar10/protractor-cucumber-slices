@@ -29,9 +29,10 @@ const Form = {
    * You can also use unicode characters like Left arrow or Back space.
    * See the [protract sendKeys method documentation](http://www.protractortest.org/#/api?view=webdriver.WebElement.prototype.sendKeys)
    *
-   * /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/
+   * #### Patterns
    *
-   * /^(?:|I )fill in "([^"]*)" with:$/
+   * - /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/
+   * - /^(?:|I )fill in "([^"]*)" with:$/
    *
    * @example Then I fill in "input[name='first_name']" with:
   """
@@ -50,7 +51,9 @@ const Form = {
    * You can also use unicode characters like Left arrow or Back space.
    * See the [protract sendKeys method documentation](http://www.protractortest.org/#/api?view=webdriver.WebElement.prototype.sendKeys)
    *
-   * /^(?:|I )fill in the following:$/
+   * #### Patterns
+   *
+   * - /^(?:|I )fill in the following:$/
    *
    * @example When I fill in the following:
 | "First name"                    | John |
@@ -70,7 +73,9 @@ const Form = {
   /**
    * Select option that display text matching the argument.
    *
-   * /^(?:|I )select "([^"]*)" from "([^"]*)"$/
+   * #### Patterns
+   *
+   * - /^(?:|I )select "([^"]*)" from "([^"]*)"$/
    *
    * @example Then I select "France" from "select.country"
    * @param  {string} option   Text content of the option
@@ -86,7 +91,9 @@ const Form = {
   /**
    * Check the checkbox with provided selector.
    *
-   * /^(?:|I )check "([^"]*)"$/
+   * #### Patterns
+   *
+   * - /^(?:|I )check "([^"]*)"$/
    *
    * @example Then I check "#checkbox-input"
    * @param  {string} selector Css selector matching the target field element
@@ -97,7 +104,9 @@ const Form = {
   /**
    * Uncheck the checkbox with provided selector.
    *
-   * /^(?:|I )uncheck "([^"]*)"$/
+   * #### Patterns
+   *
+   * - /^(?:|I )uncheck "([^"]*)"$/
    *
    * @example Then I uncheck "#checkbox-input-next"
    * @param  {string} selector Css selector matching the target field element

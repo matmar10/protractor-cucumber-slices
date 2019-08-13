@@ -12,7 +12,9 @@ const Utility = {
   /**
    * Take a screenshot of the current viewport and save it at ./screenshot.png
    *
-   * /^(?:|I )take a screenshot/
+   * #### Patterns
+   *
+   * - /^(?:|I )take a screenshot/
    *
    * @example Then I take a screenshot
    * @param  {int} width      Desired view width
@@ -28,7 +30,9 @@ const Utility = {
   /**
    * Set browser viewport size, width and height in pixel. The default viewport is: { width: 1366, height: 768 } (most used screen resolution).
    *
-   * /the viewport is (\d+)px width and (\d+)px height/
+   * #### Patterns
+   *
+   * - /the viewport is (\d+)px width and (\d+)px height/
    *
    * @example When the viewport is 360px width and 568px height
    * @param  {int} width      Desired view width
@@ -42,7 +46,9 @@ const Utility = {
   /**
    * Wait for N seconds.
    *
-   * /^(?:|I )wait (\d+) seconds?/
+   * #### Patterns
+   *
+   * - /^(?:|I )wait (\d+) seconds?/
    *
    * @example Then I wait 10 seconds
    * @param  {Number} seconds Number of seconds to wait

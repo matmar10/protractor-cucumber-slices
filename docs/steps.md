@@ -57,7 +57,9 @@
 
 Take a screenshot of the current viewport and save it at ./screenshot.png
 
-/^(?:|I )take a screenshot/
+#### Patterns
+
+-   /^(?:|I )take a screenshot/
 
 #### Parameters
 
@@ -67,8 +69,10 @@ Take a screenshot of the current viewport and save it at ./screenshot.png
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I take a screenshot
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I take a screenshot
 ```
 
 Returns **[Promise][49]** Resolves when action completes
@@ -77,7 +81,9 @@ Returns **[Promise][49]** Resolves when action completes
 
 Set browser viewport size, width and height in pixel. The default viewport is: { width: 1366, height: 768 } (most used screen resolution).
 
-/the viewport is (\\d+)px width and (\\d+)px height/
+#### Patterns
+
+-   /the viewport is (\\d+)px width and (\\d+)px height/
 
 #### Parameters
 
@@ -87,8 +93,10 @@ Set browser viewport size, width and height in pixel. The default viewport is: {
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  When the viewport is 360px width and 568px height
+Feature: Example feature
+  Scenario: Sample scenario
+    When the viewport is 360px width and 568px height
+    Then the "h1" element should be visible
 ```
 
 Returns **[Promise][49]** Resolves when action completes
@@ -97,7 +105,9 @@ Returns **[Promise][49]** Resolves when action completes
 
 Wait for N seconds.
 
-/^(?:|I )wait (\\d+) seconds?/
+#### Patterns
+
+-   /^(?:|I )wait (\\d+) seconds?/
 
 #### Parameters
 
@@ -106,8 +116,10 @@ Wait for N seconds.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I wait 10 seconds
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I wait 10 seconds
 ```
 
 Returns **[Promise][49]** Resolves when action completes
@@ -130,13 +142,17 @@ If you want to click a button, use `press` instead.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  When I click on "button.showModal"
+Feature: Example feature
+  Scenario: Sample scenario
+    When I click on "button.showModal"
+    Then the "h1" element should be visible
 ```
 
 ```gherkhin
-Scenario: Sample scenario
-  When I click on the "input[type='submit']"
+Feature: Example feature
+  Scenario: Sample scenario
+    When I click on the "input[type='submit']"
+    Then the "h1" element should be visible
 ```
 
 Returns **[Promise][49]** Resolves after action completes
@@ -156,13 +172,17 @@ Hover an element with cursor (activate CSS :hover property).
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  When I hover "nav.menu" element
+Feature: Example feature
+  Scenario: Sample scenario
+    When I hover "nav.menu" element
+    Then the "h1" element should be visible
 ```
 
 ```gherkhin
-Scenario: Sample scenario
-  When I hover the "select:eq(1)" element
+Feature: Example feature
+  Scenario: Sample scenario
+    When I hover the "select:eq(1)" element
+    Then the "h1" element should be visible
 ```
 
 Returns **[Promise][49]** Resolves after action completes
@@ -182,13 +202,17 @@ Submits a form found by given selector. The submit command may also be applied t
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  When I submit "form#register" form
+Feature: Example feature
+  Scenario: Sample scenario
+    When I submit "form#register" form
+    Then the "h1" element should be visible
 ```
 
 ```gherkhin
-Scenario: Sample scenario
-  When I submit the "form.login" form
+Feature: Example feature
+  Scenario: Sample scenario
+    When I submit the "form.login" form
+    Then the "h1" element should be visible
 ```
 
 Returns **[Promise][49]** Resolves after action completes
@@ -212,8 +236,10 @@ Press a button element with string argument interpreted as (in order):
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  When I press "button.register"
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "button.register"
+    Then the "h1" element should be visible
 And I press "Register"
 And I press "Submit"
 ```
@@ -238,8 +264,10 @@ Follow a link element with string argument interpreted as (in order):
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  When I follow "a[href='/about']"
+Feature: Example feature
+  Scenario: Sample scenario
+    When I follow "a[href='/about']"
+    Then the "h1" element should be visible
 ```
 
 Returns **[Promise][49]** Resolves after action completes
@@ -261,13 +289,17 @@ Send the key(s) to the matched element
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  When I send key "Matthew" in "input[name='firstname']" element
+Feature: Example feature
+  Scenario: Sample scenario
+    When I send key "Matthew" in "input[name='firstname']" element
+    Then the "h1" element should be visible
 ```
 
 ```gherkhin
-Scenario: Sample scenario
-  When I type "Matthew" into the "input[name='firstname']" element
+Feature: Example feature
+  Scenario: Sample scenario
+    When I type "Matthew" into the "input[name='firstname']" element
+    Then the "h1" element should be visible
 ```
 
 Returns **[Promise][49]** Resolves after action completes
@@ -278,7 +310,9 @@ Returns **[Promise][49]** Resolves after action completes
 
 Set driver’s baseUrl. Useful to use short path in subsequent navigation (ex: “/login”)
 
-/^(?:|I )browse (?:|to )"([^"]\*)"/
+#### Patterns
+
+-   /^(?:|I )browse (?:|to )"([^"]\*)"/
 
 #### Parameters
 
@@ -287,8 +321,10 @@ Set driver’s baseUrl. Useful to use short path in subsequent navigation (ex: �
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  When I browse "http://127.0.0.1:3000/
+Feature: Example feature
+  Scenario: Sample scenario
+    When I browse "http://127.0.0.1:3000/
+    Then the "h1" element should be visible
 ```
 
 Returns **[Promise][49]** Resolves when the action completes
@@ -297,25 +333,32 @@ Returns **[Promise][49]** Resolves when the action completes
 
 Navigate to homepage, ie: baseUrl + ‘/’
 
-/^(?:|I )am on (?:|the )homepage$/
+#### Patterns
 
-/^(?:|I )go to (?:|the )homepage/
+-   /^(?:|I )am on (?:|the )homepage$/
+-   /^(?:|I )go to (?:|the )homepage/
 
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  When I am on the homepage
+Feature: Example feature
+  Scenario: Sample scenario
+    When I am on the homepage
+    Then the "h1" element should be visible
 ```
 
 ```gherkhin
-Scenario: Sample scenario
-  When I go to the homepage
+Feature: Example feature
+  Scenario: Sample scenario
+    When I go to the homepage
+    Then the "h1" element should be visible
 ```
 
 ```gherkhin
-Scenario: Sample scenario
-  When I go to homepage
+Feature: Example feature
+  Scenario: Sample scenario
+    When I go to homepage
+    Then the "h1" element should be visible
 ```
 
 Returns **[Promise][49]** Resolves when the action completes
@@ -324,9 +367,10 @@ Returns **[Promise][49]** Resolves when the action completes
 
 Browse given URL or path. Protractor assumes it is an angular page
 
-/^(?:|I )am on "([^"]\*)"/
+#### Patterns
 
-/^(?:|I )go to "([^"]\*)"/
+-   /^(?:|I )am on "([^"]\*)"/
+-   /^(?:|I )go to "([^"]\*)"/
 
 #### Parameters
 
@@ -335,13 +379,17 @@ Browse given URL or path. Protractor assumes it is an angular page
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  When I am on "/post/2"
+Feature: Example feature
+  Scenario: Sample scenario
+    When I am on "/post/2"
+    Then the "h1" element should be visible
 ```
 
 ```gherkhin
-Scenario: Sample scenario
-  When I go to "/articles/why-to-use-cucumber"
+Feature: Example feature
+  Scenario: Sample scenario
+    When I go to "/articles/why-to-use-cucumber"
+    Then the "h1" element should be visible
 ```
 
 Returns **[Promise][49]** Resolves when action completes
@@ -350,13 +398,17 @@ Returns **[Promise][49]** Resolves when action completes
 
 Reload the current page.
 
-/^(?:|I )reload the page/
+#### Patterns
+
+-   /^(?:|I )reload the page/
 
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  When I reload the page
+Feature: Example feature
+  Scenario: Sample scenario
+    When I reload the page
+    Then the "h1" element should be visible
 ```
 
 Returns **[Promise][49]** Resolves when action completes
@@ -365,13 +417,17 @@ Returns **[Promise][49]** Resolves when action completes
 
 Navigate backwards in the browser history, if possible.
 
-/^(?:|I )move backward one page/
+#### Patterns
+
+-   /^(?:|I )move backward one page/
 
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  When I move backward one page
+Feature: Example feature
+  Scenario: Sample scenario
+    When I move backward one page
+    Then the "h1" element should be visible
 ```
 
 Returns **[Promise][49]** Resolves when action completes
@@ -382,13 +438,17 @@ Returns **[Promise][49]** Resolves when action completes
 
 Assert current URL pathname equals ‘/’.
 
-/^(?:|I )should be on "([^"]\*)"/
+#### Patterns
+
+-   /^(?:|I )should be on "([^"]\*)"/
 
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I should be on the homepage
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should be on the homepage
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -396,8 +456,11 @@ Returns **[Promise][49]** Resolves if assertion passes
 ### url
 
 Assert current URL pathname equals the given string.
+The string provided will be pre-parsed for any configured URL aliases
 
-/^(?:|I )should be on "([^"]\*)"$/
+#### Patterns
+
+-   /^(?:|I )should be on "([^"]\*)"$/
 
 #### Parameters
 
@@ -406,8 +469,10 @@ Assert current URL pathname equals the given string.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I should be on "/post/1"
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should be on "/post/1"
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -415,8 +480,12 @@ Returns **[Promise][49]** Resolves if assertion passes
 ### url match
 
 Assert current URL pathname match against provided RegExp.
+The pattern provided will be pre-parsed for any configured URL aliases
 
-/the url should match (.+)/
+#### Patterns
+
+-   /the url should match (.+)/
+-   /the url should match (.+)/
 
 #### Parameters
 
@@ -425,8 +494,17 @@ Assert current URL pathname match against provided RegExp.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then the url should match ^\/post\/\d+
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the url should match ^\/post\/\d+
+```
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the url should match ${view post}
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -435,7 +513,9 @@ Returns **[Promise][49]** Resolves if assertion passes
 
 Assert current URL query string match against provided RegExp.
 
-/^the url parameter should match (.+)$/
+#### Patterns
+
+-   /^the url parameter should match (.+)$/
 
 #### Parameters
 
@@ -444,8 +524,10 @@ Assert current URL query string match against provided RegExp.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then the url parameter should match ^\/post\/\d+
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the url parameter should match ^\/post\/\d+
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -467,8 +549,10 @@ Assert page sources (with tags) contains the provided string.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I should see "Home Page"
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should see "Home Page"
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -488,8 +572,10 @@ Assert page sources (with tags) contains the provided string.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I should not see "Detail Page"
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should not see "Detail Page"
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -509,8 +595,10 @@ Assert page sources (with tags) match the provided RegExp.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I should see text matching Post-\d+
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should see text matching Post-\d+
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -530,8 +618,10 @@ Assert page sources (with tags) do not match the provided RegExp.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I should not see text matching .+@.+
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should not see text matching .+@.+
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -552,8 +642,10 @@ Assert page contains n number of number of DOM-elements with the provided CSS Se
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I should see 3 "section.post" elements
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should see 3 "section.post" elements
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -575,18 +667,24 @@ Assert DOM-element with the provided CSS Selector contains the provided text.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I should see "Home Page" in the "h1" element
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should see "Home Page" in the "h1" element
 ```
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I should see "Login" in the "h1" element text
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should see "Login" in the "h1" element text
 ```
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I should see "Login" in the "h1" element's text
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should see "Login" in the "h1" element's text
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -608,13 +706,17 @@ Assert DOM-element(s) with the provided CSS Selector do not contains the provide
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I should not see "Post Detail Page" in the "h1" element
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should not see "Post Detail Page" in the "h1" element
 ```
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I should not see "Register" in the "h1" element text
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should not see "Register" in the "h1" element text
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -635,13 +737,17 @@ Assert if the selected DOM-element found by given selector is visible.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I should see an "h2.content-subhead" element
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should see an "h2.content-subhead" element
 ```
 
 ```gherkhin
-Scenario: Sample scenario
-  Then the ".alert.alert-danger" element should be visible
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the ".alert.alert-danger" element should be visible
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -662,13 +768,17 @@ Assert if the selected DOM-element found by given selector is not visible.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I should not see an "h2.content-subhead" element
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should not see an "h2.content-subhead" element
 ```
 
 ```gherkhin
-Scenario: Sample scenario
-  Then the ".alert.alert-danger" element should not visible
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the ".alert.alert-danger" element should not visible
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -689,13 +799,17 @@ Assert that at least one element exits matching given selector.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then the "h2.content-subhead" element should exist
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the "h2.content-subhead" element should exist
 ```
 
 ```gherkhin
-Scenario: Sample scenario
-  Then there should be a "span.warning" element
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then there should be a "span.warning" element
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -716,13 +830,17 @@ Assert that no element exists matching given selector.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then the "h2.content-subhead" element should not exist
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the "h2.content-subhead" element should not exist
 ```
 
 ```gherkhin
-Scenario: Sample scenario
-  Then there should not be a "button" element
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then there should not be a "button" element
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -735,9 +853,10 @@ Send a sequence of key strokes to an element (clears value before).
 You can also use unicode characters like Left arrow or Back space.
 See the [protract sendKeys method documentation][53]
 
-/^(?:|I )fill in "([^"]_)" with "([^"]_)"$/
+#### Patterns
 
-/^(?:|I )fill in "([^"]\*)" with:$/
+-   /^(?:|I )fill in "([^"]_)" with "([^"]_)"$/
+-   /^(?:|I )fill in "([^"]\*)" with:$/
 
 #### Parameters
 
@@ -747,8 +866,10 @@ See the [protract sendKeys method documentation][53]
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I fill in "input[name='first_name']" with:
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I fill in "input[name='first_name']" with:
 """
 My long multi-line text ...
 """
@@ -762,7 +883,9 @@ Send a sequence of key strokes to an element (clears value before).
 You can also use unicode characters like Left arrow or Back space.
 See the [protract sendKeys method documentation][53]
 
-/^(?:|I )fill in the following:$/
+#### Patterns
+
+-   /^(?:|I )fill in the following:$/
 
 #### Parameters
 
@@ -771,8 +894,10 @@ See the [protract sendKeys method documentation][53]
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  When I fill in the following:
+Feature: Example feature
+  Scenario: Sample scenario
+    When I fill in the following:
+    Then the "h1" element should be visible
 | "First name"                    | John |
 | "Last name"                     | Doe           |
 | "textarea[name='description']"  | Some text ... |
@@ -784,7 +909,9 @@ Returns **[Promise][49]** Resolves when the action completes
 
 Select option that display text matching the argument.
 
-/^(?:|I )select "([^"]_)" from "([^"]_)"$/
+#### Patterns
+
+-   /^(?:|I )select "([^"]_)" from "([^"]_)"$/
 
 #### Parameters
 
@@ -794,8 +921,10 @@ Select option that display text matching the argument.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I select "France" from "select.country"
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I select "France" from "select.country"
 ```
 
 Returns **[Promise][49]** Resolves when the action completes
@@ -804,7 +933,9 @@ Returns **[Promise][49]** Resolves when the action completes
 
 Check the checkbox with provided selector.
 
-/^(?:|I )check "([^"]\*)"$/
+#### Patterns
+
+-   /^(?:|I )check "([^"]\*)"$/
 
 #### Parameters
 
@@ -813,8 +944,10 @@ Check the checkbox with provided selector.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I check "#checkbox-input"
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I check "#checkbox-input"
 ```
 
 Returns **[Promise][49]** Resolves when the action completes
@@ -823,7 +956,9 @@ Returns **[Promise][49]** Resolves when the action completes
 
 Uncheck the checkbox with provided selector.
 
-/^(?:|I )uncheck "([^"]\*)"$/
+#### Patterns
+
+-   /^(?:|I )uncheck "([^"]\*)"$/
 
 #### Parameters
 
@@ -832,8 +967,10 @@ Uncheck the checkbox with provided selector.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then I uncheck "#checkbox-input-next"
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I uncheck "#checkbox-input-next"
 ```
 
 Returns **[Promise][49]** Resolves when the action completes
@@ -844,7 +981,9 @@ Returns **[Promise][49]** Resolves when the action completes
 
 Assert the currently selected option of a select field contains provided text.
 
-/^the "([^"]_)" current option contain "([^"]_)"$/
+#### Patterns
+
+-   /^the "([^"]_)" current option contain "([^"]_)"$/
 
 #### Parameters
 
@@ -854,8 +993,10 @@ Assert the currently selected option of a select field contains provided text.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then the "select[name='country']" current option contain "USA"
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the "select[name='country']" current option contain "USA"
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -864,7 +1005,9 @@ Returns **[Promise][49]** Resolves if assertion passes
 
 Assert if the input’s value of given selector contains provided text.
 
-/^the "([^"]_)" field should contain "([^"]_)"$/
+#### Patterns
+
+-   /^the "([^"]_)" field should contain "([^"]_)"$/
 
 #### Parameters
 
@@ -874,8 +1017,10 @@ Assert if the input’s value of given selector contains provided text.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then the "textarea[name='description']" field should contain "My text"
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the "textarea[name='description']" field should contain "My text"
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -884,7 +1029,9 @@ Returns **[Promise][49]** Resolves if assertion passes
 
 Assert if the input’s value of given selector do not contains provided text.
 
-/^the "([^"]_)" field should not contain "([^"]_)"$/
+#### Patterns
+
+-   /^the "([^"]_)" field should not contain "([^"]_)"$/
 
 #### Parameters
 
@@ -894,8 +1041,10 @@ Assert if the input’s value of given selector do not contains provided text.
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then the "textarea[name='description']" field should not contain "My first name"
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the "textarea[name='description']" field should not contain "My first name"
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -904,7 +1053,9 @@ Returns **[Promise][49]** Resolves if assertion passes
 
 Assert that the element matching given selector is enabled
 
-/the "([^"]\*)" (?:field|element) should be enabled$/
+#### Patterns
+
+-   /the "([^"]\*)" (?:field|element) should be enabled$/
 
 #### Parameters
 
@@ -913,8 +1064,10 @@ Assert that the element matching given selector is enabled
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then the "input[type='submit']" element should be enabled
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the "input[type='submit']" element should be enabled
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -923,7 +1076,9 @@ Returns **[Promise][49]** Resolves if assertion passes
 
 Assert that the element matching given selector is disabled
 
-/the "([^"]\*)" (?:field|element) should be disabled/
+#### Patterns
+
+-   /the "([^"]\*)" (?:field|element) should be disabled/
 
 #### Parameters
 
@@ -932,8 +1087,10 @@ Assert that the element matching given selector is disabled
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then the "input[type='submit']" element should be disabled
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the "input[type='submit']" element should be disabled
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -942,7 +1099,9 @@ Returns **[Promise][49]** Resolves if assertion passes
 
 Assert that the element matching given selector is checked
 
-/the "([^"]\*)" checkbox should be checked$/
+#### Patterns
+
+-   /the "([^"]\*)" checkbox should be checked$/
 
 /the checkbox "([^"]\*)" (?:is|should be) checked$/
 
@@ -953,13 +1112,17 @@ Assert that the element matching given selector is checked
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then the "input[name='agree']" checkbox should be checked
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the "input[name='agree']" checkbox should be checked
 ```
 
 ```gherkhin
-Scenario: Sample scenario
-  Then the checkbox "input[name='agree']" should be checked
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the checkbox "input[name='agree']" should be checked
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
@@ -968,11 +1131,11 @@ Returns **[Promise][49]** Resolves if assertion passes
 
 Assert that the element matching given selector is unchecked
 
-/the "([^"]\*)" checkbox should not be checked$/
+#### Patterns
 
-/the checkbox "([^"]\*)" should (?:be unchecked|not be checked)$/
-
-/the checkbox "([^"]\*)" is (?:unchecked|not checked)$/
+-   /the "([^"]\*)" checkbox should not be checked$/
+-   /the checkbox "([^"]\*)" should (?:be unchecked|not be checked)$/
+-   /the checkbox "([^"]\*)" is (?:unchecked|not checked)$/
 
 #### Parameters
 
@@ -981,18 +1144,24 @@ Assert that the element matching given selector is unchecked
 #### Examples
 
 ```gherkhin
-Scenario: Sample scenario
-  Then the "#checkbox-input" checkbox should not be checked
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the "#checkbox-input" checkbox should not be checked
 ```
 
 ```gherkhin
-Scenario: Sample scenario
-  Then the checkbox "#checkbox-input" should not be checked
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the checkbox "#checkbox-input" should not be checked
 ```
 
 ```gherkhin
-Scenario: Sample scenario
-  Then the checkbox "#checkbox-input" is unchecked
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the checkbox "#checkbox-input" is unchecked
 ```
 
 Returns **[Promise][49]** Resolves if assertion passes
