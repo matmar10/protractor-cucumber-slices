@@ -36,7 +36,8 @@ const AssertURL = {
    *
    * #### Patterns
    *
-   * - /^(?:|I )should be on "([^"]*)"$/
+   * - /^(?:|I )should be on (?:|the )"([^"]*)"(?:| page)$/
+   * - /^(?:|I )should be on (?:|the )(?:|page )"([^"]*)"$/
    *
    * @example Then I should be on "/post/1"
    * @return {Promise}         Resolves if assertion passes
@@ -97,7 +98,11 @@ module.exports = [
     AssertURL['on homepage'],
   ],
   [
-    /^(?:|I )should be on "([^"]*)"/,
+    /^(?:|I )should be on (?:|the )"([^"]*)"(?:|page)$/,
+    AssertURL['url'],
+  ],
+  [
+    /^(?:|I )should be on (?:|the )(?:|page )"([^"]*)"$/,
     AssertURL['url'],
   ],
   [
