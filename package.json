@@ -1,7 +1,7 @@
 {
-  "name": "protractor-cucumber-mink",
+  "name": "protractor-cucumber-cucumber",
   "version": "0.6.0",
-  "description": "Step library of cucumber-mink but built for native protractor driver",
+  "description": "The easiest way to add cucumber BDD tests to an angular project.",
   "main": "index.js",
   "peerDependencies": {
     "@angular/cli": "^6.0.0",
