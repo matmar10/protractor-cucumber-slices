@@ -29,7 +29,7 @@ Finds element by the angular reflected name
 #### Examples
 
 ```javascript
-const { by, element } = require('protractor-cucumber-mink');
+const { by, element } = require('protractor-cucumber-slices');
 const { When } = require('cucumber');
 When('I click the input with reflected name "{string}"', function (selector) {
   return element(by.reflectedName(selector)).click();
@@ -50,7 +50,7 @@ Finds elements corresponding to their labels by the text itself
 #### Examples
 
 ```javascript
-const { by } = require('protractor-cucumber-mink');
+const { by } = require('protractor-cucumber-slices');
 const { When } = require('cucumber');
 When('I click the input labeled "{string}"', function (labelText) {
   return element(by.inputLabelText(labelText)).click();
@@ -142,7 +142,7 @@ Locators in the order provided.
 
 ```javascript
 const { by } = require('protractor');
-const { element } = require('protractor-cucumber-mink');
+const { element } = require('protractor-cucumber-slices');
 const { When } = require('cucumber');
 When('I click the {string} input', function (selector) {
   return element.any(by.css('.alert'), by.name('alert'), by.binding('messages.alert')).click();
@@ -168,7 +168,7 @@ Attempts to find a single input element using the following methods:
 #### Examples
 
 ```javascript
-const { element } = require('protractor-cucumber-mink');
+const { element } = require('protractor-cucumber-slices');
 const { When } = require('cucumber');
 When('I click the {string} input', function (selector) {
   return element.input(selector)

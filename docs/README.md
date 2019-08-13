@@ -37,9 +37,27 @@ It uses [protractor-cucumber-framework](https://www.npmjs.com/package/protractor
 
 ## Documentation
 
-* [Getting Started](https://matmar10.github.io/protractor-cucumber-slices/#/getting-started.md "Getting Started With Protractor and Cucumber")
-* [Step Library](https://matmar10.github.io/protractor-cucumber-slices/#/steps.md#table-of-contents "Cucumber Step Library for Angular BDD Using Protractor")
-* [Utilities](https://matmar10.github.io/protractor-cucumber-slices/#/utils.md "Supporting Utilities for Cucumber Using Protractor")
+Note: docs can be hosted locally:
+
+```bash
+git clone https://github.com/matmar10/protractor-cucumber-slices.git
+cd protractor-cucumber-slices
+npm run docs:serve
+```
+
+* [Getting Started](getting-started.md "Getting Started With Protractor and Cucumber")
+* [Step Library](steps.md#table-of-contents "Cucumber Step Library for Angular BDD Using Protractor")
+* [Utilities](utils.md "Supporting Utilities for Cucumber Using Protractor")
+
+## Contributing
+
+Contributions welcome :-)
+
+You can generate the docs by running:
+
+```bash
+npm run docs:all
+```
 
 ## Credits &amp; Acknowledgment
 

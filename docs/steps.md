@@ -460,7 +460,8 @@ The string provided will be pre-parsed for any configured URL aliases
 
 #### Patterns
 
--   /^(?:|I )should be on "([^"]\*)"$/
+-   /^(?:|I )should be on (?:|the )"([^"]\*)"(?:| page)$/
+-   /^(?:|I )should be on (?:|the )(?:|page )"([^"]\*)"$/
 
 #### Parameters
 

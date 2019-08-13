@@ -23,7 +23,7 @@ exports.config = {
 
   // this wires together protractor and cucumber
   framework: 'custom',
-  frameworkPath: require.resolve('protractor-cucumber-slices'),
+  frameworkPath: require.resolve('protractor-cucumber-framework'),
 
   // require feature files
   specs: [
@@ -33,7 +33,7 @@ exports.config = {
   cucumberOpts: {
     require: [
       // include this step library
-      path.resolve(process.cwd(), './node_modules/protractor-cucumber-mink'),
+      path.resolve(process.cwd(), './node_modules/protractor-cucumber-slices'),
       // point this to wherever your own steps live
       path.resolve(process.cwd(), './e2e/**/*.steps.js'),
     ],
