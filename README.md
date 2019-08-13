@@ -1,6 +1,6 @@
 # Protractor Cucumber Slices
 
-<img src="docs/assets/angular-and-cucumber-with-bg.svg" />
+<img src="docs/assets/mashup-logo.svg" />
 
 ## Why use it?
 
@@ -14,19 +14,18 @@ Enjoy pre-sliced cucumber testing for protractor, ready to consume with no lengt
 
 ## Simple Example
 
-    Feature: Login page
-
-      Scenario: Login with valid credentials
-        When I go to the homepage
-        And I fill in the following:
-          | Email    | person@company.com |
-          | Password | notverysecurepw    |
-        And I press "Login"
-        Then I should see "Login successful."
-        And I should be on the dashboard
-        And I should see an "article" element
-        And I should see "Welcome!" in the "h1" element
-
+```gherkin
+Feature: Login page
+  Scenario: Login with valid credentials
+    When I go to the homepage
+    And I fill in the following:
+      | Email    | person@company.com |
+      | Password | notverysecurepw    |
+    And I press "Login"
+    Then I should see "Login successful."
+    And I should be on the dashboard
+    And I should see an "article" element
+    And I should see "Welcome!" in the "h1" element
 ```
 
 ## Documentation
