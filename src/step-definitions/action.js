@@ -12,10 +12,12 @@ const Action = {
 
   /**
    * Click on an element based on given selector.
+   * If you want to click a button, use `press` instead.
    *
-   * /^(?:|I )click on (?:|the )"([^"]*)"/
+   * #### Patterns
    *
-   * @memberof Action
+   * - /^(?:|I )click on (?:|the )"([^"]*)"/
+   *
    * @example When I click on "button.showModal"
    * @example When I click on the "input[type='submit']"
    * @param  {string} selector Selector of target element
@@ -28,9 +30,10 @@ const Action = {
   /**
    * Hover an element with cursor (activate CSS :hover property).
    *
-   * /^(?:|I )hover (?:|over ) (?:|the)"([^"]*)" element/
+   * #### Patterns
    *
-   * @memberof Action
+   * - /^(?:|I )hover (?:|over ) (?:|the)"([^"]*)" element/
+   *
    * @example When I hover "nav.menu" element
    * @example When I hover the "select:eq(1)" element
    * @param  {string} selector Selector of target element
@@ -43,9 +46,10 @@ const Action = {
   /**
    * Submits a form found by given selector. The submit command may also be applied to any element that is a descendant of a form element.
    *
-   * /^(?:|I )submit (?:|the )"([^"]*)" form/
+   * #### Patterns
    *
-   * @memberof Action
+   * - /^(?:|I )submit (?:|the )"([^"]*)" form/
+   *
    * @example When I submit "form#register" form
    * @example When I submit the "form.login" form
    * @param  {string} selector Selector of target element
@@ -65,13 +69,15 @@ const Action = {
 
   /**
    * Press a button element with string argument interpreted as (in order):
+   *
    *   1. CSS Selector
    *   2. Partial text of button and input (of type="submit") elements
    *   3. Partial text of link elements
    *
-   * /^(?:|I )press "([^"]*)"/
+   * #### Patterns
    *
-   * @memberof Action
+   * - /^(?:|I )press "([^"]*)"/
+   *
    * @example When I press "button.register"
    * And I press "Register"
    * And I press "Submit"
@@ -85,12 +91,14 @@ const Action = {
 
   /**
    * Follow a link element with string argument interpreted as (in order):
+   *
    * 1. CSS Selector
    * 3. Partial text of link elements
    *
-   * /^(?:|I )follow "([^"]*)"/
+   * #### Patterns
    *
-   * @memberof Action
+   * - /^(?:|I )follow "([^"]*)"/
+   *
    * @example When I follow "a[href='/about']"
    * @param  {string} selector Selector of target element
    * @return {Promise}         Resolves after action completes
@@ -103,11 +111,11 @@ const Action = {
   /**
    * Send the key(s) to the matched element
    *
-   * /^(?:|I )send key "([^"]*)" in "([^"]*)" element/
+   * #### Patterns
    *
-   * /^(?:|I )type "([^"]*)" in(?:|to) (?:|the )"([^"]*)" element/
+   * - /^(?:|I )send key "([^"]*)" in "([^"]*)" element/
+   * - /^(?:|I )type "([^"]*)" in(?:|to) (?:|the )"([^"]*)" element/
    *
-   * @memberof Action
    * @example When I send key "Matthew" in "input[name='firstname']" element
    * @example When I type "Matthew" into the "input[name='firstname']" element
    * @param  {string} key      Key(s) to send

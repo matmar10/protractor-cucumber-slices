@@ -18,7 +18,9 @@ const AssertDOM = {
   /**
    * Assert page sources (with tags) contains the provided string.
    *
-   * /^(?:|I )should see "([^"]*)"$/
+   * #### Patterns
+   *
+   * - /^(?:|I )should see "([^"]*)"$/
    *
    * @example Then I should see "Home Page"
    * @param  {string} expected The text content expected to be present
@@ -34,7 +36,9 @@ const AssertDOM = {
   /**
    * Assert page sources (with tags) contains the provided string.
    *
-   * /^(?:|I )should not see "([^"]*)"$/
+   * #### Patterns
+   *
+   * - /^(?:|I )should not see "([^"]*)"$/
    *
    * @example Then I should not see "Detail Page"
    * @param  {string} expected The text content expected to be present
@@ -50,7 +54,9 @@ const AssertDOM = {
   /**
    * Assert page sources (with tags) match the provided RegExp.
    *
-   * /^(?:|I ) should see text matching (.+)$/
+   * #### Patterns
+   *
+   * - /^(?:|I ) should see text matching (.+)$/
    *
    * @example Then I should see text matching Post-\d+
    * @param  {RegExp} regex    Regular expression
@@ -66,7 +72,9 @@ const AssertDOM = {
   /**
    * Assert page sources (with tags) do not match the provided RegExp.
    *
-   * /^(?:|I )should not see text matching (.+)$/
+   * #### Patterns
+   *
+   * - /^(?:|I )should not see text matching (.+)$/
    *
    * @example Then I should not see text matching .+@.+
    * @param  {RegExp} regex    Regular expression
@@ -82,7 +90,9 @@ const AssertDOM = {
   /**
    * Assert page contains n number of number of DOM-elements with the provided CSS Selector.
    *
-   * /^(?:|I )should see (\d+) "([^"]*)" elements?$/
+   * #### Patterns
+   *
+   * - /^(?:|I )should see (\d+) "([^"]*)" elements?$/
    *
    * @example Then I should see 3 "section.post" elements
    * @param  {integer} expected The expected count
@@ -99,9 +109,10 @@ const AssertDOM = {
   /**
    * Assert DOM-element with the provided CSS Selector contains the provided text.
    *
-   * /^(?:|I )should see "([^"]*)" in the "([^"]*)" element$/
+   * #### Patterns
    *
-   * /^(?:|I )should see "([^"]*)" in the "([^"]*)" element(?:|'s) text$/
+   * - /^(?:|I )should see "([^"]*)" in the "([^"]*)" element$/
+   * - /^(?:|I )should see "([^"]*)" in the "([^"]*)" element(?:|'s) text$/
    *
    * @example Then I should see "Home Page" in the "h1" element
    * @example Then I should see "Login" in the "h1" element text
@@ -120,9 +131,10 @@ const AssertDOM = {
   /**
    * Assert DOM-element(s) with the provided CSS Selector do not contains the provided text.
    *
-   * /^(?:|I )should not see "([^"]*)" in the "([^"]*)" element$/
+   * #### Patterns
    *
-   * /^(?:|I )should not see "([^"]*)" in the "([^"]*)" element text$/,
+   * - /^(?:|I )should not see "([^"]*)" in the "([^"]*)" element$/
+   * - /^(?:|I )should not see "([^"]*)" in the "([^"]*)" element text$/,
    *
    * @example Then I should not see "Post Detail Page" in the "h1" element
    * @example Then I should not see "Register" in the "h1" element text
@@ -140,9 +152,10 @@ const AssertDOM = {
   /**
    * Assert if the selected DOM-element found by given selector is visible.
    *
-   * /^I should see an? "([^"]*)" element$/
+   * #### Patterns
    *
-   * /the "([^"]*)" element should be visible$/
+   * - /^I should see an? "([^"]*)" element$/
+   * - /the "([^"]*)" element should be visible$/
    *
    * @example Then I should see an "h2.content-subhead" element
    * @example Then the ".alert.alert-danger" element should be visible
@@ -156,8 +169,10 @@ const AssertDOM = {
   /**
    * Assert if the selected DOM-element found by given selector is not visible.
    *
-   * /^I should not see an? "([^"]*)" element$/
-   * /the "([^"]*)" element should not be visible$/
+   * #### Patterns
+   *
+   * - /^I should not see an? "([^"]*)" element$/
+   * - /the "([^"]*)" element should not be visible$/
    *
    * @example Then I should not see an "h2.content-subhead" element
    * @example Then the ".alert.alert-danger" element should not visible
@@ -171,9 +186,10 @@ const AssertDOM = {
   /**
    * Assert that at least one element exits matching given selector.
    *
-   * /^the "([^"]*)" element should exist$/
+   * #### Patterns
    *
-   * /there should be an? "([^"]*)" element$/
+   * - /^the "([^"]*)" element should exist$/
+   * - /there should be an? "([^"]*)" element$/
    *
    * @example Then the "h2.content-subhead" element should exist
    * @example Then there should be a "span.warning" element
@@ -187,8 +203,10 @@ const AssertDOM = {
   /**
    * Assert that no element exists matching given selector.
    *
-   * /^the "([^"]*)" element should exist$/
-   * /there should not be an? "([^"]*)" element$/
+   * #### Patterns
+   *
+   * - /^the "([^"]*)" element should exist$/
+   * - /there should not be an? "([^"]*)" element$/
    *
    * @example Then the "h2.content-subhead" element should not exist
    * @example Then there should not be a "button" element
