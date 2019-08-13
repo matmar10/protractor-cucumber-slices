@@ -9,7 +9,7 @@ module.exports = {
 
   /**
    * Finds element by the angular reflected name
-   * @example const { by, element } = require('protractor-cucumber-mink');
+   * @example const { by, element } = require('protractor-cucumber-slices');
    * const { When } = require('cucumber');
    * When('I click the input with reflected name "{string}"', function (selector) {
    *   return element(by.reflectedName(selector)).click();
@@ -27,7 +27,7 @@ module.exports = {
 
   /**
    * Finds elements corresponding to their labels by the text itself
-   * @example const { by } = require('protractor-cucumber-mink');
+   * @example const { by } = require('protractor-cucumber-slices');
    * const { When } = require('cucumber');
    * When('I click the input labeled "{string}"', function (labelText) {
    *   return element(by.inputLabelText(labelText)).click();

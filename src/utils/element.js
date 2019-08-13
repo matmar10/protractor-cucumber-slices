@@ -14,7 +14,7 @@ module.exports = {
    * Attempts to find a single element by trying each of the provided
    * Locators in the order provided.
    * @example const { by } = require('protractor');
-   * const { element } = require('protractor-cucumber-mink');
+   * const { element } = require('protractor-cucumber-slices');
    * const { When } = require('cucumber');
    * When('I click the {string} input', function (selector) {
    *   return element.any(by.css('.alert'), by.name('alert'), by.binding('messages.alert')).click();
@@ -50,7 +50,7 @@ module.exports = {
    * 4. By angular reflected name (by.reflectedName)
    * 4. By input label text to get ID (by.inputLabelText)
    * 5. By angular binding (by.binding)
-   * @example const { element } = require('protractor-cucumber-mink');
+   * @example const { element } = require('protractor-cucumber-slices');
    * const { When } = require('cucumber');
    * When('I click the {string} input', function (selector) {
    *   return element.input(selector)
