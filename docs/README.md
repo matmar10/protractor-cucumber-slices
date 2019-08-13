@@ -10,7 +10,7 @@ Enjoy pre-sliced cucumber testing for protractor, ready to consume with no lengt
 ## What is it?
 **What?** A gherkin (cucumber) BDD step library for testing [Angular (ngx)](https://angular.io/) applications.
 
-**See the [Steps](#steps) library to see what's included.**
+**See the [Steps](steps.md#table-of-contents) library to see what's included.**
 
 ### Simple Example
 
@@ -35,7 +35,13 @@ Feature: Login page
 
 It uses [protractor-cucumber-framework](https://www.npmjs.com/package/protractor-cucumber-framework) as the dressing for protractor. Other than that, cucumber steps can be written using plain protractor code without any seedy support code.
 
-See [Getting Started](#getting-started)
+## Documentation
 
+* [Getting Started](https://matmar10.github.io/protractor-cucumber-slices/#/getting-started.md "Getting Started With Protractor and Cucumber")
+* [Step Library](https://matmar10.github.io/protractor-cucumber-slices/#/steps.md#table-of-contents "Cucumber Step Library for Angular BDD Using Protractor")
+* [Utilities](https://matmar10.github.io/protractor-cucumber-slices/#/utils.md "Supporting Utilities for Cucumber Using Protractor")
 
-Logo credit: pickles by BomSymbols from the Noun Project
+## Credits &amp; Acknowledgment
+
+* Inspiration: https://github.com/Adezandee/cucumber-mink
+* Logo credit: pickles by BomSymbols from the Noun Project
