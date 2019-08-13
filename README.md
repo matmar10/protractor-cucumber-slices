@@ -1,6 +1,6 @@
 # Protractor Cucumber Slices
 
-![Protractor Cucumber Slices Logo](https://raw.githubusercontent.com/matmar10/protractor-cucumber-slices/master/assets/protractor-cucumber-slices-logo.svg)
+![Protractor Cucumber Slices Logo](/assets/protractor-cucumber-slices-logo.svg)
 
 **Why?** Because testing is good, but writing your own step library is a dilly of a pickle.
 Enjoy pre-sliced cucumber testing for protractor, ready to consume with no lengthy pickling.
