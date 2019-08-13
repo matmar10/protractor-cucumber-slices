@@ -14,16 +14,20 @@
     "chai": "^4.2.0"
   },
   "devDependencies": {
+    "docsify-cli": "^4.3.0",
     "documentation": "^12.1.1",
     "eslint": "^6.1.0",
     "eslint-plugin-es-beautifier": "^1.0.1",
+    "gulp": "^4.0.2",
+    "gulp-string-replace": "^1.1.2",
     "prettier": "^1.18.2",
     "release-it": "^12.3.5"
   },
   "scripts": {
     "docs:all": "npm run docs:steps && npm run docs:utils",
-    "docs:steps": "./node_modules/.bin/documentation readme src/step-definitions/*.js --section=Steps --markdown-toc-max-depth=3",
-    "docs:utils": "./node_modules/.bin/documentation readme src/utils/*.js --section=Utils --markdown-toc-max-depth=3",
+    "docs:steps": "./node_modules/.bin/documentation build src/step-definitions/*.js --shallow --format=md --output='docs/steps.md' --markdown-toc-max-depth=3 && gulp formatCucumberExamples",
+    "docs:utils": "./node_modules/.bin/documentation build src/utils/*.js --shallow  --output='docs/utils.md' --format=md --markdown-toc-max-depth=3",
+    "docs:serve": "./node_modules/.bin/docsify serve ./docs/",
     "test": "npm run codequality:test && echo 'No unit tests yet. Add some?'",
     "codequality:test": "./node_modules/eslint/bin/eslint.js .",
     "codequality:fix": "./node_modules/eslint/bin/eslint.js . --fix",
