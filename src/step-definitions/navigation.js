@@ -3,7 +3,7 @@
 const { browser } = require('protractor');
 
 const Errors = require('./../utils/errors');
-const { baseUrl, isAbsolute } = require('./../utils/url');
+const { base, isAbsolute } = require('./../utils/url');
 
 /**
  * @module Navigation
@@ -22,7 +22,7 @@ const Navigation = {
    * @return {Promise}         Resolves when the action completes
    */
   'base url': function (location) {
-    return baseUrl(location)
+    return base(location)
       .then((newBaseUrl) => {
         if (!isAbsolute(newBaseUrl)) {
           throw new Error(Errors.NAVIGATION.BASE_URL);
@@ -45,7 +45,7 @@ const Navigation = {
    * @return {Promise} Resolves when the action completes
    */
   'homepage': function () {
-    return baseUrl()
+    return base()
       .then(url => browser.get(url));
   },
 
@@ -64,7 +64,7 @@ const Navigation = {
    */
   'browse': function (location) {
     if (isAbsolute(location)) {
-      return baseUrl(location).then(() => browser.get(location));
+      return base(location).then(() => browser.get(location));
     }
     return browser.setLocation(location);
   },
@@ -100,7 +100,7 @@ const Navigation = {
 
 module.exports = [
   [
-    /^(?:|I )browse "([^"]*)"/,
+    /^(?:|I )browse (?:|to )"([^"]*)/,
     Navigation['base url'],
   ],
   [

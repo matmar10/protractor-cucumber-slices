@@ -4,7 +4,7 @@ const Promise = require('bluebird');
 const { expect } = require('chai');
 const url = require('url');
 
-const { baseUrl, getCurrent, isAbsolute, parseWithEnv } = require('./../utils/url');
+const { base, getCurrent, isAbsolute, parseWithEnv } = require('./../utils/url');
 
 /**
  * @module AssertURL
@@ -24,10 +24,16 @@ const AssertURL = {
   'on homepage': function () {
     return Promise.all([
       getCurrent(false),
-      baseUrl(),
+      base(),
     ])
       .then(([currentUrl,
-        currentBaseUrl]) => expect(currentUrl).to.equal(currentBaseUrl));
+        currentBaseUrl]) => {
+          if ('/' === currentUrl.replace(currentBaseUrl, '')) {
+            currentUrl = currentUrl.substring(0, currentUrl.length - 1);
+          }
+          expect(currentUrl).to.equal(currentBaseUrl)
+
+        });
   },
 
   /**
@@ -43,9 +49,7 @@ const AssertURL = {
    * @return {Promise}         Resolves if assertion passes
    */
   'url': function (location) {
-    // remove preceding "/" since it's part of base URL
     location = parseWithEnv(location);
-    location = (0 === location.indexOf('/')) ? location.substring(1) : location;
     return getCurrent(!isAbsolute(location))
       .then(currentUrl => expect(currentUrl).to.equal(location));
   },
@@ -98,11 +102,7 @@ module.exports = [
     AssertURL['on homepage'],
   ],
   [
-    /^(?:|I )should be on (?:|the )"([^"]*)"(?:|page)$/,
-    AssertURL['url'],
-  ],
-  [
-    /^(?:|I )should be on (?:|the )(?:|page )"([^"]*)"$/,
+    /^(?:|I )should be on (?:|the )(?:|page )"([^"]*)"(?:| page)$/,
     AssertURL['url'],
   ],
   [

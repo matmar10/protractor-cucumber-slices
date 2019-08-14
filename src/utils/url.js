@@ -71,7 +71,7 @@ const url = {
    */
   getCurrent: function getCurrent(excludeBase = true) {
     return Promise.all([
-      browser.getCurrent(),
+      browser.getCurrentUrl(),
       url.base(),
     ])
       .then(([currentUrl,
