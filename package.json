@@ -1,6 +1,6 @@
 {
   "name": "protractor-cucumber-slices",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The easiest way to add cucumber BDD tests to an angular project.",
   "main": "index.js",
   "peerDependencies": {
