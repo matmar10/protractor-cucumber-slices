@@ -28,12 +28,11 @@ const AssertURL = {
     ])
       .then(([currentUrl,
         currentBaseUrl]) => {
-          if ('/' === currentUrl.replace(currentBaseUrl, '')) {
-            currentUrl = currentUrl.substring(0, currentUrl.length - 1);
-          }
-          expect(currentUrl).to.equal(currentBaseUrl)
-
-        });
+        if ('/' === currentUrl.replace(currentBaseUrl, '')) {
+          currentUrl = currentUrl.substring(0, currentUrl.length - 1);
+        }
+        expect(currentUrl).to.equal(currentBaseUrl);
+      });
   },
 
   /**
