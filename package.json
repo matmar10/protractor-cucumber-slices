@@ -1,5 +1,5 @@
 {
-  "name": "protractor-cucumber-cucumber",
+  "name": "protractor-cucumber-slices",
   "version": "0.6.0",
   "description": "The easiest way to add cucumber BDD tests to an angular project.",
   "main": "index.js",
