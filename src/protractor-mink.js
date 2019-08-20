@@ -3,7 +3,7 @@
 const { defineStep } = require('cucumber');
 const { by } = require('protractor');
 
-const definitions = require('./step-definitions/index');
+const steps = require('./step-definitions');
 const locators = require('./utils/by');
 const elementFinders = require('./utils/element');
 
@@ -12,14 +12,21 @@ names.forEach((name) => {
   by.addLocator(name, locators[name]);
 });
 
-definitions.forEach((step) => {
-  const [pattern,
-    fn] = step;
-  defineStep(pattern, fn);
+const stepModuleNames = Object.keys(steps);
+stepModuleNames.forEach((moduleName) => {
+  const module = steps[moduleName];
+  const stepNames = Object.keys(module.regex);
+  stepNames.forEach((stepName) => {
+    const step = module[stepName];
+    const regexList = module.regex[stepName];
+    regexList.forEach((regex) => {
+      defineStep(regex, step);
+    });
+  });
 });
 
 module.exports = {
-  steps: definitions,
+  steps,
   by: locators,
   element: elementFinders,
 };

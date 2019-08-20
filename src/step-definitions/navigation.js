@@ -10,6 +10,27 @@ const { base, isAbsolute } = require('./../utils/url');
  */
 const Navigation = {
 
+  regex: {
+    'base url': [
+      /^(?:|I )browse (?:|to )"([^"]*)/,
+    ],
+    'homepage': [
+      /^(?:|I )am on (?:|the )homepage/,
+      /^(?:|I )go to (?:|the )homepage/,
+      /^(?:|I )browse to (?:|the )homepage/,
+    ],
+    'browse': [
+      /^(?:|I )am on "([^"]*)"/,
+      /^(?:|I )go to "([^"]*)"/,
+    ],
+    'reload': [
+      /^(?:|I )reload the page/,
+    ],
+    'back': [
+      /^(?:|I )move backward one page/,
+    ],
+  },
+
   /**
    * Set driver’s baseUrl. Useful to use short path in subsequent navigation (ex: “/login”)
    *
@@ -38,6 +59,7 @@ const Navigation = {
    *
    * - /^(?:|I )am on (?:|the )homepage$/
    * - /^(?:|I )go to (?:|the )homepage/
+   * - /^(?:|I )browse to (?:|the )homepage/
    *
    * @example When I am on the homepage
    * @example When I go to the homepage
@@ -98,33 +120,4 @@ const Navigation = {
   },
 };
 
-module.exports = [
-  [
-    /^(?:|I )browse (?:|to )"([^"]*)/,
-    Navigation['base url'],
-  ],
-  [
-    /^(?:|I )am on (?:|the )homepage/,
-    Navigation['homepage'],
-  ],
-  [
-    /^(?:|I )go to (?:|the )homepage/,
-    Navigation['homepage'],
-  ],
-  [
-    /^(?:|I )am on "([^"]*)"/,
-    Navigation['browse'],
-  ],
-  [
-    /^(?:|I )go to "([^"]*)"/,
-    Navigation['browse'],
-  ],
-  [
-    /^(?:|I )reload the page/,
-    Navigation['reload'],
-  ],
-  [
-    /^(?:|I )move backward one page/,
-    Navigation['back'],
-  ],
-];
+module.exports = Navigation;

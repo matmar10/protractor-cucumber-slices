@@ -10,6 +10,18 @@ const Errors = require('./../utils/errors');
  */
 const Action = {
 
+  regex: {
+    click: [/^(?:|I )click on (?:|the )"([^"]*)"/],
+    press: [/^(?:|I )press "([^"]*)"/],
+    follow: [/^(?:|I )follow "([^"]*)"/],
+    hover: [/^(?:|I )hover (?:|over ) (?:|the)"([^"]*)" element/],
+    submit: [/^(?:|I )submit (?:|the )"([^"]*)" form/],
+    sendKey: [
+      /^(?:|I )send key "([^"]*)" in "([^"]*)" element/,
+      /^(?:|I )type "([^"]*)" in(?:|to) (?:|the )"([^"]*)" element/,
+    ],
+  },
+
   /**
    * Click on an element based on given selector.
    * If you want to click a button, use `press` instead.
@@ -129,33 +141,4 @@ const Action = {
 
 };
 
-module.exports = [
-  [
-    /^(?:|I )click on (?:|the )"([^"]*)"/,
-    Action.click,
-  ],
-  [
-    /^(?:|I )press "([^"]*)"/,
-    Action.press,
-  ],
-  [
-    /^(?:|I )follow "([^"]*)"/,
-    Action.follow,
-  ],
-  [
-    /^(?:|I )hover (?:|over ) (?:|the)"([^"]*)" element/,
-    Action.hover,
-  ],
-  [
-    /^(?:|I )submit (?:|the )"([^"]*)" form/,
-    Action.submit,
-  ],
-  [
-    /^(?:|I )send key "([^"]*)" in "([^"]*)" element/,
-    Action.sendKey,
-  ],
-  [
-    /^(?:|I )type "([^"]*)" in(?:|to) (?:|the )"([^"]*)" element/,
-    Action.sendKey,
-  ],
-];
+module.exports = Action;

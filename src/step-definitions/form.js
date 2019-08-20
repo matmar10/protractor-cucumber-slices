@@ -24,6 +24,25 @@ function checkInput(targetState) {
  */
 const Form = {
 
+  regex: {
+    'fill field': [
+      /^(?:|I )fill in "([^"]*)" with "([^"]*)"/,
+      /^(?:|I )fill in "([^"]*)" with:/,
+    ],
+    'fill multiple': [
+      /^(?:|I )fill in the following:/,
+    ],
+    'choose in select': [
+      /^(?:|I )select "([^"]*)" from "([^"]*)"/,
+    ],
+    'check': [
+      /^(?:|I )check "([^"]*)"/,
+    ],
+    'uncheck': [
+      /^(?:|I )uncheck "([^"]*)"/,
+    ],
+  },
+
   /**
    * Send a sequence of key strokes to an element (clears value before).
    * You can also use unicode characters like Left arrow or Back space.
@@ -117,29 +136,4 @@ const Form = {
 
 };
 
-module.exports = [
-  [
-    /^(?:|I )fill in "([^"]*)" with "([^"]*)"/,
-    Form['fill field'],
-  ],
-  [
-    /^(?:|I )fill in "([^"]*)" with:/,
-    Form['fill field'],
-  ],
-  [
-    /^(?:|I )fill in the following:/,
-    Form['fill multiple'],
-  ],
-  [
-    /^(?:|I )select "([^"]*)" from "([^"]*)"/,
-    Form['choose in select'],
-  ],
-  [
-    /^(?:|I )check "([^"]*)"/,
-    Form['check'],
-  ],
-  [
-    /^(?:|I )uncheck "([^"]*)"/,
-    Form['uncheck'],
-  ],
-];
+module.exports = Form;

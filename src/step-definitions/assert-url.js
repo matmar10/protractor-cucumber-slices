@@ -11,6 +11,21 @@ const { base, getCurrent, isAbsolute, parseWithEnv } = require('./../utils/url')
  */
 const AssertURL = {
 
+  regex: {
+    'on homepage': [
+      /^(?:|I )should be on (?:|the )homepage/,
+    ],
+    'url': [
+      /^(?:|I )should be on (?:|the )(?:|page )"([^"]*)"(?:| page)$/,
+    ],
+    'url match': [
+      /the url should match (.+)/,
+    ],
+    'url query match': [
+      /the url parameter should match (.+)/,
+    ],
+  },
+
   /**
    * Assert current URL pathname equals ‘/’.
    *
@@ -95,21 +110,4 @@ const AssertURL = {
   },
 };
 
-module.exports = [
-  [
-    /^(?:|I )should be on (?:|the )homepage/,
-    AssertURL['on homepage'],
-  ],
-  [
-    /^(?:|I )should be on (?:|the )(?:|page )"([^"]*)"(?:| page)$/,
-    AssertURL['url'],
-  ],
-  [
-    /the url should match (.+)/,
-    AssertURL['url match'],
-  ],
-  [
-    /the url parameter should match (.+)/,
-    AssertURL['url query match'],
-  ],
-];
+module.exports = AssertURL;

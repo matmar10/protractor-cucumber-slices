@@ -8,6 +8,11 @@ const { browser } = require('protractor');
  */
 const Utility = {
 
+  regex: {
+    'screenshot': [/^(?:|I )take a screenshot/],
+    'viewport': [/the viewport is (\d+)px width and (\d+)px height/],
+    'wait': [/^(?:|I )wait (?:|for )(\d+) seconds?/],
+  },
 
   /**
    * Take a screenshot of the current viewport and save it at ./screenshot.png
@@ -59,17 +64,4 @@ const Utility = {
   },
 };
 
-module.exports = [
-  [
-    /^(?:|I )take a screenshot/,
-    Utility['screenshot'],
-  ],
-  [
-    /the viewport is (\d+)px width and (\d+)px height/,
-    Utility['viewport'],
-  ],
-  [
-    /^(?:|I )wait (?:|for )(\d+) seconds?/,
-    Utility['wait'],
-  ],
-];
+module.exports = Utility;

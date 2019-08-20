@@ -29,6 +29,33 @@ function isDisabled(expected) {
  */
 const AssertForm = {
 
+  regex: {
+    'select value': [
+      /the "([^"]*)" current option contain "([^"]*)"/,
+    ],
+    'input value': [
+      /the "([^"]*)" field should contain "([^"]*)"/,
+    ],
+    'input not value': [
+      /the "([^"]*)" field should not contain "([^"]*)"/,
+    ],
+    'input enabled': [
+      /the "([^"]*)" (?:field|element) should be enabled$/,
+    ],
+    'input disabled': [
+      /the "([^"]*)" (?:field|element) should be disabled$/,
+    ],
+    'checkbox checked': [
+      /the "([^"]*)" checkbox should be checked$/,
+      /the checkbox "([^"]*)" (?:is|should be) checked$/,
+    ],
+    'checkbox unchecked': [
+      /the "([^"]*)" checkbox should not be checked$/,
+      /the checkbox "([^"]*)" should (?:be unchecked|not be checked)$/,
+      /the checkbox "([^"]*)" is (?:unchecked|not checked)$/,
+    ],
+  },
+
   /**
    * Assert the currently selected option of a select field contains provided text.
    *
@@ -148,45 +175,4 @@ const AssertForm = {
 
 };
 
-module.exports = [
-  [
-    /the "([^"]*)" current option contain "([^"]*)"/,
-    AssertForm['select value'],
-  ],
-  [
-    /the "([^"]*)" field should contain "([^"]*)"/,
-    AssertForm['input value'],
-  ],
-  [
-    /the "([^"]*)" field should not contain "([^"]*)"/,
-    AssertForm['input not value'],
-  ],
-  [
-    /the "([^"]*)" (?:field|element) should be enabled$/,
-    AssertForm['input enabled'],
-  ],
-  [
-    /the "([^"]*)" (?:field|element) should be disabled$/,
-    AssertForm['input disabled'],
-  ],
-  [
-    /the "([^"]*)" checkbox should be checked$/,
-    AssertForm['checkbox checked'],
-  ],
-  [
-    /the checkbox "([^"]*)" (?:is|should be) checked$/,
-    AssertForm['checkbox checked'],
-  ],
-  [
-    /the "([^"]*)" checkbox should not be checked$/,
-    AssertForm['checkbox unchecked'],
-  ],
-  [
-    /the checkbox "([^"]*)" should (?:be unchecked|not be checked)$/,
-    AssertForm['checkbox unchecked'],
-  ],
-  [
-    /the checkbox "([^"]*)" is (?:unchecked|not checked)$/,
-    AssertForm['checkbox unchecked'],
-  ],
-];
+module.exports = AssertForm;

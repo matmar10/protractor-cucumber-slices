@@ -4,6 +4,8 @@ const Promise = require('bluebird');
 const { browser, element, by, ExpectedConditions } = require('protractor');
 const { expect } = require('chai');
 
+const { any } = require('./../utils/by');
+
 const EC = ExpectedConditions;
 
 function elementInnerHTML(locator) {
@@ -14,6 +16,46 @@ function elementInnerHTML(locator) {
  * @module AssertDOM
  */
 const AssertDOM = {
+
+  regex: {
+    'html contains': [/^(?:|I )should see "([^"]*)"$/],
+    'html not contains': [/^(?:|I )should not see "([^"]*)"$/],
+    'html match': [/^(?:|I )should see text matching (.+)$/],
+    'html not match': [/^(?:|I )should not see text matching (.+)$/],
+    'html element count': [/^(?:|I )should see (\d+) "([^"]*)" elements?$/],
+    'element contains': [
+      /^(?:|I )should see "([^"]*)" in the "([^"]*)" element$/,
+      /^(?:|I )should see "([^"]*)" in the "([^"]*)" element text$/,
+    ],
+    'element not contains': [
+      /^(?:|I )should not see "([^"]*)" in the "([^"]*)" element$/,
+      /^(?:|I )should not see "([^"]*)" in the "([^"]*)" element text$/,
+    ],
+    'element visible': [
+      /^(?:|I )should see (?:|the |a |an )"([^"]*)" element$/,
+      /^(?:|the |a |an )"([^"]*)" element should be visible$/,
+    ],
+    'element not visible': [
+      /^(?:|I )should not see (?:|the |a |an )"([^"]*)" element$/,
+      /(?:|the |a |an )"([^"]*)" element should not be visible$/,
+    ],
+    'element exists': [
+      /the "([^"]*)" element should exist$/,
+      /there should be an? "([^"]*)" element$/,
+    ],
+    'element not exists': [
+      /the "([^"]*)" element should not exist$/,
+      /there should not be an? "([^"]*)" element$/,
+    ],
+    'link visible': [
+      /^I should see an? "([^"]*)" link/,
+      /^the "([^"]*)" link should be visible/,
+    ],
+    'link not visible': [
+      /^I should see not an? "([^"]*)" link/,
+      /^the "([^"]*)" link should not be visible/,
+    ],
+  },
 
   /**
    * Assert page sources (with tags) contains the provided string.
@@ -154,8 +196,8 @@ const AssertDOM = {
    *
    * #### Patterns
    *
-   * - /^I should see an? "([^"]*)" element$/
-   * - /the "([^"]*)" element should be visible$/
+   * - /^(?:|I )should see (?:|the |a |an )"([^"]*)" element$/
+   * - /(?:|the |a |an )"([^"]*)" element should be visible$/
    *
    * @example Then I should see an "h2.content-subhead" element
    * @example Then the ".alert.alert-danger" element should be visible
@@ -171,8 +213,8 @@ const AssertDOM = {
    *
    * #### Patterns
    *
-   * - /^I should not see an? "([^"]*)" element$/
-   * - /the "([^"]*)" element should not be visible$/
+   * - /^(?:|I )should not see (?:|the |a |an )"([^"]*)" element$/
+   * - /(?:|the |a |an )"([^"]*)" element should not be visible$/
    *
    * @example Then I should not see an "h2.content-subhead" element
    * @example Then the ".alert.alert-danger" element should not visible
@@ -211,81 +253,45 @@ const AssertDOM = {
    * @example Then the "h2.content-subhead" element should not exist
    * @example Then there should not be a "button" element
    * @param  {string} selector Selector of target element
-   * @return {Promise}         Resolves if assertion passes
+   * @return {Promise}         Resolves when action completes
    */
   'element not exists': function (selector) {
     return browser.wait(EC.stalenessOf(element(by.css(selector))), 100);
   },
+
+  /**
+   * Assert the visibility of a link (or button) with at least partial match of text
+   *
+   * #### Patterns
+   * - /^(?:|I )should see an? "([^"]*)" link/
+   * - /^the "([^"]*)" link should be visible/
+   *
+   * @example Then I should see a "See more examples" link
+   * @example Then the "Click to resend" link should be visible
+   * @param  {string} text Text to find the link
+   * @return {Promise}         Resolves if assertion passes
+   */
+  'link visible': function (text) {
+    return any(by.partialButtonText(text), by.partialLinkText(text))
+      .then(link => browser.wait(EC.visibilityOf(link), 1000));
+  },
+
+  /**
+   * Assert the presence of a link with at least partial match of text
+   *
+   * #### Patterns
+   * - /^(?:|I )should not see an? "([^"]*)" link/
+   * - /^the "([^"]*)" link should not be visible/
+   *
+   * @example Then I should not see a "See more examples" link
+   * @example Then the "Click to resend" link should not be visible
+   * @param  {string} text Text to find the link
+   * @return {Promise}         Resolves if assertion passes
+   */
+  'link not visible': function (text) {
+    return any(by.partialButtonText(text), by.partialLinkText(text))
+      .then(link => browser.wait(EC.invisibilityOf(link), 1000));
+  },
 };
 
-/* eslint array-element-newline: ["error", "always"] */
-module.exports = [
-  [
-    /^(?:|I )should see "([^"]*)"$/,
-    AssertDOM['html contains'],
-  ],
-  [
-    /^(?:|I )should not see "([^"]*)"$/,
-    AssertDOM['html not contains'],
-  ],
-  [
-    /^(?:|I )should see text matching (.+)$/,
-    AssertDOM['html match'],
-  ],
-  [
-    /^(?:|I )should not see text matching (.+)$/,
-    AssertDOM['html not match'],
-  ],
-  [
-    /^(?:|I )should see (\d+) "([^"]*)" elements?$/,
-    AssertDOM['html element count'],
-  ],
-  [
-    /^(?:|I )should see "([^"]*)" in the "([^"]*)" element$/,
-    AssertDOM['element contains'],
-  ],
-  [
-    /^(?:|I )should see "([^"]*)" in the "([^"]*)" element text$/,
-    AssertDOM['element contains'],
-  ],
-  [
-    /^(?:|I )should not see "([^"]*)" in the "([^"]*)" element$/,
-    AssertDOM['element not contains'],
-  ],
-  [
-    /^(?:|I )should not see "([^"]*)" in the "([^"]*)" element text$/,
-    AssertDOM['element not contains'],
-  ],
-  [
-    /^(?:|I )should see an? "([^"]*)" element$/,
-    AssertDOM['element visible'],
-  ],
-  [
-    /the "([^"]*)" element should be visible$/,
-    AssertDOM['element visible'],
-  ],
-  [
-    /^(?:|I )should not see an? "([^"]*)" element$/,
-    AssertDOM['element not visible'],
-  ],
-  [
-    /the "([^"]*)" element should not be visible$/,
-    AssertDOM['element not visible'],
-  ],
-  [
-    /the "([^"]*)" element should exist$/,
-    AssertDOM['element exists'],
-  ],
-  [
-    /there should be an? "([^"]*)" element$/,
-    AssertDOM['element exists'],
-  ],
-  [
-    /the "([^"]*)" element should not exist$/,
-    AssertDOM['element not exists'],
-  ],
-  [
-    /there should not be an? "([^"]*)" element$/,
-    AssertDOM['element not exists'],
-  ],
-];
+module.exports = AssertDOM;
