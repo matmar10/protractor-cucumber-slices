@@ -11,8 +11,13 @@ const Errors = require('./../utils/errors');
 const Action = {
 
   regex: {
-    click: [/^(?:|I )click on (?:|the )"([^"]*)"/],
-    press: [/^(?:|I )press "([^"]*)"/],
+    click: [
+      /^(?:|I )click on (?:|the )"([^"]*)"/,
+    ],
+    press: [
+      /^(?:|I )press "([^"]*)"/,
+      /^(?:|I )click (?:|on )(?:|the )"([^"]*)" link/,
+    ],
     follow: [/^(?:|I )follow "([^"]*)"/],
     hover: [/^(?:|I )hover (?:|over ) (?:|the)"([^"]*)" element/],
     submit: [/^(?:|I )submit (?:|the )"([^"]*)" form/],
@@ -89,15 +94,17 @@ const Action = {
    * #### Patterns
    *
    * - /^(?:|I )press "([^"]*)"/
+   * - /^(?:|I )click (?:|on )(?:|the )"([^"]*)" link/
    *
    * @example When I press "button.register"
    * And I press "Register"
    * And I press "Submit"
+   * @example When I click on the "Login" link
    * @param  {string} selector Selector of target element
    * @return {Promise}         Resolves after action completes
    */
   press: function (selector) {
-    return any(by.partialButtonText(selector), by.partialLinkText(selector))
+    return any(by.buttonText(selector), by.partialButtonText(selector), by.linkText(selector), by.partialLinkText(selector))
       .then(button => button.click());
   },
 
