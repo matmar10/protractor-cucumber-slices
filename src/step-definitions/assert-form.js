@@ -1,14 +1,14 @@
 'use strict';
 
 const { expect } = require('chai');
-const { element, by, ExpectedConditions } = require('protractor');
+const { ExpectedConditions } = require('protractor');
 
 const { input } = require('./../utils/element');
 const EC = ExpectedConditions;
 
 function isChecked(expected) {
   return function (selector) {
-    return element(by.css(selector)).getAttribute('checked')
+    return input(selector).getAttribute('checked')
       .then((isChecked) => {
         expect(isChecked).to.equal(expected);
       });
@@ -17,7 +17,7 @@ function isChecked(expected) {
 
 function isDisabled(expected) {
   return function (selector) {
-    return element(by.css(selector)).getAttribute('disabled')
+    return input(selector).getAttribute('disabled')
       .then((isDisabled) => {
         expect(isDisabled).to.equal(expected);
       });
