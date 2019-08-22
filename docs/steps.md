@@ -13,17 +13,17 @@
     -   [press][9]
     -   [follow][10]
     -   [sendKey][11]
--   [Navigation][12]
-    -   [base url][13]
-    -   [homepage][14]
-    -   [browse][15]
-    -   [reload][16]
-    -   [back][17]
--   [AssertURL][18]
-    -   [on homepage][19]
-    -   [url][20]
-    -   [url match][21]
-    -   [url query match][22]
+-   [AssertURL][12]
+    -   [on homepage][13]
+    -   [url][14]
+    -   [url match][15]
+    -   [url query match][16]
+-   [Navigation][17]
+    -   [base url][18]
+    -   [homepage][19]
+    -   [browse][20]
+    -   [reload][21]
+    -   [back][22]
 -   [AssertDOM][23]
     -   [html contains][24]
     -   [html not contains][25]
@@ -36,20 +36,22 @@
     -   [element not visible][32]
     -   [element exists][33]
     -   [element not exists][34]
--   [Form][35]
-    -   [fill field][36]
-    -   [fill multiple][37]
-    -   [choose in select][38]
-    -   [check][39]
-    -   [uncheck][40]
--   [AssertForm][41]
-    -   [select value][42]
-    -   [input value][43]
-    -   [input not value][44]
-    -   [input enabled][45]
-    -   [input disabled][46]
-    -   [checkbox checked][47]
-    -   [checkbox unchecked][48]
+    -   [link visible][35]
+    -   [link not visible][36]
+-   [Form][37]
+    -   [fill field][38]
+    -   [fill multiple][39]
+    -   [choose in select][40]
+    -   [check][41]
+    -   [uncheck][42]
+-   [AssertForm][43]
+    -   [select value][44]
+    -   [input value][45]
+    -   [input not value][46]
+    -   [input enabled][47]
+    -   [input disabled][48]
+    -   [checkbox checked][49]
+    -   [checkbox unchecked][50]
 
 ## Utility
 
@@ -75,7 +77,7 @@ Feature: Example feature
     Then I take a screenshot
 ```
 
-Returns **[Promise][49]** Resolves when action completes
+Returns **[Promise][51]** Resolves when action completes
 
 ### viewport
 
@@ -99,7 +101,7 @@ Feature: Example feature
     Then the "h1" element should be visible
 ```
 
-Returns **[Promise][49]** Resolves when action completes
+Returns **[Promise][51]** Resolves when action completes
 
 ### wait
 
@@ -111,7 +113,7 @@ Wait for N seconds.
 
 #### Parameters
 
--   `seconds` **[Number][50]** Number of seconds to wait
+-   `seconds` **[Number][52]** Number of seconds to wait
 
 #### Examples
 
@@ -122,7 +124,7 @@ Feature: Example feature
     Then I wait 10 seconds
 ```
 
-Returns **[Promise][49]** Resolves when action completes
+Returns **[Promise][51]** Resolves when action completes
 
 ## Action
 
@@ -137,7 +139,7 @@ If you want to click a button, use `press` instead.
 
 #### Parameters
 
--   `selector` **[string][51]** Selector of target element
+-   `selector` **[string][53]** Selector of target element
 
 #### Examples
 
@@ -155,7 +157,7 @@ Feature: Example feature
     Then the "h1" element should be visible
 ```
 
-Returns **[Promise][49]** Resolves after action completes
+Returns **[Promise][51]** Resolves after action completes
 
 ### hover
 
@@ -167,7 +169,7 @@ Hover an element with cursor (activate CSS :hover property).
 
 #### Parameters
 
--   `selector` **[string][51]** Selector of target element
+-   `selector` **[string][53]** Selector of target element
 
 #### Examples
 
@@ -185,7 +187,7 @@ Feature: Example feature
     Then the "h1" element should be visible
 ```
 
-Returns **[Promise][49]** Resolves after action completes
+Returns **[Promise][51]** Resolves after action completes
 
 ### submit
 
@@ -197,7 +199,7 @@ Submits a form found by given selector. The submit command may also be applied t
 
 #### Parameters
 
--   `selector` **[string][51]** Selector of target element
+-   `selector` **[string][53]** Selector of target element
 
 #### Examples
 
@@ -215,7 +217,7 @@ Feature: Example feature
     Then the "h1" element should be visible
 ```
 
-Returns **[Promise][49]** Resolves after action completes
+Returns **[Promise][51]** Resolves after action completes
 
 ### press
 
@@ -228,10 +230,11 @@ Press a button element with string argument interpreted as (in order):
 #### Patterns
 
 -   /^(?:|I )press "([^"]\*)"/
+-   /^(?:|I )click (?:|on )(?:|the )"([^"]\*)" link/
 
 #### Parameters
 
--   `selector` **[string][51]** Selector of target element
+-   `selector` **[string][53]** Selector of target element
 
 #### Examples
 
@@ -244,7 +247,14 @@ And I press "Register"
 And I press "Submit"
 ```
 
-Returns **[Promise][49]** Resolves after action completes
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I click on the "Login" link
+    Then the "h1" element should be visible
+```
+
+Returns **[Promise][51]** Resolves after action completes
 
 ### follow
 
@@ -259,7 +269,7 @@ Follow a link element with string argument interpreted as (in order):
 
 #### Parameters
 
--   `selector` **[string][51]** Selector of target element
+-   `selector` **[string][53]** Selector of target element
 
 #### Examples
 
@@ -270,7 +280,7 @@ Feature: Example feature
     Then the "h1" element should be visible
 ```
 
-Returns **[Promise][49]** Resolves after action completes
+Returns **[Promise][51]** Resolves after action completes
 
 ### sendKey
 
@@ -283,8 +293,8 @@ Send the key(s) to the matched element
 
 #### Parameters
 
--   `key` **[string][51]** Key(s) to send
--   `selector` **[string][51]** Selector of target element
+-   `key` **[string][53]** Key(s) to send
+-   `selector` **[string][53]** Selector of target element
 
 #### Examples
 
@@ -302,135 +312,7 @@ Feature: Example feature
     Then the "h1" element should be visible
 ```
 
-Returns **[Promise][49]** Resolves after action completes
-
-## Navigation
-
-### base url
-
-Set driver’s baseUrl. Useful to use short path in subsequent navigation (ex: “/login”)
-
-#### Patterns
-
--   /^(?:|I )browse (?:|to )"([^"]\*)"/
-
-#### Parameters
-
--   `location` **[string][51]** The base URL as a full, absolute URL
-
-#### Examples
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I browse "http://127.0.0.1:3000/
-    Then the "h1" element should be visible
-```
-
-Returns **[Promise][49]** Resolves when the action completes
-
-### homepage
-
-Navigate to homepage, ie: baseUrl + ‘/’
-
-#### Patterns
-
--   /^(?:|I )am on (?:|the )homepage$/
--   /^(?:|I )go to (?:|the )homepage/
-
-#### Examples
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I am on the homepage
-    Then the "h1" element should be visible
-```
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I go to the homepage
-    Then the "h1" element should be visible
-```
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I go to homepage
-    Then the "h1" element should be visible
-```
-
-Returns **[Promise][49]** Resolves when the action completes
-
-### browse
-
-Browse given URL or path. Protractor assumes it is an angular page
-
-#### Patterns
-
--   /^(?:|I )am on "([^"]\*)"/
--   /^(?:|I )go to "([^"]\*)"/
-
-#### Parameters
-
--   `location` **[string][51]** Path to browse to, either absolute or relative
-
-#### Examples
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I am on "/post/2"
-    Then the "h1" element should be visible
-```
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I go to "/articles/why-to-use-cucumber"
-    Then the "h1" element should be visible
-```
-
-Returns **[Promise][49]** Resolves when action completes
-
-### reload
-
-Reload the current page.
-
-#### Patterns
-
--   /^(?:|I )reload the page/
-
-#### Examples
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I reload the page
-    Then the "h1" element should be visible
-```
-
-Returns **[Promise][49]** Resolves when action completes
-
-### back
-
-Navigate backwards in the browser history, if possible.
-
-#### Patterns
-
--   /^(?:|I )move backward one page/
-
-#### Examples
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I move backward one page
-    Then the "h1" element should be visible
-```
-
-Returns **[Promise][49]** Resolves when action completes
+Returns **[Promise][51]** Resolves after action completes
 
 ## AssertURL
 
@@ -451,7 +333,7 @@ Feature: Example feature
     Then I should be on the homepage
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### url
 
@@ -476,7 +358,7 @@ Feature: Example feature
     Then I should be on "/post/1"
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### url match
 
@@ -508,7 +390,7 @@ Feature: Example feature
     Then the url should match ${view post}
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### url query match
 
@@ -531,7 +413,136 @@ Feature: Example feature
     Then the url parameter should match ^\/post\/\d+
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
+
+## Navigation
+
+### base url
+
+Set driver’s baseUrl. Useful to use short path in subsequent navigation (ex: “/login”)
+
+#### Patterns
+
+-   /^(?:|I )browse (?:|to )"([^"]\*)"/
+
+#### Parameters
+
+-   `location` **[string][53]** The base URL as a full, absolute URL
+
+#### Examples
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I browse "http://127.0.0.1:3000/
+    Then the "h1" element should be visible
+```
+
+Returns **[Promise][51]** Resolves when the action completes
+
+### homepage
+
+Navigate to homepage, ie: baseUrl + ‘/’
+
+#### Patterns
+
+-   /^(?:|I )am on (?:|the )homepage$/
+-   /^(?:|I )go to (?:|the )homepage/
+-   /^(?:|I )browse to (?:|the )homepage/
+
+#### Examples
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I am on the homepage
+    Then the "h1" element should be visible
+```
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I go to the homepage
+    Then the "h1" element should be visible
+```
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I go to homepage
+    Then the "h1" element should be visible
+```
+
+Returns **[Promise][51]** Resolves when the action completes
+
+### browse
+
+Browse given URL or path. Protractor assumes it is an angular page
+
+#### Patterns
+
+-   /^(?:|I )am on "([^"]\*)"/
+-   /^(?:|I )go to "([^"]\*)"/
+
+#### Parameters
+
+-   `location` **[string][53]** Path to browse to, either absolute or relative
+
+#### Examples
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I am on "/post/2"
+    Then the "h1" element should be visible
+```
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I go to "/articles/why-to-use-cucumber"
+    Then the "h1" element should be visible
+```
+
+Returns **[Promise][51]** Resolves when action completes
+
+### reload
+
+Reload the current page.
+
+#### Patterns
+
+-   /^(?:|I )reload the page/
+
+#### Examples
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I reload the page
+    Then the "h1" element should be visible
+```
+
+Returns **[Promise][51]** Resolves when action completes
+
+### back
+
+Navigate backwards in the browser history, if possible.
+
+#### Patterns
+
+-   /^(?:|I )move backward one page/
+
+#### Examples
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I move backward one page
+    Then the "h1" element should be visible
+```
+
+Returns **[Promise][51]** Resolves when action completes
 
 ## AssertDOM
 
@@ -545,7 +556,7 @@ Assert page sources (with tags) contains the provided string.
 
 #### Parameters
 
--   `expected` **[string][51]** The text content expected to be present
+-   `expected` **[string][53]** The text content expected to be present
 
 #### Examples
 
@@ -556,7 +567,7 @@ Feature: Example feature
     Then I should see "Home Page"
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### html not contains
 
@@ -568,7 +579,7 @@ Assert page sources (with tags) contains the provided string.
 
 #### Parameters
 
--   `expected` **[string][51]** The text content expected to be present
+-   `expected` **[string][53]** The text content expected to be present
 
 #### Examples
 
@@ -579,7 +590,7 @@ Feature: Example feature
     Then I should not see "Detail Page"
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### html match
 
@@ -591,7 +602,7 @@ Assert page sources (with tags) match the provided RegExp.
 
 #### Parameters
 
--   `regex` **[RegExp][52]** Regular expression
+-   `regex` **[RegExp][54]** Regular expression
 
 #### Examples
 
@@ -602,7 +613,7 @@ Feature: Example feature
     Then I should see text matching Post-\d+
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### html not match
 
@@ -614,7 +625,7 @@ Assert page sources (with tags) do not match the provided RegExp.
 
 #### Parameters
 
--   `regex` **[RegExp][52]** Regular expression
+-   `regex` **[RegExp][54]** Regular expression
 
 #### Examples
 
@@ -625,7 +636,7 @@ Feature: Example feature
     Then I should not see text matching .+@.+
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### html element count
 
@@ -638,7 +649,7 @@ Assert page contains n number of number of DOM-elements with the provided CSS Se
 #### Parameters
 
 -   `expected` **integer** The expected count
--   `selector` **[string][51]** Selector of target element
+-   `selector` **[string][53]** Selector of target element
 
 #### Examples
 
@@ -649,7 +660,7 @@ Feature: Example feature
     Then I should see 3 "section.post" elements
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### element contains
 
@@ -662,8 +673,8 @@ Assert DOM-element with the provided CSS Selector contains the provided text.
 
 #### Parameters
 
--   `expected` **[string][51]** Regular expression
--   `selector` **[string][51]** Selector of target element
+-   `expected` **[string][53]** Regular expression
+-   `selector` **[string][53]** Selector of target element
 
 #### Examples
 
@@ -688,7 +699,7 @@ Feature: Example feature
     Then I should see "Login" in the "h1" element's text
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### element not contains
 
@@ -701,8 +712,8 @@ Assert DOM-element(s) with the provided CSS Selector do not contains the provide
 
 #### Parameters
 
--   `expected` **[string][51]** Regular expression
--   `selector` **[string][51]** Selector of target element
+-   `expected` **[string][53]** Regular expression
+-   `selector` **[string][53]** Selector of target element
 
 #### Examples
 
@@ -720,7 +731,7 @@ Feature: Example feature
     Then I should not see "Register" in the "h1" element text
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### element visible
 
@@ -728,12 +739,12 @@ Assert if the selected DOM-element found by given selector is visible.
 
 #### Patterns
 
--   /^I should see an? "([^"]\*)" element$/
--   /the "([^"]\*)" element should be visible$/
+-   /^(?:|I )should see (?:|the |a |an )"([^"]\*)" element$/
+-   /(?:|the |a |an )"([^"]\*)" element should be visible$/
 
 #### Parameters
 
--   `selector` **[string][51]** Selector of target element
+-   `selector` **[string][53]** Selector of target element
 
 #### Examples
 
@@ -751,7 +762,7 @@ Feature: Example feature
     Then the ".alert.alert-danger" element should be visible
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### element not visible
 
@@ -759,12 +770,12 @@ Assert if the selected DOM-element found by given selector is not visible.
 
 #### Patterns
 
--   /^I should not see an? "([^"]\*)" element$/
--   /the "([^"]\*)" element should not be visible$/
+-   /^(?:|I )should not see (?:|the |a |an )"([^"]\*)" element$/
+-   /(?:|the |a |an )"([^"]\*)" element should not be visible$/
 
 #### Parameters
 
--   `selector` **[string][51]** Selector of target element
+-   `selector` **[string][53]** Selector of target element
 
 #### Examples
 
@@ -782,7 +793,7 @@ Feature: Example feature
     Then the ".alert.alert-danger" element should not visible
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### element exists
 
@@ -795,7 +806,7 @@ Assert that at least one element exits matching given selector.
 
 #### Parameters
 
--   `selector` **[string][51]** Selector of target element
+-   `selector` **[string][53]** Selector of target element
 
 #### Examples
 
@@ -813,7 +824,7 @@ Feature: Example feature
     Then there should be a "span.warning" element
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### element not exists
 
@@ -826,7 +837,7 @@ Assert that no element exists matching given selector.
 
 #### Parameters
 
--   `selector` **[string][51]** Selector of target element
+-   `selector` **[string][53]** Selector of target element
 
 #### Examples
 
@@ -844,7 +855,69 @@ Feature: Example feature
     Then there should not be a "button" element
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves when action completes
+
+### link visible
+
+Assert the visibility of a link (or button) with at least partial match of text
+
+#### Patterns
+
+-   /^(?:|I )should see (?:|the |an )"([^"]\*)" link/
+-   /^the "([^"]\*)" link should be visible/
+
+#### Parameters
+
+-   `text` **[string][53]** Text to find the link
+
+#### Examples
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should see a "See more examples" link
+```
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the "Click to resend" link should be visible
+```
+
+Returns **[Promise][51]** Resolves if assertion passes
+
+### link not visible
+
+Assert the presence of a link with at least partial match of text
+
+#### Patterns
+
+-   /^(?:|I )should not see (?:|the |an )"([^"]\*)" link/
+-   /^the "([^"]\*)" link should not be visible/
+
+#### Parameters
+
+-   `text` **[string][53]** Text to find the link
+
+#### Examples
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should not see a "See more examples" link
+```
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the "Click to resend" link should not be visible
+```
+
+Returns **[Promise][51]** Resolves if assertion passes
 
 ## Form
 
@@ -852,7 +925,7 @@ Returns **[Promise][49]** Resolves if assertion passes
 
 Send a sequence of key strokes to an element (clears value before).
 You can also use unicode characters like Left arrow or Back space.
-See the [protract sendKeys method documentation][53]
+See the [protract sendKeys method documentation][55]
 
 #### Patterns
 
@@ -861,8 +934,8 @@ See the [protract sendKeys method documentation][53]
 
 #### Parameters
 
--   `selector` **[string][51]** Css selector matching the target field element
--   `value` **[string][51]** The text content to send
+-   `selector` **[string][53]** Css selector matching the target field element
+-   `value` **[string][53]** The text content to send
 
 #### Examples
 
@@ -876,13 +949,13 @@ My long multi-line text ...
 """
 ```
 
-Returns **[Promise][49]** Resolves when the action completes
+Returns **[Promise][51]** Resolves when the action completes
 
 ### fill multiple
 
 Send a sequence of key strokes to an element (clears value before).
 You can also use unicode characters like Left arrow or Back space.
-See the [protract sendKeys method documentation][53]
+See the [protract sendKeys method documentation][55]
 
 #### Patterns
 
@@ -890,7 +963,7 @@ See the [protract sendKeys method documentation][53]
 
 #### Parameters
 
--   `hashDataTable` **[object][54]** List of key:value pairs of data to fieldElement
+-   `hashDataTable` **[object][56]** List of key:value pairs of data to fieldElement
 
 #### Examples
 
@@ -899,12 +972,12 @@ Feature: Example feature
   Scenario: Sample scenario
     When I fill in the following:
     Then the "h1" element should be visible
-| "First name"                    | John |
+| "First name"                    | John          |
 | "Last name"                     | Doe           |
 | "textarea[name='description']"  | Some text ... |
 ```
 
-Returns **[Promise][49]** Resolves when the action completes
+Returns **[Promise][51]** Resolves when the action completes
 
 ### choose in select
 
@@ -916,8 +989,8 @@ Select option that display text matching the argument.
 
 #### Parameters
 
--   `option` **[string][51]** Text content of the option
--   `selector` **[string][51]** Css selector matching the target field element
+-   `option` **[string][53]** Text content of the option
+-   `selector` **[string][53]** Css selector matching the target field element
 
 #### Examples
 
@@ -928,7 +1001,7 @@ Feature: Example feature
     Then I select "France" from "select.country"
 ```
 
-Returns **[Promise][49]** Resolves when the action completes
+Returns **[Promise][51]** Resolves when the action completes
 
 ### check
 
@@ -940,7 +1013,7 @@ Check the checkbox with provided selector.
 
 #### Parameters
 
--   `selector` **[string][51]** Css selector matching the target field element
+-   `selector` **[string][53]** Css selector matching the target field element
 
 #### Examples
 
@@ -951,7 +1024,7 @@ Feature: Example feature
     Then I check "#checkbox-input"
 ```
 
-Returns **[Promise][49]** Resolves when the action completes
+Returns **[Promise][51]** Resolves when the action completes
 
 ### uncheck
 
@@ -963,7 +1036,7 @@ Uncheck the checkbox with provided selector.
 
 #### Parameters
 
--   `selector` **[string][51]** Css selector matching the target field element
+-   `selector` **[string][53]** Css selector matching the target field element
 
 #### Examples
 
@@ -974,7 +1047,7 @@ Feature: Example feature
     Then I uncheck "#checkbox-input-next"
 ```
 
-Returns **[Promise][49]** Resolves when the action completes
+Returns **[Promise][51]** Resolves when the action completes
 
 ## AssertForm
 
@@ -988,8 +1061,8 @@ Assert the currently selected option of a select field contains provided text.
 
 #### Parameters
 
--   `selector` **[string][51]** Selector of target element
--   `expected` **[string][51]** Text content of the expected selected option
+-   `selector` **[string][53]** Selector of target element
+-   `expected` **[string][53]** Text content of the expected selected option
 
 #### Examples
 
@@ -1000,7 +1073,7 @@ Feature: Example feature
     Then the "select[name='country']" current option contain "USA"
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### input value
 
@@ -1012,8 +1085,8 @@ Assert if the input’s value of given selector contains provided text.
 
 #### Parameters
 
--   `selector` **[string][51]** Selector of target element
--   `expected` **[string][51]** Text content of the expected value
+-   `selector` **[string][53]** Selector of target element
+-   `expected` **[string][53]** Text content of the expected value
 
 #### Examples
 
@@ -1024,7 +1097,7 @@ Feature: Example feature
     Then the "textarea[name='description']" field should contain "My text"
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### input not value
 
@@ -1036,8 +1109,8 @@ Assert if the input’s value of given selector do not contains provided text.
 
 #### Parameters
 
--   `selector` **[string][51]** Selector of target element
--   `expected` **[string][51]** Text content of the value to check does not exist
+-   `selector` **[string][53]** Selector of target element
+-   `expected` **[string][53]** Text content of the value to check does not exist
 
 #### Examples
 
@@ -1048,7 +1121,7 @@ Feature: Example feature
     Then the "textarea[name='description']" field should not contain "My first name"
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### input enabled
 
@@ -1060,7 +1133,7 @@ Assert that the element matching given selector is enabled
 
 #### Parameters
 
--   `selector` **[string][51]** Selector of target element
+-   `selector` **[string][53]** Selector of target element
 
 #### Examples
 
@@ -1071,7 +1144,7 @@ Feature: Example feature
     Then the "input[type='submit']" element should be enabled
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### input disabled
 
@@ -1083,7 +1156,7 @@ Assert that the element matching given selector is disabled
 
 #### Parameters
 
--   `selector` **[string][51]** Selector of target element
+-   `selector` **[string][53]** Selector of target element
 
 #### Examples
 
@@ -1094,7 +1167,7 @@ Feature: Example feature
     Then the "input[type='submit']" element should be disabled
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### checkbox checked
 
@@ -1108,7 +1181,7 @@ Assert that the element matching given selector is checked
 
 #### Parameters
 
--   `selector` **[string][51]** Selector of target element
+-   `selector` **[string][53]** Selector of target element
 
 #### Examples
 
@@ -1126,7 +1199,7 @@ Feature: Example feature
     Then the checkbox "input[name='agree']" should be checked
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 ### checkbox unchecked
 
@@ -1140,7 +1213,7 @@ Assert that the element matching given selector is unchecked
 
 #### Parameters
 
--   `selector` **[string][51]** Selector of target element
+-   `selector` **[string][53]** Selector of target element
 
 #### Examples
 
@@ -1165,7 +1238,7 @@ Feature: Example feature
     Then the checkbox "#checkbox-input" is unchecked
 ```
 
-Returns **[Promise][49]** Resolves if assertion passes
+Returns **[Promise][51]** Resolves if assertion passes
 
 [1]: #utility
 
@@ -1189,27 +1262,27 @@ Returns **[Promise][49]** Resolves if assertion passes
 
 [11]: #sendkey
 
-[12]: #navigation
+[12]: #asserturl
 
-[13]: #base-url
+[13]: #on-homepage
 
-[14]: #homepage
+[14]: #url
 
-[15]: #browse
+[15]: #url-match
 
-[16]: #reload
+[16]: #url-query-match
 
-[17]: #back
+[17]: #navigation
 
-[18]: #asserturl
+[18]: #base-url
 
-[19]: #on-homepage
+[19]: #homepage
 
-[20]: #url
+[20]: #browse
 
-[21]: #url-match
+[21]: #reload
 
-[22]: #url-query-match
+[22]: #back
 
 [23]: #assertdom
 
@@ -1235,42 +1308,46 @@ Returns **[Promise][49]** Resolves if assertion passes
 
 [34]: #element-not-exists
 
-[35]: #form
+[35]: #link-visible
 
-[36]: #fill-field
+[36]: #link-not-visible
 
-[37]: #fill-multiple
+[37]: #form
 
-[38]: #choose-in-select
+[38]: #fill-field
 
-[39]: #check
+[39]: #fill-multiple
 
-[40]: #uncheck
+[40]: #choose-in-select
 
-[41]: #assertform
+[41]: #check
 
-[42]: #select-value
+[42]: #uncheck
 
-[43]: #input-value
+[43]: #assertform
 
-[44]: #input-not-value
+[44]: #select-value
 
-[45]: #input-enabled
+[45]: #input-value
 
-[46]: #input-disabled
+[46]: #input-not-value
 
-[47]: #checkbox-checked
+[47]: #input-enabled
 
-[48]: #checkbox-unchecked
+[48]: #input-disabled
 
-[49]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[49]: #checkbox-checked
 
-[50]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[50]: #checkbox-unchecked
 
-[51]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[51]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[52]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+[52]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[53]: http://www.protractortest.org/#/api?view=webdriver.WebElement.prototype.sendKeys
+[53]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[54]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[54]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+
+[55]: http://www.protractortest.org/#/api?view=webdriver.WebElement.prototype.sendKeys
+
+[56]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
