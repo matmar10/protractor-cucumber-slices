@@ -75,18 +75,26 @@ const Form = {
    * - /^(?:|I )fill in the following:$/
    *
    * @example When I fill in the following:
-| "First name"                    | John |
+| "First name"                    | John          |
 | "Last name"                     | Doe           |
 | "textarea[name='description']"  | Some text ... |
    * @param  {object} hashDataTable List of key:value pairs of data to fieldElement
    * @return {Promise}              Resolves when the action completes
    */
   'fill multiple': function (hashDataTable) {
-    function fillRow([selector,
-      value]) {
-      return input(selector).then(field => field.sendKeys(value));
+    let rows;
+    if (Array.isArray(hashDataTable)) {
+      rows = hashDataTable;
+    } else if (hashDataTable.raw) {
+      rows = hashDataTable.raw();
+    } else {
+      throw new Error('Unexpected format: hashDataTable should be an instance of Data Table Interface https://github.com/cucumber/cucumber-js/blob/master/docs/support_files/data_table_interface.md');
     }
-    return Promise.each(hashDataTable.raw(), fillRow);
+    return Promise.each(rows, (row) => {
+      /* eslint array-element-newline: 0 */
+      const [selector, value] = row;
+      return input(selector).then(field => field.sendKeys(value));
+    });
   },
 
   /**
