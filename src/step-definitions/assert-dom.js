@@ -4,7 +4,7 @@ const Promise = require('bluebird');
 const { browser, element, by, ExpectedConditions } = require('protractor');
 const { expect } = require('chai');
 
-const { any } = require('./../utils/by');
+const { any } = require('./../utils/element');
 
 const EC = ExpectedConditions;
 
@@ -37,22 +37,22 @@ const AssertDOM = {
     ],
     'element not visible': [
       /^(?:|I )should not see (?:|the |a |an )"([^"]*)" element$/,
-      /(?:|the |a |an )"([^"]*)" element should not be visible$/,
+      /^(?:|the |a |an )"([^"]*)" element should not be visible$/,
     ],
     'element exists': [
-      /the "([^"]*)" element should exist$/,
-      /there should be an? "([^"]*)" element$/,
+      /^the "([^"]*)" element should exist$/,
+      /^there should be an? "([^"]*)" element$/,
     ],
     'element not exists': [
-      /the "([^"]*)" element should not exist$/,
-      /there should not be an? "([^"]*)" element$/,
+      /^the "([^"]*)" element should not exist$/,
+      /^there should not be an? "([^"]*)" element$/,
     ],
     'link visible': [
-      /^I should see an? "([^"]*)" link/,
+      /^(?:|I )should see (?:|the |an )"([^"]*)" link/,
       /^the "([^"]*)" link should be visible/,
     ],
     'link not visible': [
-      /^I should see not an? "([^"]*)" link/,
+      /^(?:|I )should not see (?:|the |an )"([^"]*)" link/,
       /^the "([^"]*)" link should not be visible/,
     ],
   },
@@ -263,7 +263,7 @@ const AssertDOM = {
    * Assert the visibility of a link (or button) with at least partial match of text
    *
    * #### Patterns
-   * - /^(?:|I )should see an? "([^"]*)" link/
+   * - /^(?:|I )should see (?:|the |an )"([^"]*)" link/
    * - /^the "([^"]*)" link should be visible/
    *
    * @example Then I should see a "See more examples" link
@@ -280,7 +280,7 @@ const AssertDOM = {
    * Assert the presence of a link with at least partial match of text
    *
    * #### Patterns
-   * - /^(?:|I )should not see an? "([^"]*)" link/
+   * - /^(?:|I )should not see (?:|the |an )"([^"]*)" link/
    * - /^the "([^"]*)" link should not be visible/
    *
    * @example Then I should not see a "See more examples" link
