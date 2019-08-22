@@ -5,6 +5,11 @@ const { browser } = require('protractor');
 const Errors = require('./../utils/errors');
 const { base, isAbsolute } = require('./../utils/url');
 
+function browserGetWithTimeout(url) {
+  return browser.getProcessedConfig()
+    .then(config => browser.get(url, config.getPageTimeout || 5000));
+}
+
 /**
  * @module Navigation
  */
@@ -48,7 +53,7 @@ const Navigation = {
         if (!isAbsolute(newBaseUrl)) {
           throw new Error(Errors.NAVIGATION.BASE_URL);
         }
-        return browser.get(newBaseUrl);
+        return browserGetWithTimeout(newBaseUrl);
       });
   },
 
@@ -68,7 +73,7 @@ const Navigation = {
    */
   'homepage': function () {
     return base()
-      .then(url => browser.get(url));
+      .then(url => browserGetWithTimeout(url));
   },
 
   /**
@@ -86,7 +91,7 @@ const Navigation = {
    */
   'browse': function (location) {
     if (isAbsolute(location)) {
-      return base(location).then(() => browser.get(location));
+      return base(location).then(() => browserGetWithTimeout(location));
     }
     return browser.setLocation(location);
   },
