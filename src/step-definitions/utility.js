@@ -3,6 +3,8 @@
 const Promise = require('bluebird');
 const { browser } = require('protractor');
 
+const { takeScreenshot } = require('./../utils/screenshot');
+
 /**
  * @module Utility
  */
@@ -22,14 +24,10 @@ const Utility = {
    * - /^(?:|I )take a screenshot/
    *
    * @example Then I take a screenshot
-   * @param  {int} width      Desired view width
-   * @param  {int} height     Desired view height
    * @return {Promise}        Resolves when action completes
    */
   'screenshot': function () {
-    return browser.takeScreenshot({
-      path: './screenshot.png',
-    });
+    return takeScreenshot();
   },
 
   /**
