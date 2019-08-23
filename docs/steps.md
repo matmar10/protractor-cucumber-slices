@@ -2,17 +2,17 @@
 
 ### Table of Contents
 
--   [Utility][1]
-    -   [screenshot][2]
-    -   [viewport][3]
-    -   [wait][4]
--   [Action][5]
-    -   [click][6]
-    -   [hover][7]
-    -   [submit][8]
-    -   [press][9]
-    -   [follow][10]
-    -   [sendKey][11]
+-   [Action][1]
+    -   [click][2]
+    -   [hover][3]
+    -   [submit][4]
+    -   [press][5]
+    -   [follow][6]
+    -   [sendKey][7]
+-   [Utility][8]
+    -   [screenshot][9]
+    -   [viewport][10]
+    -   [wait][11]
 -   [AssertURL][12]
     -   [on homepage][13]
     -   [url][14]
@@ -53,6 +53,194 @@
     -   [checkbox checked][49]
     -   [checkbox unchecked][50]
 
+## Action
+
+### click
+
+Click on an element based on given selector.
+If you want to click a button, use `press` instead.
+
+#### Patterns
+
+-   /^(?:|I )click on (?:|the )"([^"]\*)"/
+
+#### Parameters
+
+-   `selector` **[string][51]** Selector of target element
+
+#### Examples
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I click on "button.showModal"
+    Then the "h1" element should be visible
+```
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I click on the "input[type='submit']"
+    Then the "h1" element should be visible
+```
+
+Returns **[Promise][52]** Resolves after action completes
+
+### hover
+
+Hover an element with cursor (activate CSS :hover property).
+
+#### Patterns
+
+-   /^(?:|I )hover (?:|over ) (?:|the)"([^"]\*)" element/
+
+#### Parameters
+
+-   `selector` **[string][51]** Selector of target element
+
+#### Examples
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I hover "nav.menu" element
+    Then the "h1" element should be visible
+```
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I hover the "select:eq(1)" element
+    Then the "h1" element should be visible
+```
+
+Returns **[Promise][52]** Resolves after action completes
+
+### submit
+
+Submits a form found by given selector. The submit command may also be applied to any element that is a descendant of a form element.
+
+#### Patterns
+
+-   /^(?:|I )submit (?:|the )"([^"]\*)" form/
+
+#### Parameters
+
+-   `selector` **[string][51]** Selector of target element
+
+#### Examples
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I submit "form#register" form
+    Then the "h1" element should be visible
+```
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I submit the "form.login" form
+    Then the "h1" element should be visible
+```
+
+Returns **[Promise][52]** Resolves after action completes
+
+### press
+
+Press a button element with string argument interpreted as (in order):
+
+1.  CSS Selector
+2.  Partial text of button and input (of type="submit") elements
+3.  Partial text of link elements
+
+#### Patterns
+
+-   /^(?:|I )press "([^"]\*)"/
+-   /^(?:|I )click (?:|on )(?:|the )"([^"]\*)" link/
+
+#### Parameters
+
+-   `selector` **[string][51]** Selector of target element
+
+#### Examples
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "button.register"
+    Then the "h1" element should be visible
+And I press "Register"
+And I press "Submit"
+```
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I click on the "Login" link
+    Then the "h1" element should be visible
+```
+
+Returns **[Promise][52]** Resolves after action completes
+
+### follow
+
+Follow a link element with string argument interpreted as (in order):
+
+1.  CSS Selector
+2.  Partial text of link elements
+
+#### Patterns
+
+-   /^(?:|I )follow "([^"]\*)"/
+
+#### Parameters
+
+-   `selector` **[string][51]** Selector of target element
+
+#### Examples
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I follow "a[href='/about']"
+    Then the "h1" element should be visible
+```
+
+Returns **[Promise][52]** Resolves after action completes
+
+### sendKey
+
+Send the key(s) to the matched element
+
+#### Patterns
+
+-   /^(?:|I )send key "([^"]_)" in "([^"]_)" element/
+-   /^(?:|I )type "([^"]_)" in(?:|to) (?:|the )"([^"]_)" element/
+
+#### Parameters
+
+-   `key` **[string][51]** Key(s) to send
+-   `selector` **[string][51]** Selector of target element
+
+#### Examples
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I send key "Matthew" in "input[name='firstname']" element
+    Then the "h1" element should be visible
+```
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I type "Matthew" into the "input[name='firstname']" element
+    Then the "h1" element should be visible
+```
+
+Returns **[Promise][52]** Resolves after action completes
+
 ## Utility
 
 ### screenshot
@@ -63,11 +251,6 @@ Take a screenshot of the current viewport and save it at ./screenshot.png
 
 -   /^(?:|I )take a screenshot/
 
-#### Parameters
-
--   `width` **int** Desired view width
--   `height` **int** Desired view height
-
 #### Examples
 
 ```gherkhin
@@ -77,7 +260,7 @@ Feature: Example feature
     Then I take a screenshot
 ```
 
-Returns **[Promise][51]** Resolves when action completes
+Returns **[Promise][52]** Resolves when action completes
 
 ### viewport
 
@@ -101,7 +284,7 @@ Feature: Example feature
     Then the "h1" element should be visible
 ```
 
-Returns **[Promise][51]** Resolves when action completes
+Returns **[Promise][52]** Resolves when action completes
 
 ### wait
 
@@ -113,7 +296,7 @@ Wait for N seconds.
 
 #### Parameters
 
--   `seconds` **[Number][52]** Number of seconds to wait
+-   `seconds` **[Number][53]** Number of seconds to wait
 
 #### Examples
 
@@ -124,195 +307,7 @@ Feature: Example feature
     Then I wait 10 seconds
 ```
 
-Returns **[Promise][51]** Resolves when action completes
-
-## Action
-
-### click
-
-Click on an element based on given selector.
-If you want to click a button, use `press` instead.
-
-#### Patterns
-
--   /^(?:|I )click on (?:|the )"([^"]\*)"/
-
-#### Parameters
-
--   `selector` **[string][53]** Selector of target element
-
-#### Examples
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I click on "button.showModal"
-    Then the "h1" element should be visible
-```
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I click on the "input[type='submit']"
-    Then the "h1" element should be visible
-```
-
-Returns **[Promise][51]** Resolves after action completes
-
-### hover
-
-Hover an element with cursor (activate CSS :hover property).
-
-#### Patterns
-
--   /^(?:|I )hover (?:|over ) (?:|the)"([^"]\*)" element/
-
-#### Parameters
-
--   `selector` **[string][53]** Selector of target element
-
-#### Examples
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I hover "nav.menu" element
-    Then the "h1" element should be visible
-```
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I hover the "select:eq(1)" element
-    Then the "h1" element should be visible
-```
-
-Returns **[Promise][51]** Resolves after action completes
-
-### submit
-
-Submits a form found by given selector. The submit command may also be applied to any element that is a descendant of a form element.
-
-#### Patterns
-
--   /^(?:|I )submit (?:|the )"([^"]\*)" form/
-
-#### Parameters
-
--   `selector` **[string][53]** Selector of target element
-
-#### Examples
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I submit "form#register" form
-    Then the "h1" element should be visible
-```
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I submit the "form.login" form
-    Then the "h1" element should be visible
-```
-
-Returns **[Promise][51]** Resolves after action completes
-
-### press
-
-Press a button element with string argument interpreted as (in order):
-
-1.  CSS Selector
-2.  Partial text of button and input (of type="submit") elements
-3.  Partial text of link elements
-
-#### Patterns
-
--   /^(?:|I )press "([^"]\*)"/
--   /^(?:|I )click (?:|on )(?:|the )"([^"]\*)" link/
-
-#### Parameters
-
--   `selector` **[string][53]** Selector of target element
-
-#### Examples
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I press "button.register"
-    Then the "h1" element should be visible
-And I press "Register"
-And I press "Submit"
-```
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I click on the "Login" link
-    Then the "h1" element should be visible
-```
-
-Returns **[Promise][51]** Resolves after action completes
-
-### follow
-
-Follow a link element with string argument interpreted as (in order):
-
-1.  CSS Selector
-2.  Partial text of link elements
-
-#### Patterns
-
--   /^(?:|I )follow "([^"]\*)"/
-
-#### Parameters
-
--   `selector` **[string][53]** Selector of target element
-
-#### Examples
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I follow "a[href='/about']"
-    Then the "h1" element should be visible
-```
-
-Returns **[Promise][51]** Resolves after action completes
-
-### sendKey
-
-Send the key(s) to the matched element
-
-#### Patterns
-
--   /^(?:|I )send key "([^"]_)" in "([^"]_)" element/
--   /^(?:|I )type "([^"]_)" in(?:|to) (?:|the )"([^"]_)" element/
-
-#### Parameters
-
--   `key` **[string][53]** Key(s) to send
--   `selector` **[string][53]** Selector of target element
-
-#### Examples
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I send key "Matthew" in "input[name='firstname']" element
-    Then the "h1" element should be visible
-```
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I type "Matthew" into the "input[name='firstname']" element
-    Then the "h1" element should be visible
-```
-
-Returns **[Promise][51]** Resolves after action completes
+Returns **[Promise][52]** Resolves when action completes
 
 ## AssertURL
 
@@ -333,7 +328,7 @@ Feature: Example feature
     Then I should be on the homepage
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### url
 
@@ -358,7 +353,7 @@ Feature: Example feature
     Then I should be on "/post/1"
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### url match
 
@@ -390,7 +385,7 @@ Feature: Example feature
     Then the url should match ${view post}
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### url query match
 
@@ -413,7 +408,7 @@ Feature: Example feature
     Then the url parameter should match ^\/post\/\d+
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ## Navigation
 
@@ -427,7 +422,7 @@ Set driver’s baseUrl. Useful to use short path in subsequent navigation (ex: �
 
 #### Parameters
 
--   `location` **[string][53]** The base URL as a full, absolute URL
+-   `location` **[string][51]** The base URL as a full, absolute URL
 
 #### Examples
 
@@ -438,7 +433,7 @@ Feature: Example feature
     Then the "h1" element should be visible
 ```
 
-Returns **[Promise][51]** Resolves when the action completes
+Returns **[Promise][52]** Resolves when the action completes
 
 ### homepage
 
@@ -473,7 +468,7 @@ Feature: Example feature
     Then the "h1" element should be visible
 ```
 
-Returns **[Promise][51]** Resolves when the action completes
+Returns **[Promise][52]** Resolves when the action completes
 
 ### browse
 
@@ -486,7 +481,7 @@ Browse given URL or path. Protractor assumes it is an angular page
 
 #### Parameters
 
--   `location` **[string][53]** Path to browse to, either absolute or relative
+-   `location` **[string][51]** Path to browse to, either absolute or relative
 
 #### Examples
 
@@ -504,7 +499,7 @@ Feature: Example feature
     Then the "h1" element should be visible
 ```
 
-Returns **[Promise][51]** Resolves when action completes
+Returns **[Promise][52]** Resolves when action completes
 
 ### reload
 
@@ -523,7 +518,7 @@ Feature: Example feature
     Then the "h1" element should be visible
 ```
 
-Returns **[Promise][51]** Resolves when action completes
+Returns **[Promise][52]** Resolves when action completes
 
 ### back
 
@@ -542,7 +537,7 @@ Feature: Example feature
     Then the "h1" element should be visible
 ```
 
-Returns **[Promise][51]** Resolves when action completes
+Returns **[Promise][52]** Resolves when action completes
 
 ## AssertDOM
 
@@ -556,7 +551,7 @@ Assert page sources (with tags) contains the provided string.
 
 #### Parameters
 
--   `expected` **[string][53]** The text content expected to be present
+-   `expected` **[string][51]** The text content expected to be present
 
 #### Examples
 
@@ -567,7 +562,7 @@ Feature: Example feature
     Then I should see "Home Page"
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### html not contains
 
@@ -579,7 +574,7 @@ Assert page sources (with tags) contains the provided string.
 
 #### Parameters
 
--   `expected` **[string][53]** The text content expected to be present
+-   `expected` **[string][51]** The text content expected to be present
 
 #### Examples
 
@@ -590,7 +585,7 @@ Feature: Example feature
     Then I should not see "Detail Page"
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### html match
 
@@ -613,7 +608,7 @@ Feature: Example feature
     Then I should see text matching Post-\d+
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### html not match
 
@@ -636,7 +631,7 @@ Feature: Example feature
     Then I should not see text matching .+@.+
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### html element count
 
@@ -649,7 +644,7 @@ Assert page contains n number of number of DOM-elements with the provided CSS Se
 #### Parameters
 
 -   `expected` **integer** The expected count
--   `selector` **[string][53]** Selector of target element
+-   `selector` **[string][51]** Selector of target element
 
 #### Examples
 
@@ -660,7 +655,7 @@ Feature: Example feature
     Then I should see 3 "section.post" elements
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### element contains
 
@@ -673,8 +668,8 @@ Assert DOM-element with the provided CSS Selector contains the provided text.
 
 #### Parameters
 
--   `expected` **[string][53]** Regular expression
--   `selector` **[string][53]** Selector of target element
+-   `expected` **[string][51]** Regular expression
+-   `selector` **[string][51]** Selector of target element
 
 #### Examples
 
@@ -699,7 +694,7 @@ Feature: Example feature
     Then I should see "Login" in the "h1" element's text
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### element not contains
 
@@ -712,8 +707,8 @@ Assert DOM-element(s) with the provided CSS Selector do not contains the provide
 
 #### Parameters
 
--   `expected` **[string][53]** Regular expression
--   `selector` **[string][53]** Selector of target element
+-   `expected` **[string][51]** Regular expression
+-   `selector` **[string][51]** Selector of target element
 
 #### Examples
 
@@ -731,7 +726,7 @@ Feature: Example feature
     Then I should not see "Register" in the "h1" element text
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### element visible
 
@@ -744,7 +739,7 @@ Assert if the selected DOM-element found by given selector is visible.
 
 #### Parameters
 
--   `selector` **[string][53]** Selector of target element
+-   `selector` **[string][51]** Selector of target element
 
 #### Examples
 
@@ -762,7 +757,7 @@ Feature: Example feature
     Then the ".alert.alert-danger" element should be visible
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### element not visible
 
@@ -775,7 +770,7 @@ Assert if the selected DOM-element found by given selector is not visible.
 
 #### Parameters
 
--   `selector` **[string][53]** Selector of target element
+-   `selector` **[string][51]** Selector of target element
 
 #### Examples
 
@@ -793,7 +788,7 @@ Feature: Example feature
     Then the ".alert.alert-danger" element should not visible
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### element exists
 
@@ -806,7 +801,7 @@ Assert that at least one element exits matching given selector.
 
 #### Parameters
 
--   `selector` **[string][53]** Selector of target element
+-   `selector` **[string][51]** Selector of target element
 
 #### Examples
 
@@ -824,7 +819,7 @@ Feature: Example feature
     Then there should be a "span.warning" element
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### element not exists
 
@@ -837,7 +832,7 @@ Assert that no element exists matching given selector.
 
 #### Parameters
 
--   `selector` **[string][53]** Selector of target element
+-   `selector` **[string][51]** Selector of target element
 
 #### Examples
 
@@ -855,7 +850,7 @@ Feature: Example feature
     Then there should not be a "button" element
 ```
 
-Returns **[Promise][51]** Resolves when action completes
+Returns **[Promise][52]** Resolves when action completes
 
 ### link visible
 
@@ -868,7 +863,7 @@ Assert the visibility of a link (or button) with at least partial match of text
 
 #### Parameters
 
--   `text` **[string][53]** Text to find the link
+-   `text` **[string][51]** Text to find the link
 
 #### Examples
 
@@ -886,7 +881,7 @@ Feature: Example feature
     Then the "Click to resend" link should be visible
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### link not visible
 
@@ -899,7 +894,7 @@ Assert the presence of a link with at least partial match of text
 
 #### Parameters
 
--   `text` **[string][53]** Text to find the link
+-   `text` **[string][51]** Text to find the link
 
 #### Examples
 
@@ -917,7 +912,7 @@ Feature: Example feature
     Then the "Click to resend" link should not be visible
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ## Form
 
@@ -934,8 +929,8 @@ See the [protract sendKeys method documentation][55]
 
 #### Parameters
 
--   `selector` **[string][53]** Css selector matching the target field element
--   `value` **[string][53]** The text content to send
+-   `selector` **[string][51]** Css selector matching the target field element
+-   `value` **[string][51]** The text content to send
 
 #### Examples
 
@@ -949,7 +944,7 @@ My long multi-line text ...
 """
 ```
 
-Returns **[Promise][51]** Resolves when the action completes
+Returns **[Promise][52]** Resolves when the action completes
 
 ### fill multiple
 
@@ -977,7 +972,7 @@ Feature: Example feature
 | "textarea[name='description']"  | Some text ... |
 ```
 
-Returns **[Promise][51]** Resolves when the action completes
+Returns **[Promise][52]** Resolves when the action completes
 
 ### choose in select
 
@@ -989,8 +984,8 @@ Select option that display text matching the argument.
 
 #### Parameters
 
--   `option` **[string][53]** Text content of the option
--   `selector` **[string][53]** Css selector matching the target field element
+-   `option` **[string][51]** Text content of the option
+-   `selector` **[string][51]** Css selector matching the target field element
 
 #### Examples
 
@@ -1001,7 +996,7 @@ Feature: Example feature
     Then I select "France" from "select.country"
 ```
 
-Returns **[Promise][51]** Resolves when the action completes
+Returns **[Promise][52]** Resolves when the action completes
 
 ### check
 
@@ -1013,7 +1008,7 @@ Check the checkbox with provided selector.
 
 #### Parameters
 
--   `selector` **[string][53]** Css selector matching the target field element
+-   `selector` **[string][51]** Css selector matching the target field element
 
 #### Examples
 
@@ -1024,7 +1019,7 @@ Feature: Example feature
     Then I check "#checkbox-input"
 ```
 
-Returns **[Promise][51]** Resolves when the action completes
+Returns **[Promise][52]** Resolves when the action completes
 
 ### uncheck
 
@@ -1036,7 +1031,7 @@ Uncheck the checkbox with provided selector.
 
 #### Parameters
 
--   `selector` **[string][53]** Css selector matching the target field element
+-   `selector` **[string][51]** Css selector matching the target field element
 
 #### Examples
 
@@ -1047,7 +1042,7 @@ Feature: Example feature
     Then I uncheck "#checkbox-input-next"
 ```
 
-Returns **[Promise][51]** Resolves when the action completes
+Returns **[Promise][52]** Resolves when the action completes
 
 ## AssertForm
 
@@ -1061,8 +1056,8 @@ Assert the currently selected option of a select field contains provided text.
 
 #### Parameters
 
--   `selector` **[string][53]** Selector of target element
--   `expected` **[string][53]** Text content of the expected selected option
+-   `selector` **[string][51]** Selector of target element
+-   `expected` **[string][51]** Text content of the expected selected option
 
 #### Examples
 
@@ -1073,7 +1068,7 @@ Feature: Example feature
     Then the "select[name='country']" current option contain "USA"
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### input value
 
@@ -1085,8 +1080,8 @@ Assert if the input’s value of given selector contains provided text.
 
 #### Parameters
 
--   `selector` **[string][53]** Selector of target element
--   `expected` **[string][53]** Text content of the expected value
+-   `selector` **[string][51]** Selector of target element
+-   `expected` **[string][51]** Text content of the expected value
 
 #### Examples
 
@@ -1097,7 +1092,7 @@ Feature: Example feature
     Then the "textarea[name='description']" field should contain "My text"
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### input not value
 
@@ -1109,8 +1104,8 @@ Assert if the input’s value of given selector do not contains provided text.
 
 #### Parameters
 
--   `selector` **[string][53]** Selector of target element
--   `expected` **[string][53]** Text content of the value to check does not exist
+-   `selector` **[string][51]** Selector of target element
+-   `expected` **[string][51]** Text content of the value to check does not exist
 
 #### Examples
 
@@ -1121,7 +1116,7 @@ Feature: Example feature
     Then the "textarea[name='description']" field should not contain "My first name"
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### input enabled
 
@@ -1133,7 +1128,7 @@ Assert that the element matching given selector is enabled
 
 #### Parameters
 
--   `selector` **[string][53]** Selector of target element
+-   `selector` **[string][51]** Selector of target element
 
 #### Examples
 
@@ -1144,7 +1139,7 @@ Feature: Example feature
     Then the "input[type='submit']" element should be enabled
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### input disabled
 
@@ -1156,7 +1151,7 @@ Assert that the element matching given selector is disabled
 
 #### Parameters
 
--   `selector` **[string][53]** Selector of target element
+-   `selector` **[string][51]** Selector of target element
 
 #### Examples
 
@@ -1167,7 +1162,7 @@ Feature: Example feature
     Then the "input[type='submit']" element should be disabled
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### checkbox checked
 
@@ -1181,7 +1176,7 @@ Assert that the element matching given selector is checked
 
 #### Parameters
 
--   `selector` **[string][53]** Selector of target element
+-   `selector` **[string][51]** Selector of target element
 
 #### Examples
 
@@ -1199,7 +1194,7 @@ Feature: Example feature
     Then the checkbox "input[name='agree']" should be checked
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
 ### checkbox unchecked
 
@@ -1213,7 +1208,7 @@ Assert that the element matching given selector is unchecked
 
 #### Parameters
 
--   `selector` **[string][53]** Selector of target element
+-   `selector` **[string][51]** Selector of target element
 
 #### Examples
 
@@ -1238,29 +1233,29 @@ Feature: Example feature
     Then the checkbox "#checkbox-input" is unchecked
 ```
 
-Returns **[Promise][51]** Resolves if assertion passes
+Returns **[Promise][52]** Resolves if assertion passes
 
-[1]: #utility
+[1]: #action
 
-[2]: #screenshot
+[2]: #click
 
-[3]: #viewport
+[3]: #hover
 
-[4]: #wait
+[4]: #submit
 
-[5]: #action
+[5]: #press
 
-[6]: #click
+[6]: #follow
 
-[7]: #hover
+[7]: #sendkey
 
-[8]: #submit
+[8]: #utility
 
-[9]: #press
+[9]: #screenshot
 
-[10]: #follow
+[10]: #viewport
 
-[11]: #sendkey
+[11]: #wait
 
 [12]: #asserturl
 
@@ -1340,11 +1335,11 @@ Returns **[Promise][51]** Resolves if assertion passes
 
 [50]: #checkbox-unchecked
 
-[51]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[51]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[52]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[52]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[53]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[53]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
 [54]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/RegExp
 
