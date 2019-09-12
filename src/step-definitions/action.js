@@ -25,6 +25,9 @@ const Action = {
       /^(?:|I )send key "([^"]*)" in "([^"]*)" element/,
       /^(?:|I )type "([^"]*)" in(?:|to) (?:|the )"([^"]*)" element/,
     ],
+    scroll: [
+      /^(?:|I )scroll (?:|to )"([^"]*)" element with "([^"]*)" text/,
+    ],
   },
 
   /**
@@ -146,6 +149,26 @@ const Action = {
       .then(input => input.sendKeys(key));
   },
 
+  /**
+   * Scroll to element based on given selector containing the provided text
+   *
+   * #### Patterns
+   *
+   * - /^(?:|I )scroll (?:|to )"([^"]*)" element with "([^"]*)" text/
+   *
+   * @example When I scroll to "a" element with "view detail" text
+   * @param  {string} selector Selector of target element
+   * @param  {string} text     Text of target element
+   * @return {Promise}         Resolves after action completes
+   */
+  scroll: function (selector, text) {
+    return element(by.cssContainingText(selector, text)).getLocation().then(function (location) {
+      return browser.touchActions().scroll({
+        x: parseInt(location.x),
+        y: parseInt(location.y),
+      }).perform();
+    });
+  },
 };
 
 module.exports = Action;
