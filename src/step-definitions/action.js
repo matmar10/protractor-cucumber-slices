@@ -150,18 +150,39 @@ const Action = {
   },
 
   /**
+   * Scroll to element containing the text
+   *
+   * #### Patterns
+   *
+   * - /^(?:|I )scroll to "([^"]*)"/
+   *
+   * @example When I scroll to "view detail"
+   * @param  {string} selector Selector of target element
+   * @param  {string} text     Text of target element
+   * @return {Promise}         Resolves after action completes
+   */
+  'scroll to': function (text) {
+    return element(by.cssContainingText('*', text)).getLocation().then(function (location) {
+      return browser.touchActions().scroll({
+        x: parseInt(location.x),
+        y: parseInt(location.y),
+      }).perform();
+    });
+  },
+
+  /**
    * Scroll to element based on given selector containing the provided text
    *
    * #### Patterns
    *
-   * - /^(?:|I )scroll (?:|to )"([^"]*)" element with "([^"]*)" text/
+   * - /^(?:|I )scroll (?:|to )(?:|the |a |an )"([^"]*)" element (?:|with |containing |having )"([^"]*)"(?:| text)/
    *
    * @example When I scroll to "a" element with "view detail" text
    * @param  {string} selector Selector of target element
    * @param  {string} text     Text of target element
    * @return {Promise}         Resolves after action completes
    */
-  scroll: function (selector, text) {
+  'scroll to element': function (selector, text) {
     return element(by.cssContainingText(selector, text)).getLocation().then(function (location) {
       return browser.touchActions().scroll({
         x: parseInt(location.x),
@@ -169,6 +190,7 @@ const Action = {
       }).perform();
     });
   },
+
 };
 
 module.exports = Action;
