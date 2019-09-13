@@ -15,6 +15,8 @@
         * [press](steps.md#press)
         * [follow](steps.md#follow)
         * [sendKey](steps.md#sendKey)
+        * [scroll to](steps.md#scroll-to)
+        * [scroll to element](steps.md#scroll-to-element)
     * [Navigation](steps.md#Navigation)
         * [base url](steps.md#base-url)
         * [homepage](steps.md#homepage)
