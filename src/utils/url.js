@@ -105,6 +105,20 @@ const url = {
     }
     return url.aliases[alias];
   },
+
+
+  /**
+   * Fetch the given URL, using the timeout (if provided).
+   * Defaults to the protractor getPageTimeout
+   *
+   * @param  {string} url       The URL to load
+   * @param  {number} [timeout] (optional) Timeout in milliseconds
+   * @return {Promise}          Resolves when the page is loaded
+   */
+  browserGetWithTimeout: function browserGetWithTimeout(url, timeout) {
+    return browser.getProcessedConfig()
+      .then(config => browser.get(url, timeout || config.getPageTimeout || 5000));
+  },
 };
 
 module.exports = url;

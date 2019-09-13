@@ -11,9 +11,10 @@
     -   [base][7]
     -   [getCurrent][8]
     -   [alias][9]
--   [element][10]
-    -   [any][11]
-    -   [input][12]
+    -   [browserGetWithTimeout][10]
+-   [element][11]
+    -   [any][12]
+    -   [input][13]
 
 ## by
 
@@ -23,8 +24,8 @@ Finds element by the angular reflected name
 
 #### Parameters
 
--   `args` **[Array][13]** Arguments passed to this Locator
--   `opt_parentElement` **[Element][14]** Parent element (optional, default `document`)
+-   `args` **[Array][14]** Arguments passed to this Locator
+-   `opt_parentElement` **[Element][15]** Parent element (optional, default `document`)
 
 #### Examples
 
@@ -36,7 +37,7 @@ When('I click the input with reflected name "{string}"', function (selector) {
 });
 ```
 
-Returns **[NodeList][15]** Array of matched DOM elements
+Returns **[NodeList][16]** Array of matched DOM elements
 
 ### inputLabelText
 
@@ -44,8 +45,8 @@ Finds elements corresponding to their labels by the text itself
 
 #### Parameters
 
--   `args` **[Array][13]** Arguments passed to this Locator
--   `opt_parentElement` **[Element][14]** Parent element (optional, default `document`)
+-   `args` **[Array][14]** Arguments passed to this Locator
+-   `opt_parentElement` **[Element][15]** Parent element (optional, default `document`)
 
 #### Examples
 
@@ -57,7 +58,7 @@ When('I click the input labeled "{string}"', function (labelText) {
 });
 ```
 
-Returns **[NodeList][15]** Array of matched DOM elements
+Returns **[NodeList][16]** Array of matched DOM elements
 
 ## url
 
@@ -67,9 +68,9 @@ Check whether given location is an absolute URL
 
 #### Parameters
 
--   `location` **[string][16]** URL to check
+-   `location` **[string][17]** URL to check
 
-Returns **[boolean][17]** Whether is absolute (or not)
+Returns **[boolean][18]** Whether is absolute (or not)
 
 ### parseWithEnv
 
@@ -78,9 +79,9 @@ URL returns unaltered if there are no template variables inside
 
 #### Parameters
 
--   `location` **[string][16]** The URL
+-   `location` **[string][17]** The URL
 
-Returns **[string][16]** URL with replacements made
+Returns **[string][17]** URL with replacements made
 
 ### base
 
@@ -89,9 +90,9 @@ Defaults to the `baseUrl` parameter in protractor config
 
 #### Parameters
 
--   `newBaseUrl` **[string][16]** Optional new base URL to set (optional, default `false`)
+-   `newBaseUrl` **[string][17]** Optional new base URL to set (optional, default `false`)
 
-Returns **[string][16]** The current base URL
+Returns **[string][17]** The current base URL
 
 ### getCurrent
 
@@ -99,9 +100,9 @@ Get the current browser URL, optionall ignoring the configured base url
 
 #### Parameters
 
--   `excludeBase` **[Boolean][17]** Whether to exclude base URL (optional, default `true`)
+-   `excludeBase` **[Boolean][18]** Whether to exclude base URL (optional, default `true`)
 
-Returns **[string][16]** The current URL
+Returns **[string][17]** The current URL
 
 ### alias
 
@@ -109,8 +110,8 @@ Get/set an URL alias which can be used in templates with `${name}` syntax
 
 #### Parameters
 
--   `alias` **[string][16]** Alias of URL to get/set
--   `url` **[string][16]** New URL to set for the alias (optional, default `null`)
+-   `alias` **[string][17]** Alias of URL to get/set
+-   `url` **[string][17]** New URL to set for the alias (optional, default `null`)
 
 #### Examples
 
@@ -125,7 +126,19 @@ Scenario: Visit login page
   And I should see "Password is required"
 ```
 
-Returns **[string][16]** Returns the URL set for this alias
+Returns **[string][17]** Returns the URL set for this alias
+
+### browserGetWithTimeout
+
+Fetch the given URL, using the timeout (if provided).
+Defaults to the protractor getPageTimeout
+
+#### Parameters
+
+-   `url` **[string][17]** The URL to load
+-   `timeout` **[number][19]?** (optional) Timeout in milliseconds
+
+Returns **[Promise][20]** Resolves when the page is loaded
 
 ## element
 
@@ -149,7 +162,7 @@ When('I click the {string} input', function (selector) {
 });
 ```
 
-Returns **[Promise][18]&lt;ElementFinder>** The ElementFinder for the first matched element
+Returns **[Promise][20]&lt;ElementFinder>** The ElementFinder for the first matched element
 
 ### input
 
@@ -163,7 +176,7 @@ Attempts to find a single input element using the following methods:
 
 #### Parameters
 
--   `selector` **[string][16]** Query to look up using each of the available methods
+-   `selector` **[string][17]** Query to look up using each of the available methods
 
 #### Examples
 
@@ -178,7 +191,7 @@ When('I click the {string} input', function (selector) {
 });
 ```
 
-Returns **[Promise][18]&lt;ElementFinder>** The ElementFinder
+Returns **[Promise][20]&lt;ElementFinder>** The ElementFinder
 
 [1]: #by
 
@@ -198,20 +211,24 @@ Returns **[Promise][18]&lt;ElementFinder>** The ElementFinder
 
 [9]: #alias
 
-[10]: #element
+[10]: #browsergetwithtimeout
 
-[11]: #any
+[11]: #element
 
-[12]: #input
+[12]: #any
 
-[13]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[13]: #input
 
-[14]: https://developer.mozilla.org/docs/Web/API/Element
+[14]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[15]: https://developer.mozilla.org/docs/Web/API/NodeList
+[15]: https://developer.mozilla.org/docs/Web/API/Element
 
-[16]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[16]: https://developer.mozilla.org/docs/Web/API/NodeList
 
-[17]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[17]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[18]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[18]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+
+[19]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+
+[20]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise

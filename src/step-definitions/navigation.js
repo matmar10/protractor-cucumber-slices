@@ -3,12 +3,7 @@
 const { browser } = require('protractor');
 
 const Errors = require('./../utils/errors');
-const { base, isAbsolute } = require('./../utils/url');
-
-function browserGetWithTimeout(url) {
-  return browser.getProcessedConfig()
-    .then(config => browser.get(url, config.getPageTimeout || 5000));
-}
+const { base, browserGetWithTimeout, isAbsolute } = require('./../utils/url');
 
 /**
  * @module Navigation

@@ -15,17 +15,17 @@
     -   [screenshot][11]
     -   [viewport][12]
     -   [wait][13]
--   [AssertURL][14]
-    -   [on homepage][15]
-    -   [url][16]
-    -   [url match][17]
-    -   [url query match][18]
--   [Navigation][19]
-    -   [base url][20]
-    -   [homepage][21]
-    -   [browse][22]
-    -   [reload][23]
-    -   [back][24]
+-   [Navigation][14]
+    -   [base url][15]
+    -   [homepage][16]
+    -   [browse][17]
+    -   [reload][18]
+    -   [back][19]
+-   [AssertURL][20]
+    -   [on homepage][21]
+    -   [url][22]
+    -   [url match][23]
+    -   [url query match][24]
 -   [AssertDOM][25]
     -   [html contains][26]
     -   [html not contains][27]
@@ -359,107 +359,6 @@ Feature: Example feature
 
 Returns **[Promise][54]** Resolves when action completes
 
-## AssertURL
-
-### on homepage
-
-Assert current URL pathname equals ‘/’.
-
-#### Patterns
-
--   /^(?:|I )should be on "([^"]\*)"/
-
-#### Examples
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I press "Next"
-    Then I should be on the homepage
-```
-
-Returns **[Promise][54]** Resolves if assertion passes
-
-### url
-
-Assert current URL pathname equals the given string.
-The string provided will be pre-parsed for any configured URL aliases
-
-#### Patterns
-
--   /^(?:|I )should be on (?:|the )"([^"]\*)"(?:| page)$/
--   /^(?:|I )should be on (?:|the )(?:|page )"([^"]\*)"$/
-
-#### Parameters
-
--   `location`  
-
-#### Examples
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I press "Next"
-    Then I should be on "/post/1"
-```
-
-Returns **[Promise][54]** Resolves if assertion passes
-
-### url match
-
-Assert current URL pathname match against provided RegExp.
-The pattern provided will be pre-parsed for any configured URL aliases
-
-#### Patterns
-
--   /the url should match (.+)/
--   /the url should match (.+)/
-
-#### Parameters
-
--   `regex`  
-
-#### Examples
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I press "Next"
-    Then the url should match ^\/post\/\d+
-```
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I press "Next"
-    Then the url should match ${view post}
-```
-
-Returns **[Promise][54]** Resolves if assertion passes
-
-### url query match
-
-Assert current URL query string match against provided RegExp.
-
-#### Patterns
-
--   /^the url parameter should match (.+)$/
-
-#### Parameters
-
--   `regex`  
-
-#### Examples
-
-```gherkhin
-Feature: Example feature
-  Scenario: Sample scenario
-    When I press "Next"
-    Then the url parameter should match ^\/post\/\d+
-```
-
-Returns **[Promise][54]** Resolves if assertion passes
-
 ## Navigation
 
 ### base url
@@ -588,6 +487,107 @@ Feature: Example feature
 ```
 
 Returns **[Promise][54]** Resolves when action completes
+
+## AssertURL
+
+### on homepage
+
+Assert current URL pathname equals ‘/’.
+
+#### Patterns
+
+-   /^(?:|I )should be on "([^"]\*)"/
+
+#### Examples
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should be on the homepage
+```
+
+Returns **[Promise][54]** Resolves if assertion passes
+
+### url
+
+Assert current URL pathname equals the given string.
+The string provided will be pre-parsed for any configured URL aliases
+
+#### Patterns
+
+-   /^(?:|I )should be on (?:|the )"([^"]\*)"(?:| page)$/
+-   /^(?:|I )should be on (?:|the )(?:|page )"([^"]\*)"$/
+
+#### Parameters
+
+-   `location`  
+
+#### Examples
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then I should be on "/post/1"
+```
+
+Returns **[Promise][54]** Resolves if assertion passes
+
+### url match
+
+Assert current URL pathname match against provided RegExp.
+The pattern provided will be pre-parsed for any configured URL aliases
+
+#### Patterns
+
+-   /the url should match (.+)/
+-   /the url should match (.+)/
+
+#### Parameters
+
+-   `regex`  
+
+#### Examples
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the url should match ^\/post\/\d+
+```
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the url should match ${view post}
+```
+
+Returns **[Promise][54]** Resolves if assertion passes
+
+### url query match
+
+Assert current URL query string match against provided RegExp.
+
+#### Patterns
+
+-   /^the url parameter should match (.+)$/
+
+#### Parameters
+
+-   `regex`  
+
+#### Examples
+
+```gherkhin
+Feature: Example feature
+  Scenario: Sample scenario
+    When I press "Next"
+    Then the url parameter should match ^\/post\/\d+
+```
+
+Returns **[Promise][54]** Resolves if assertion passes
 
 ## AssertDOM
 
@@ -1311,27 +1311,27 @@ Returns **[Promise][54]** Resolves if assertion passes
 
 [13]: #wait
 
-[14]: #asserturl
+[14]: #navigation
 
-[15]: #on-homepage
+[15]: #base-url
 
-[16]: #url
+[16]: #homepage
 
-[17]: #url-match
+[17]: #browse
 
-[18]: #url-query-match
+[18]: #reload
 
-[19]: #navigation
+[19]: #back
 
-[20]: #base-url
+[20]: #asserturl
 
-[21]: #homepage
+[21]: #on-homepage
 
-[22]: #browse
+[22]: #url
 
-[23]: #reload
+[23]: #url-match
 
-[24]: #back
+[24]: #url-query-match
 
 [25]: #assertdom
 
