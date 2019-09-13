@@ -25,9 +25,12 @@ const Action = {
       /^(?:|I )send key "([^"]*)" in "([^"]*)" element/,
       /^(?:|I )type "([^"]*)" in(?:|to) (?:|the )"([^"]*)" element/,
     ],
-    scroll: [
-      /^(?:|I )scroll (?:|to )"([^"]*)" element with "([^"]*)" text/,
+    'scroll to': [
+      /^(?:|I )scroll to "([^"]*)"/,
     ],
+    'scroll to element': [
+      /^(?:|I )scroll (?:|to )(?:|the |a |an )"([^"]*)" element (?:|with |containing |having )"([^"]*)"(?:| text)/,
+    ]
   },
 
   /**
