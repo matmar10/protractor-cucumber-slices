@@ -10,7 +10,7 @@ Enjoy pre-sliced cucumber testing for protractor, ready to consume with no lengt
 ## What is it?
 **What?** A gherkin (cucumber) BDD step library for testing [Angular (ngx)](https://angular.io/) applications.
 
-**See the [Steps](steps.md#table-of-contents) library to see what's included.**
+**See the [Step Library](https://matmar10.github.io/protractor-cucumber-slices/#/steps.md#table-of-contents "Cucumber Step Library for Angular BDD Using Protractor") to see what's included.**
 
 ### Simple Example
 
