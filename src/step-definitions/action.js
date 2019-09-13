@@ -30,7 +30,7 @@ const Action = {
     ],
     'scroll to element': [
       /^(?:|I )scroll (?:|to )(?:|the |a |an )"([^"]*)" element (?:|with |containing |having )"([^"]*)"(?:| text)/,
-    ]
+    ],
   },
 
   /**
