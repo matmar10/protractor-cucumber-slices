@@ -21,7 +21,7 @@ stepModuleNames.forEach((moduleName) => {
     const step = module[stepName];
     const regexList = module.regex[stepName];
     regexList.forEach((regex) => {
-      defineStep(regex, step);
+      defineStep(regex, { timeout: 60 * 1000 }, step);
     });
   });
 });
