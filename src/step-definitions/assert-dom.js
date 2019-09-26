@@ -48,12 +48,14 @@ const AssertDOM = {
       /^there should not be an? "([^"]*)" element$/,
     ],
     'link visible': [
-      /^(?:|I )should see (?:|the |an )"([^"]*)" link/,
-      /^the "([^"]*)" link should be visible/,
+      /^(?:|I )should see (?:|the |a |an )"([^"]*)" link/,
+      /^(?:|I )should see (?:|the |a |an )link (?:|that says |that reads |with |say |saying |show |showing |display |displaying )"([^"]*)"/,
+      /^(?:|the |a |an ) "([^"]*)" link should (?:|be visible |display |be displayed |show |be shown )/,
     ],
     'link not visible': [
-      /^(?:|I )should not see (?:|the |an )"([^"]*)" link/,
-      /^the "([^"]*)" link should not be visible/,
+      /^(?:|I )should not see (?:|the |a |an )"([^"]*)" link/,
+      /^(?:|I )should not see (?:|the |a |an )link (?:|that says |that reads |with |say |saying |show |showing |display |displaying )"([^"]*)"/,
+      /^(?:|the |a |an ) "([^"]*)" link should not (?:|be visible |display |be displayed |show |be shown )/,
     ],
   },
 
@@ -263,8 +265,9 @@ const AssertDOM = {
    * Assert the visibility of a link (or button) with at least partial match of text
    *
    * #### Patterns
-   * - /^(?:|I )should see (?:|the |an )"([^"]*)" link/
-   * - /^the "([^"]*)" link should be visible/
+   * - /^(?:|I )should see (?:|the |a |an )"([^"]*)" link/
+   * - /^(?:|I )should see (?:|the |a |an )link (?:|that says |that reads |with |say |saying |show |showing |display |displaying )"([^"]*)"/
+   * - /^(?:|the |a |an ) "([^"]*)" link should (?:|be visible |display |be displayed |show |be shown )/
    *
    * @example Then I should see a "See more examples" link
    * @example Then the "Click to resend" link should be visible
@@ -280,8 +283,9 @@ const AssertDOM = {
    * Assert the presence of a link with at least partial match of text
    *
    * #### Patterns
-   * - /^(?:|I )should not see (?:|the |an )"([^"]*)" link/
-   * - /^the "([^"]*)" link should not be visible/
+   * - /^(?:|I )should not see (?:|the |a |an )"([^"]*)" link/
+   * - /^(?:|I )should not see (?:|the |a |an )link (?:|that says |that reads |with |say |saying |show |showing |display |displaying )"([^"]*)"/
+   * - /^(?:|the |a |an ) "([^"]*)" link should not (?:|be visible |display |be displayed |show |be shown )/
    *
    * @example Then I should not see a "See more examples" link
    * @example Then the "Click to resend" link should not be visible
