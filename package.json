@@ -21,7 +21,7 @@
     "gulp": "^4.0.2",
     "gulp-string-replace": "^1.1.2",
     "prettier": "^1.18.2",
-    "release-it": "^12.3.5"
+    "release-it": "^15.6.0"
   },
   "scripts": {
     "docs:all": "npm run docs:steps && npm run docs:utils",
